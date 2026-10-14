@@ -1,0 +1,74 @@
+// ===================================================
+// AXIS ▪︎ TYPOGRAPHY (Primitive Tokens)
+// Define typographic scale and rhythm
+// ===================================================
+
+// == Font Size Scale ==
+$font-10:  0.625rem; // 10px
+$font-12:  0.75rem;  // 12px
+$font-14:  0.875rem; // 14px
+$font-16:  1rem;     // 16px
+$font-18:  1.125rem; // 18px
+$font-20:  1.25rem;  // 20px
+$font-24:  1.5rem;   // 24px
+$font-32:  2rem;     // 32px
+$font-40:  2.5rem;   // 40px
+$font-48:  3rem;     // 48px
+$font-64:  4rem;     // 64px
+$font-72:  4.5rem;   // 72px
+$font-80:  5rem;     // 80px
+$font-96:  6rem;     // 96px
+$font-128: 8rem;     // 128px
+
+// == Font Weight Scale ==
+$weight-thin:        100;
+$weight-extra-light: 200;
+$weight-light:       300;
+$weight-regular:     400;
+$weight-medium:      500;
+$weight-semi-bold:   600;
+$weight-bold:        700;
+$weight-extra-bold:  800;
+$weight-black:       900;
+
+// == Line Height Scale ==
+$lh-none:    1;
+$lh-tight:   1.1;
+$lh-snug:    1.25;
+$lh-normal:  1.4;
+$lh-relaxed: 1.5;
+$lh-loose:   1.75;
+
+// == Letter Spacing Scale ==
+$tracking-tighter: -0.04em;
+$tracking-tight:   -0.02em;
+$tracking-normal:  0;
+$tracking-wide:    0.02em;
+$tracking-wider:   0.04em;
+$tracking-widest:  0.08em;
+
+// == Semantic Layer Tokens ==
+// ---------------------------------------------------
+// Base
+$font-family-base: Ubuntu, Cantarell, system-ui, -apple-system, sans-serif;
+$font-size-base:   $font-16;
+$font-weight-base: $weight-regular;
+$line-height-base: $lh-normal;
+$letter-spc-base:  $tracking-normal;
+
+// Headings
+$font-family-heading: Oxygen, Ubuntu, Cantarell, system-ui, -apple-system, sans-serif;
+$font-weight-heading: $weight-bold;
+$line-height-heading: $lh-tight;
+$letter-spc-heading:  $tracking-tight;
+$font-size-h1: $font-64;
+$font-size-h2: $font-48;
+$font-size-h3: $font-40;
+$font-size-h4: $font-32;
+$font-size-h5: $font-24;
+$font-size-h6: $font-20;
+
+// Other Elements
+$font-size-small:  $font-14;
+$font-weight-bold: $weight-bold;
+// ---------------------------------------------------

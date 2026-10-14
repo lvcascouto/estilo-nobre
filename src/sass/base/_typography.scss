@@ -1,0 +1,47 @@
+@use "../abstracts/tokens" as token;
+
+// ===================================================
+// AXIS ▪︎ TYPOGRAPHY BASE STYLES
+// ===================================================
+
+// == Default Typography ==
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: token.$font-family-base;
+  font-size:   token.$font-size-base;
+  font-weight: token.$font-weight-base;
+  line-height: token.$line-height-base;
+  letter-spacing: token.$letter-spc-base;
+}
+
+// == Headings ==
+h1, h2, h3, h4, h5, h6 {
+  font-family:    token.$font-family-heading;
+  font-weight:    token.$font-weight-heading;
+  line-height:    token.$line-height-heading;
+  letter-spacing: token.$letter-spc-heading;
+}
+
+h1 { font-size: token.$font-size-h1; }
+h2 { font-size: token.$font-size-h2; }
+h3 { font-size: token.$font-size-h3; }
+h4 { font-size: token.$font-size-h4; }
+h5 { font-size: token.$font-size-h5; }
+h6 { font-size: token.$font-size-h6; }
+
+// == Other Elements ==
+small {
+  font-size: token.$font-size-small;
+}
+
+strong, b {
+  font-weight: token.$font-weight-bold;
+}
+
+em, i {
+  font-style: italic;
+}

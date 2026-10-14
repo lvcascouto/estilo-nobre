@@ -1,0 +1,42 @@
+@use "../tokens" as token;
+@use "sass:map";
+@use "sass:math";
+@use "sass:color";
+
+// ===================================================
+// AXIS ▪︎ CORE FUNCTIONS
+// ===================================================
+
+// == Breakpoints ==
+@function bp($size) {
+  @if not map.has-key(token.$breakpoints, $size) {
+    @error "AXIS: Breakpoint '#{$size}' not found.";
+  }
+  @return map.get(token.$breakpoints, $size);
+}
+
+// == Z-Index Layers ==
+@function z($layer) {
+  @if not map.has-key(token.$z-layers, $layer) {
+    @error "AXIS: Layer '#{$layer}' not found.";
+  }
+  @return map.get(token.$z-layers, $layer);
+}
+
+// == PX to REM Converter ==
+@function rem($pixel) {
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) * 1rem;
+  } @else {
+    @error "AXIS: The rem() function accepts only unitless integers (e.g., 16, 24).";
+  }
+}
+
+// == Color Manipulation Helpers ==
+@function color-dark($color, $amount) {
+  @return color.scale($color, $lightness: -$amount);
+}
+
+@function color-light($color, $amount) {
+  @return color.scale($color, $lightness: $amount);
+}
