@@ -22,7 +22,23 @@ $yellow-500: #f59e0b;
 $red-500:    #ef4444;
 $blue-500:   #3437e6;
 
+// == Estilo Nobre — Brand Palette ==
+$brand-ink:       #121212;
+$brand-slate:     #475569;
+$brand-gold:      #c5a059;
+$brand-stone:     #e8e2d5;
+$brand-off-white: #f8f9fa;
+
 // == Semantic Layer Tokens ==
 // ---------------------------------------------------
-// Insert your semantic color tokens here, if applicable
+$color-surface-dark:  $brand-ink;
+$color-surface-light: $brand-off-white;
+$color-surface-stone: $brand-stone;
+
+$color-text-primary:       $brand-ink;
+$color-text-on-dark:       $brand-off-white;
+$color-text-secondary:     $brand-slate;
+$color-text-muted-on-dark: $brand-stone;
+
+$color-accent: $brand-gold;
 // ---------------------------------------------------

@@ -84,8 +84,8 @@
 //     @include focus-ring(token.$red-500)    → error
 //     @include focus-ring(currentColor, 4px) → larger offset
 // ---------------------------------------------------
-@mixin focus-ring($color: token.$blue-500, $offset: 4px, $radius: 4px) {
-  outline: 2px solid $color;
+@mixin focus-ring($color: token.$brand-slate, $offset: 0.125rem, $radius: 0.125rem) {
+  outline: 0.125rem solid $color;
   outline-offset: $offset;
   border-radius: $radius;
 }

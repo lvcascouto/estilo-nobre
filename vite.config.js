@@ -45,8 +45,6 @@ export default defineConfig({
       // Define entry points for multi-page architecture
       input: {
         main: resolve(import.meta.dirname, "index.html"),
-        // Uncomment below to add more pages to the build process
-        error: resolve(import.meta.dirname, "404.html"),
       },
 
       output: {

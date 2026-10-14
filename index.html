@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,12 +12,8 @@
     <meta name="keywords" content="Essential keywords" />
     <link rel="canonical" href="https://yourdomain.com/" />
 
-    <!-- PWA / BROWSER -->
+    <!-- BROWSER -->
     <meta name="theme-color" content="#000000" />
-    <meta name="msapplication-TileColor" content="#000000" />
-
-    <!-- PWA MANIFEST -->
-    <link rel="manifest" href="/manifest.json" />  
 
     <!-- OPEN GRAPH -->
     <meta property="og:title" content="Project Name | Short Complement" />
@@ -45,6 +41,10 @@
     <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon-180x180.png" />
 
     <!-- CSS FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Tenor+Sans&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Tenor+Sans&display=swap">
 
     <!-- AXIS MASTER ENTRY (Vite) -->
     <script type="module" src="./src/js/script.js"></script>
@@ -55,7 +55,10 @@
     <!-- HEADER PARTIAL -->
     <load src="/src/html/header.html" />
 
-    <main></main>
+    <main>
+      <h1>Marmoraria Estilo Nobre</h1>
+      <p>Bem-vindo à Marmoraria Estilo Nobre, onde a qualidade e o design se encontram.</p>
+    </main>
 
     <!-- FOOTER PARTIAL -->
     <load src="/src/html/footer.html" />

@@ -1,5 +1,6 @@
 @use "../abstracts/tokens" as token;
 @use "../abstracts/mixins" as mix;
+@use "../abstracts/functions" as fn;
 
 // ===================================================
 // AXIS ▪︎ HEADER (Global Section)
@@ -8,5 +9,42 @@
 
 // Semantic Header Tokens
 // ---------------------------------------------------
-// Insert your semantic header tokens here, if applicable
+//Header Bar
+$header-transition:  token.$duration-300 token.$ease-standard;
+$header-pad:         token.$space-16;
+$header-box-shadow:  token.$shadow-sm;
+
+// Navigation
+$nav-gap:            token.$space-24;
 // ---------------------------------------------------
+
+// Header Bar
+.header {
+  position: sticky;
+  top: 0;
+  z-index: fn.z(header);
+
+  background-color: black; //transparent;
+  line-height:      0;
+  transition:       box-shadow $header-transition, background-color $header-transition;
+
+  &__container  { padding-block: $header-pad; }
+  //&.is-scrolled { background-color: $header-bg-color; box-shadow: $header-box-shadow; }
+  
+  // Navigation
+  &__nav-list { color: white;
+
+    // @include mix.respond(md) {
+    //   @include mix.flex($direction: column, $align: flex-start, $gap: $nav-gap-sm);
+    //   margin-top: $nav-marg-top-sm;
+    // }
+  }
+    
+}
+
+.header__logo {
+    img {
+        height: 50px;
+        width: auto;
+    }
+}
