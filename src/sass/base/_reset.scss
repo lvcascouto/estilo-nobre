@@ -1,3 +1,5 @@
+@use "../abstracts/mixins" as mix;
+
 // ===================================================
 // AXIS ▪︎ RESET
 // Low-level structural normalization
@@ -19,6 +21,7 @@ html {
   -ms-text-size-adjust: 100%;     // IE/Edge
   text-size-adjust: 100%;
   scroll-behavior: smooth;
+  scroll-padding-top: calc(84px + 24px); @include mix.respond(xxl) { scroll-margin-top: calc(103px + 24px); }
 }
 
 // == List Reset ==

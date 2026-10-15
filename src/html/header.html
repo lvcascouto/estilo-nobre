@@ -1,7 +1,8 @@
+<div class="header-wrapper">
 <header class="header">
-  <div class="header__container container flex justify-between items-center">
+  <div class="header__container flex justify-between items-center">
 
-    <a href="index.html" class="header__logo" aria-label="Marmoraria Estilo Nobre - Início">
+    <a href="/" class="header__logo" aria-label="Marmoraria Estilo Nobre - Início">
       <img src="assets/svg/logo/logo.svg" alt="" title="Marmoraria Estilo Nobre" width="600" height="120"/>
     </a>
 
@@ -12,7 +13,7 @@
       <div class="bar bar--3"></div>
     </label>
 
-    <div class="header__panel" id="header-panel">
+    <div class="header__panel hide-md-down" id="header-panel">
 
       <div class="header__panel-scroll">
         <nav class="header__nav" aria-label="Menu Principal">
@@ -50,7 +51,24 @@
 
     </div>
 
-    <a style="color: white;" href="TODO" class="header__nav-cta" target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
+    <!-- TODO: Inserir link final do WhatsApp (ex: https://wa.me/5513999999999) -->
+    <a href="#" target="_blank" rel="noopener noreferrer" class="nav-btn-quote hide-lg-down">
+      <span class="content">
+        orçamento
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" >
+          <path d="m586.92-226.92-28.54-27.54 206.31-206.31H120v-40h645.46L559.38-707.08l27.54-27.54 253.85 253.85-253.85 253.85Z"/>
+        </svg>
+      </span>
+    </a>
 
+    <!-- <a style="color: white;" href="TODO" class="header__nav-cta hide-lg-down" target="_blank" rel="noopener noreferrer">Solicitar orçamento</a> -->
+
+    <!-- <a class="fancy" href="#">
+      <span class="top-key"></span>
+      <span class="text">Orçamento</span>
+      <span class="bottom-key-1"></span>
+      <span class="bottom-key-2"></span>
+    </a> -->
   </div>
 </header>
+</div>

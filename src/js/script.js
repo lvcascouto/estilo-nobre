@@ -15,3 +15,4 @@ import "./base/global.js";
 
 // == 3. Components ==
 // Isolated JavaScript logic for UI components (e.g., menus, modals, tabs)
+import "./components/header.js";
