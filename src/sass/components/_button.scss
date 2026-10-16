@@ -1,5 +1,6 @@
 @use "../abstracts/tokens" as token;
 @use "../abstracts/mixins" as mix;
+@use "../abstracts/functions" as fn;
 
 // ===================================================
 // AXIS ▪︎ BUTTON (Structural Component)
@@ -8,10 +9,18 @@
 
 // Semantic Button Tokens
 // ---------------------------------------------------
+// Default
 $gap-btn:         token.$space-2;
 $line-height-btn: token.$lh-none;
-$transition-btn:  token.$duration-300 token.$ease-standard;
+$transition-btn:  token.$duration-400 token.$ease-header-nav;
 
+// Secondary
+$btn-sec-bg-color-hover:       token.$color-accent;
+$btn-sec-bg-color-alt-hover:   token.$brand-slate;
+$btn-sec-text-color-hover:     token.$color-text-primary;
+$btn-sec-text-color-alt-hover: token.$color-text-on-dark;
+
+// Variants & Modifiers
 $op-dsbld-btn:    token.$opacity-50;
 $rd-full-round:   token.$radius-full;
 
@@ -42,8 +51,62 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
     border-color $transition-btn,
     transform $transition-btn;
 
-  // Icon Protection
-  svg { flex-shrink: 0; }
+  // Icons
+  svg {
+    flex-shrink: 0;
+    fill: currentColor;
+  }
+
+  // == Button Secondary ==
+  &.is-secondary {
+    position: relative;
+    z-index: fn.z(base);
+    gap: 8px;
+
+    border: none;
+    color: inherit;
+
+    --sec-hover-bg:   #{ $btn-sec-bg-color-hover };
+    --sec-hover-text: #{ $btn-sec-text-color-hover };
+
+    &.is-inverted {
+      --sec-hover-bg:   #{ $btn-sec-bg-color-alt-hover };
+      --sec-hover-text: #{ $btn-sec-text-color-alt-hover };
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: fn.z(back);
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background-color: var(--sec-hover-bg);
+      transition: width $transition-btn;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      width: 1.25rem;  // 20px
+      height: 1.25rem; // 20px
+      margin-top: 0.0625rem; // 1px to align with text baseline
+      background-color: currentColor;
+      -webkit-mask: url("/assets/svg/icon/arrow-right.svg") no-repeat center / contain;
+      mask: url("/assets/svg/icon/arrow-right.svg") no-repeat center / contain;
+      transition:
+        transform $transition-btn,
+        background-color $transition-btn;
+    }
+
+    &:hover {
+      color: var(--sec-hover-text);
+
+      &::before { width: 100%; }
+      &::after  { transform: translateX(6px); }
+    }
+  }
 
   // == Button Disabled ==
   &:disabled { cursor: not-allowed; opacity: $op-dsbld-btn; }

@@ -9,18 +9,37 @@
 
 // Semantic Header Tokens
 // ---------------------------------------------------
-//Header Bar
-$header-transition:  token.$duration-300 token.$ease-standard;
-$header-pad:         token.$space-16;
-$header-box-shadow:  token.$shadow-sm;
+// Header Bar
+$header-transition:  token.$duration-1000 token.$ease-header;
+$header-text-color:  token.$color-text-on-dark;
+$header-text-weight: token.$weight-light;
+
+$header-bg-color:    transparent;
+$header-border:      0.0625rem solid transparent;
+$header-box-shadow:  token.$shadow-none;
+$header-backdrop:    blur(0rem);
+
+$header-bg-color-scrolled:   token.$color-surface-dark-op;
+$header-border-scrolled:     token.$color-surface-accent-op;
+$header-backdrop-scrolled:   blur(0.875rem) saturate(140%);
+$header-box-shadow-scrolled: token.$shadow-lg;
+
+$header-pad:          token.$space-24;
+$header-pad-scrolled: token.$space-16;
+
+// Logo
+$header-logo-height: clamp(2.1875rem, 1.75rem + 1.88vw, 3.4375rem);
 
 // Navigation
-$nav-gap:            token.$space-24;
+$header-nav-transition: token.$ease-header-nav;
+$header-nav-transition-duration: token.$duration-400;
+$header-nav-item-color-hover: token.$color-accent;
+
 // ---------------------------------------------------
 
-body { background-color: token.$color-surface-dark; }
+// body { background-color: token.$color-surface-dark; }
 
-// Header Bar
+// == Header Bar ==
 .header-wrapper {
   position: sticky;
   top: 0;
@@ -29,183 +48,96 @@ body { background-color: token.$color-surface-dark; }
 }
 
 .header {
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --dur: 1s;
-
-  -webkit-backdrop-filter: blur(0px);
-  backdrop-filter: blur(0px);
-
   position: absolute;
   inset: 0 0 auto;
   margin-inline: auto;
-  box-sizing: border-box;
   width: 100%;
   max-width: 100%;
 
-  color: token.$color-text-on-dark;
-  font-weight: 300;
+  color: $header-text-color;
+  font-weight: $header-text-weight;
   text-transform: uppercase;
 
-  background-color: transparent;
-  border: 1px solid transparent;
+  background-color: $header-bg-color;
+  border: $header-border;
+  box-shadow: $header-box-shadow;
+  -webkit-backdrop-filter: $header-backdrop;
+  backdrop-filter: $header-backdrop;
 
   transition:
-    transform var(--dur) var(--ease),
-    width var(--dur) var(--ease),
-    max-width var(--dur) var(--ease),
-    background-color var(--dur) var(--ease),
-    border-color var(--dur) var(--ease),
-    box-shadow var(--dur) var(--ease),
-    -webkit-backdrop-filter var(--dur) var(--ease),
-    backdrop-filter var(--dur) var(--ease);
+    transform $header-transition,
+    width $header-transition,
+    max-width $header-transition,
+    background-color $header-transition,
+    border-color $header-transition,
+    box-shadow $header-transition,
+    -webkit-backdrop-filter $header-transition,
+    backdrop-filter $header-transition;
 
   &__container {
     @include mix.container;
-    padding: 24px;
-    transition: padding var(--dur) var(--ease);
+    padding: $header-pad;
+    transition: padding $header-transition;
   }
 
   &.is-scrolled {
-    transform: translateY(24px);
-    width: calc(100% - 48px);
-    max-width: calc(fn.bp(xl) - 48px); // TODO: xxl ou xl, confirmar qual fica melhor
+    transform: translateY(1.5rem);     // 24px
+    width: calc(100% - 3rem);          // 48px
+    max-width: calc(fn.bp(xl) - 3rem); // TODO: xxl ou xl, confirmar qual fica melhor
 
-    background-color: rgba(18, 18, 18, 0.65);
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    backdrop-filter: blur(14px) saturate(140%);
+    background-color: $header-bg-color-scrolled;
+    -webkit-backdrop-filter: $header-backdrop-scrolled;
+    backdrop-filter: $header-backdrop-scrolled;
 
-    border-color: rgba(197, 160, 89, 0.2);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    border-color: $header-border-scrolled;
+    box-shadow: $header-box-shadow-scrolled;
 
-    .header__container { padding: 24px; @include mix.respond(xxl) { padding: 16px; } }
+    .header__container { @include mix.respond(md) { padding: $header-pad-scrolled; } }
   }
 
-
-  // Header Logo
+  // Logo
   &__logo {
     img {
-        height: clamp(40px, 34.72px + 1.41vw, 55px);
-        width: auto;
+      height: $header-logo-height;
+      width: auto;
     }
   }
   
   // Navigation
-  &__nav-list {
-    
+  &__panel {
+    .header__nav-list {
+      a {
+        display: block;
+        padding-block: 1rem; // 16px
+        position: relative;
+        color: inherit;
+        transition-timing-function: $header-nav-transition;
+        transition-duration: $header-nav-transition-duration;
+        transition-property: color;
+      
+        &::after {
+          content: "";
+          pointer-events: none;
+          bottom: 0.75rem; // 12px
+          left: 50%;
+          position: absolute;
+          width: 0%;
+          height: 0.0060rem;
+          background-color: $header-nav-item-color-hover;
+          transition-timing-function: $header-nav-transition;
+          transition-duration: $header-nav-transition-duration;
+          transition-property: color, width, left;
+        }
 
-
-    a {
-      position: relative;
-      transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-      transition-duration: 400ms;
-      transition-property: color;
-    }
-
-    // @include mix.respond(md) {
-    //   @include mix.flex($direction: column, $align: flex-start, $gap: $nav-gap-sm);
-    //   margin-top: $nav-marg-top-sm;
-    // }
-
-    a:focus:after,
-    a:hover:after {
-      width: 100%;
-      left: 0%;
-    }
-
-    a:after {
-      content: "";
-      pointer-events: none;
-      bottom: -4px;
-      left: 50%;
-      position: absolute;
-      width: 0%;
-      height: 0.1px;
-      background-color: #fff;
-      transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-      transition-duration: 400ms;
-      transition-property: width, left;
-    }
-  }
-    
-}
-
-// .header__nav-cta {
-//   background-color: #C5A059;
-//   padding: 10px 22px;
-//   border: 1px solid #C5A059;
-//   border-radius: 0; // Canto reto acompanhando a marca
-//   text-decoration: none;
-//   transition: all 0.25s ease-in-out;
-
-//   &:hover {
-//     background-color: transparent;
-//     color: #C5A059; // Inverte no hover
-//   }
-    
-
-// }
-
-$color-gold: #C5A059;
-$color-dark: #121212;
-$color-white: #F8F9FA;
-$font-lato: 'Lato', sans-serif;
-
-.nav-btn-quote {
-  background-color: transparent;
-  border: none;
-  padding: 14px 24px;
-  cursor: pointer;
-  display: inline-block;
-  outline: none;
-  position: relative;
-  overflow: hidden;
-  // border: 1px solid $color-gold;
-
-  // Bloco dourado que expande da esquerda pra direita
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background-color: $color-gold;
-    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    z-index: 0;
-  }
-
-  // Wrapper do Texto + Seta
-  .content {
-    position: relative;
-    z-index: 1;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    color: inherit;
-    transition: color 0.3s ease;
-    
-    svg {
-      width: 24px;
-      fill: currentColor; // Herda a cor do texto (branco no normal, escuro no hover)
-      transition: transform 0.3s ease;
-    }
-  }
-
-  /* HOVER */
-  &:hover {
-    &::before {
-      width: 100%;
-    }
-
-    .content {
-      color: $color-dark;
-
-      svg {
-        transform: translateX(4px); // Pequeno avanço da seta
+        &:hover,
+        &:focus-visible { color: $header-nav-item-color-hover; }
+        &:hover:after   { width: 100%; left: 0%; }
       }
     }
   }
 }
+
+
 
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {

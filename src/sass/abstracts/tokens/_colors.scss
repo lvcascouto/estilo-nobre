@@ -29,11 +29,15 @@ $brand-gold:      #c5a059;
 $brand-stone:     #e8e2d5;
 $brand-off-white: #f8f9fa;
 
+$brand-ink-opacity:  rgba(18, 18, 18, 0.751);
+$brand-gold-opacity: rgba(197, 160, 89, 0.2);
+
 // == Semantic Layer Tokens ==
 // ---------------------------------------------------
-$color-surface-dark:  $brand-ink;
-$color-surface-light: $brand-off-white;
-$color-surface-stone: $brand-stone;
+$color-surface-dark:    $brand-ink;
+$color-surface-dark-op: $brand-ink-opacity;
+$color-surface-light:   $brand-off-white;
+$color-surface-stone:   $brand-stone;
 
 $color-text-primary:       $brand-ink;
 $color-text-on-dark:       $brand-off-white;
@@ -41,4 +45,5 @@ $color-text-secondary:     $brand-slate;
 $color-text-muted-on-dark: $brand-stone;
 
 $color-accent: $brand-gold;
+$color-surface-accent-op: $brand-gold-opacity;
 // ---------------------------------------------------

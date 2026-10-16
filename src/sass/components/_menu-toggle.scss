@@ -7,8 +7,8 @@
 body:has(#check-icon:checked) { overflow: hidden; }
 
 .icon-menu {
-  --gap: 0.3125rem;
-  --height-bar: 0.1563rem;
+  --gap: 0.5rem;
+  --height-bar: 0.0625rem;
   --pos-y-bar-one: 0;
   --pos-y-bar-three: 0;
   --scale-bar: 1;
@@ -16,7 +16,7 @@ body:has(#check-icon:checked) { overflow: hidden; }
   --rotate-bar-three: 0;
 
   display: none;
-  width: 1.5625rem;
+  width: 1.75rem;
   flex-direction: column;
   gap: var(--gap);
   cursor: pointer;
@@ -29,7 +29,7 @@ body:has(#check-icon:checked) { overflow: hidden; }
   position: relative;
   height: var(--height-bar);
   width: 100%;
-  border-radius: .5rem;
+  border-radius: 0;
   background-color: token.$color-accent;
 }
 
