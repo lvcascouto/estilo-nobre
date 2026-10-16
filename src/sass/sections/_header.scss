@@ -41,7 +41,7 @@ $header-nav-transition-duration: token.$duration-400;
 $header-nav-item-color-hover: token.$color-accent;
 
 // Mobile Menu (< md)
-$menu-duration:          token.$duration-1000;
+$menu-duration:          token.$duration-800;
 $menu-transition:        $menu-duration token.$ease-header;
 $menu-bg-color:          token.$color-surface-dark;
 $menu-pad-inline:        token.$space-24;
