@@ -10,15 +10,15 @@
 // Semantic Header Tokens
 // ---------------------------------------------------
 // Header Bar
-$header-transition:  token.$duration-1000 token.$ease-header;
-$header-text-color:  token.$color-text-on-dark;
-$header-text-weight: token.$weight-light;
+$header-transition:   token.$duration-1000 token.$ease-header;
+$header-text-color:   token.$color-text-on-dark;
+$header-text-weight:  token.$weight-light;
 
-$header-bg-color:    transparent;
-$header-border-width: 0.0625rem; // 1px
-$header-border:      $header-border-width solid transparent;
-$header-box-shadow:  token.$shadow-none;
-$header-backdrop:    blur(0rem);
+$header-bg-color:     transparent;
+$header-border-width: 0.0625rem;
+$header-border:       $header-border-width solid transparent;
+$header-box-shadow:   token.$shadow-none;
+$header-backdrop:     blur(0rem);
 
 $header-bg-color-scrolled:   token.$color-surface-dark-op;
 $header-border-scrolled:     token.$color-surface-accent-op;
@@ -41,25 +41,23 @@ $header-nav-transition-duration: token.$duration-400;
 $header-nav-item-color-hover: token.$color-accent;
 
 // Mobile Menu (< md)
-$menu-duration:          token.$duration-800;
+$menu-duration:          token.$duration-1000;
 $menu-transition:        $menu-duration token.$ease-header;
 $menu-bg-color:          token.$color-surface-dark;
 $menu-pad-inline:        token.$space-24;
-$menu-divider:           0.0625rem solid token.$brand-slate;
+$menu-divider:           0.0625rem solid token.$brand-gold-opacity;
 
 $menu-item-color:        token.$color-text-muted-on-dark;
 $menu-item-size:         token.$font-24;
-$menu-item-weight:       token.$weight-bold;
 $menu-item-pad-block:    token.$space-24;
-$menu-item-indent:       token.$space-40; // room for the "01" index
 $menu-item-index-size:   token.$font-14;
-$menu-item-icon-size:    1.25rem;         // 20px
+$menu-item-icon-size:    1.375rem;
 
 $menu-line-width:        3rem;
 $menu-line-gap:          token.$space-10;
 
-$menu-stagger-start:     0.15s; // delay before the first item appears
-$menu-stagger-step:      0.06s; // extra delay for each following item
+$menu-stagger-start:     0.25s; // delay before the first item appears
+$menu-stagger-step:      0.20s; // extra delay for each following item
 // ---------------------------------------------------
 
 // body { background-color: token.$color-surface-dark; }
@@ -108,7 +106,7 @@ $menu-stagger-step:      0.06s; // extra delay for each following item
   &.is-scrolled {
     transform: translateY(1.5rem);     // 24px
     width: calc(100% - 3rem);          // 48px
-    max-width: calc(fn.bp(xl) - 3rem); // TODO: xxl ou xl, confirmar qual fica melhor
+    max-width: calc(fn.bp(xl) - 3rem);
 
     background-color: $header-bg-color-scrolled;
     -webkit-backdrop-filter: $header-backdrop-scrolled;
@@ -154,7 +152,7 @@ $menu-stagger-step:      0.06s; // extra delay for each following item
       // Items + CTA: staggered reveal
       .header__nav-item,
       .header__panel-footer {
-        opacity: 1;
+        opacity: token.$opacity-100;
         transform: none;
         transition-delay: calc($menu-stagger-start + var(--i, 0) * $menu-stagger-step);
       }
@@ -178,9 +176,9 @@ $menu-stagger-step:      0.06s; // extra delay for each following item
     @include mix.respond-up(md) {
       .header__nav-list {
         a {
+          position: relative;
           display: block;
           padding-block: 1rem; // 16px
-          position: relative;
           color: inherit;
           transition-timing-function: $header-nav-transition;
           transition-duration: $header-nav-transition-duration;
@@ -209,11 +207,6 @@ $menu-stagger-step:      0.06s; // extra delay for each following item
 
     // == Mobile (< md) ==
     @include mix.respond(md) {
-      // Hangs from the header's bottom edge and fills the rest of the screen:
-      // header + panel = 100dvh. Percentages on an absolutely positioned box
-      // refer to the header's padding box, so 100% = header height.
-      // It overlaps the header's (transparent) 1px border on purpose: no
-      // sub-pixel gap between the two, and the divider line is its border-top.
       position: absolute;
       top: 100%;
       left: -#{$header-border-width};
@@ -221,8 +214,7 @@ $menu-stagger-step:      0.06s; // extra delay for each following item
       height: calc(100vh - 100% - #{$header-border-width});
       height: calc(100dvh - 100% - #{$header-border-width});
 
-      display: flex;
-      flex-direction: column;
+      @include mix.flex(column, $justify: flex-start, $align: stretch);
       background-color: $menu-bg-color;
       border-top: $header-border-width solid $header-border-open;
 
@@ -235,9 +227,7 @@ $menu-stagger-step:      0.06s; // extra delay for each following item
         visibility 0s linear $menu-duration;
 
       .header__nav-list {
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: flex-start;
+        @include mix.flex(column, flex-start, stretch);
         gap: 0;
         counter-reset: menu-item;
       }
@@ -247,34 +237,18 @@ $menu-stagger-step:      0.06s; // extra delay for each following item
         border-bottom: $menu-divider;
         counter-increment: menu-item;
 
-        opacity: 0;
+        opacity: token.$opacity-0;
         transform: translateY(0.75rem);
         transition:
           opacity $menu-transition,
           transform $menu-transition;
 
-        // Index: 01, 02, 03...
-        &::before {
-          content: counter(menu-item, decimal-leading-zero);
-          pointer-events: none; // taps go through to the link
-          position: absolute;
-          top: 50%;
-          left: 0;
-          transform: translateY(-50%);
-          color: $header-nav-item-color-hover;
-          font-size: $menu-item-index-size;
-          font-weight: token.$weight-regular;
-        }
-
         a {
-          display: flex;
-          align-items: center;
+          @include mix.flex($justify: flex-start, $align: center, $gap: $menu-line-gap);
           padding-block: $menu-item-pad-block;
-          padding-left: $menu-item-indent;
 
           color: $menu-item-color;
           font-size: $menu-item-size;
-          font-weight: $menu-item-weight;
           transition: color $header-nav-transition-duration $header-nav-transition;
 
           // Line that grows from the left, pushing the word to the right
@@ -338,17 +312,14 @@ $menu-stagger-step:      0.06s; // extra delay for each following item
 
       // Same secondary button, but filled by default (no hover on touch)
       .header__panel-cta.button.is-secondary {
+        
         width: 100%;
         min-height: 3.5rem;
         color: token.$color-text-primary;
-        font-size: token.$font-16;
-        font-weight: token.$weight-regular;
-        text-transform: none;
+        font-size: token.$font-18;
+        @include mix.respond(3xs) { font-size: token.$font-16; }
 
         &::before { width: 100%; }
-        &::after  { display: none; } // the chat icon replaces the arrow
-
-        svg { fill: none; } // outline icon (.button svg forces fill: currentColor)
       }
     }
   }
@@ -361,7 +332,7 @@ $menu-stagger-step:      0.06s; // extra delay for each following item
   }
 }
 
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+@supports not ((backdrop-filter: blur(0.0625rem)) or (-webkit-backdrop-filter: blur(0.0625rem))) {
   .header.is-scrolled {
     background-color: rgba(18, 18, 18, 0.95);
   }

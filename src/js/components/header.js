@@ -21,7 +21,7 @@ function initScrollEffect(header) {
     position: absolute;
     top: 0;
     left: 0;
-    width: 1px;
+    width: 0.0625rem;
     height: ${SCROLL_OFFSET}px;
     pointer-events: none;
     visibility: hidden;
