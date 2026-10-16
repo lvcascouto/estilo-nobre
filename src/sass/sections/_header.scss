@@ -15,7 +15,8 @@ $header-text-color:  token.$color-text-on-dark;
 $header-text-weight: token.$weight-light;
 
 $header-bg-color:    transparent;
-$header-border:      0.0625rem solid transparent;
+$header-border-width: 0.0625rem; // 1px
+$header-border:      $header-border-width solid transparent;
 $header-box-shadow:  token.$shadow-none;
 $header-backdrop:    blur(0rem);
 
@@ -27,14 +28,38 @@ $header-box-shadow-scrolled: token.$shadow-lg;
 $header-pad:          token.$space-24;
 $header-pad-scrolled: token.$space-16;
 
+// Header Bar (mobile menu open → docked at the top)
+$header-bg-color-open: token.$color-surface-dark;
+$header-border-open:   token.$color-surface-accent-op;
+
 // Logo
 $header-logo-height: clamp(2.1875rem, 1.75rem + 1.88vw, 3.4375rem);
 
-// Navigation
+// Navigation (desktop)
 $header-nav-transition: token.$ease-header-nav;
 $header-nav-transition-duration: token.$duration-400;
 $header-nav-item-color-hover: token.$color-accent;
 
+// Mobile Menu (< md)
+$menu-duration:          token.$duration-800;
+$menu-transition:        $menu-duration token.$ease-header;
+$menu-bg-color:          token.$color-surface-dark;
+$menu-pad-inline:        token.$space-24;
+$menu-divider:           0.0625rem solid token.$brand-slate;
+
+$menu-item-color:        token.$color-text-muted-on-dark;
+$menu-item-size:         token.$font-24;
+$menu-item-weight:       token.$weight-bold;
+$menu-item-pad-block:    token.$space-24;
+$menu-item-indent:       token.$space-40; // room for the "01" index
+$menu-item-index-size:   token.$font-14;
+$menu-item-icon-size:    1.25rem;         // 20px
+
+$menu-line-width:        3rem;
+$menu-line-gap:          token.$space-10;
+
+$menu-stagger-start:     0.15s; // delay before the first item appears
+$menu-stagger-step:      0.06s; // extra delay for each following item
 // ---------------------------------------------------
 
 // body { background-color: token.$color-surface-dark; }
@@ -95,6 +120,49 @@ $header-nav-item-color-hover: token.$color-accent;
     .header__container { @include mix.respond(md) { padding: $header-pad-scrolled; } }
   }
 
+  // == Mobile Menu Open (< md) ==
+  // ---------------------------------------------------
+  // Whatever the header state (top or floating), opening the menu docks it
+  // back to the top, full width, with a bottom border. All of this transitions
+  // in parallel with the panel below. The state lives in the checkbox, so the
+  // menu still opens/closes even before the JS loads.
+  // ---------------------------------------------------
+  @include mix.respond(md) {
+    &:has(.check-icon:checked) {
+      transform: none;
+      width: 100%;
+      max-width: 100%;
+
+      background-color: $header-bg-color-open;
+      -webkit-backdrop-filter: $header-backdrop;
+      backdrop-filter: $header-backdrop;
+
+      border-color: transparent;
+      box-shadow: $header-box-shadow;
+
+      .header__container { padding: $header-pad; }
+
+      // Panel: drops from the header's bottom edge
+      .header__panel {
+        clip-path: inset(0);
+        visibility: visible;
+        transition:
+          clip-path $menu-transition,
+          visibility 0s linear 0s;
+      }
+
+      // Items + CTA: staggered reveal
+      .header__nav-item,
+      .header__panel-footer {
+        opacity: 1;
+        transform: none;
+        transition-delay: calc($menu-stagger-start + var(--i, 0) * $menu-stagger-step);
+      }
+
+      .header__panel-footer { --i: 4; }
+    }
+  }
+
   // Logo
   &__logo {
     img {
@@ -102,43 +170,196 @@ $header-nav-item-color-hover: token.$color-accent;
       width: auto;
     }
   }
-  
+
   // Navigation
   &__panel {
-    .header__nav-list {
-      a {
-        display: block;
-        padding-block: 1rem; // 16px
-        position: relative;
-        color: inherit;
-        transition-timing-function: $header-nav-transition;
-        transition-duration: $header-nav-transition-duration;
-        transition-property: color;
-      
-        &::after {
-          content: "";
-          pointer-events: none;
-          bottom: 0.75rem; // 12px
-          left: 50%;
-          position: absolute;
-          width: 0%;
-          height: 0.0060rem;
-          background-color: $header-nav-item-color-hover;
+
+    // == Desktop (>= md) ==
+    @include mix.respond-up(md) {
+      .header__nav-list {
+        a {
+          display: block;
+          padding-block: 1rem; // 16px
+          position: relative;
+          color: inherit;
           transition-timing-function: $header-nav-transition;
           transition-duration: $header-nav-transition-duration;
-          transition-property: color, width, left;
+          transition-property: color;
+
+          &::after {
+            content: "";
+            pointer-events: none;
+            bottom: 0.75rem; // 12px
+            left: 50%;
+            position: absolute;
+            width: 0%;
+            height: 0.0060rem;
+            background-color: $header-nav-item-color-hover;
+            transition-timing-function: $header-nav-transition;
+            transition-duration: $header-nav-transition-duration;
+            transition-property: color, width, left;
+          }
+
+          &:hover,
+          &:focus-visible { color: $header-nav-item-color-hover; }
+          &:hover:after   { width: 100%; left: 0%; }
+        }
+      }
+    }
+
+    // == Mobile (< md) ==
+    @include mix.respond(md) {
+      // Hangs from the header's bottom edge and fills the rest of the screen:
+      // header + panel = 100dvh. Percentages on an absolutely positioned box
+      // refer to the header's padding box, so 100% = header height.
+      // It overlaps the header's (transparent) 1px border on purpose: no
+      // sub-pixel gap between the two, and the divider line is its border-top.
+      position: absolute;
+      top: 100%;
+      left: -#{$header-border-width};
+      width: calc(100% + #{$header-border-width * 2});
+      height: calc(100vh - 100% - #{$header-border-width});
+      height: calc(100dvh - 100% - #{$header-border-width});
+
+      display: flex;
+      flex-direction: column;
+      background-color: $menu-bg-color;
+      border-top: $header-border-width solid $header-border-open;
+
+      // Closed: collapsed + out of the tab order / accessibility tree.
+      // `visibility` only flips after the close animation has finished.
+      clip-path: inset(0 0 100% 0);
+      visibility: hidden;
+      transition:
+        clip-path $menu-transition,
+        visibility 0s linear $menu-duration;
+
+      .header__nav-list {
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 0;
+        counter-reset: menu-item;
+      }
+
+      .header__nav-item {
+        position: relative;
+        border-bottom: $menu-divider;
+        counter-increment: menu-item;
+
+        opacity: 0;
+        transform: translateY(0.75rem);
+        transition:
+          opacity $menu-transition,
+          transform $menu-transition;
+
+        // Index: 01, 02, 03...
+        &::before {
+          content: counter(menu-item, decimal-leading-zero);
+          pointer-events: none; // taps go through to the link
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+          color: $header-nav-item-color-hover;
+          font-size: $menu-item-index-size;
+          font-weight: token.$weight-regular;
         }
 
-        &:hover,
-        &:focus-visible { color: $header-nav-item-color-hover; }
-        &:hover:after   { width: 100%; left: 0%; }
+        a {
+          display: flex;
+          align-items: center;
+          padding-block: $menu-item-pad-block;
+          padding-left: $menu-item-indent;
+
+          color: $menu-item-color;
+          font-size: $menu-item-size;
+          font-weight: $menu-item-weight;
+          transition: color $header-nav-transition-duration $header-nav-transition;
+
+          // Line that grows from the left, pushing the word to the right
+          &::before {
+            content: "";
+            flex-shrink: 0;
+            width: 0;
+            height: 0.0625rem;
+            margin-right: 0;
+            background-color: $header-nav-item-color-hover;
+            transition:
+              width $header-nav-transition-duration $header-nav-transition,
+              margin-right $header-nav-transition-duration $header-nav-transition;
+          }
+
+          // Arrow ↗ (same asset as the button, rotated)
+          &::after {
+            content: "";
+            flex-shrink: 0;
+            width: $menu-item-icon-size;
+            height: $menu-item-icon-size;
+            margin-left: auto;
+            background-color: $header-nav-item-color-hover;
+            -webkit-mask: url("/assets/svg/icon/arrow-right.svg") no-repeat center / contain;
+            mask: url("/assets/svg/icon/arrow-right.svg") no-repeat center / contain;
+            transform: rotate(-45deg);
+            transition: transform $header-nav-transition-duration $header-nav-transition;
+          }
+
+          &:hover,
+          &:focus-visible,
+          &:active {
+            color: $header-nav-item-color-hover;
+
+            &::before { width: $menu-line-width; margin-right: $menu-line-gap; }
+            &::after  { transform: rotate(-45deg) translateX(0.25rem); }
+          }
+        }
+      }
+
+      // Nav scrolls on short screens (landscape), the CTA stays pinned
+      .header__panel-scroll {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding-inline: $menu-pad-inline;
+      }
+
+      .header__panel-footer {
+        flex-shrink: 0;
+        padding: $menu-pad-inline;
+        padding-bottom: calc(#{$menu-pad-inline} + env(safe-area-inset-bottom, 0px)); // iPhone home bar
+
+        opacity: 0;
+        transform: translateY(0.75rem);
+        transition:
+          opacity $menu-transition,
+          transform $menu-transition;
+      }
+
+      // Same secondary button, but filled by default (no hover on touch)
+      .header__panel-cta.button.is-secondary {
+        width: 100%;
+        min-height: 3.5rem;
+        color: token.$color-text-primary;
+        font-size: token.$font-16;
+        font-weight: token.$weight-regular;
+        text-transform: none;
+
+        &::before { width: 100%; }
+        &::after  { display: none; } // the chat icon replaces the arrow
+
+        svg { fill: none; } // outline icon (.button svg forces fill: currentColor)
       }
     }
   }
 }
 
-
-
+// Index per item → stagger delay (supports up to 6 links)
+@include mix.respond(md) {
+  @for $i from 1 through 6 {
+    .header__nav-item:nth-child(#{$i}) { --i: #{$i - 1}; }
+  }
+}
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .header.is-scrolled {
