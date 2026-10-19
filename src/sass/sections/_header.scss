@@ -10,11 +10,12 @@
 // Semantic Header Tokens
 // ---------------------------------------------------
 // Header Bar
-$header-transition:     token.$duration-800 token.$ease-header;
-$header-text-color:     token.$color-text-on-dark;
-$header-text-weight:    token.$weight-light;
-$header-letetr-spacing: token.$tracking-widest;
+$header-font-family:    token.$font-family-heading;
+$header-text-weight:    token.$weight-regular;
+$header-letter-spacing: token.$tracking-widest;
+$header-text-color:     token.$color-text-on-dark-alt;
 
+$header-transition:   token.$duration-800 token.$ease-header;
 $header-bg-color:     transparent;
 $header-border-width: 0.0625rem;
 $header-border:       $header-border-width solid transparent;
@@ -48,7 +49,6 @@ $menu-bg-color:          token.$color-surface-dark;
 $menu-pad-inline:        token.$space-24;
 $menu-divider:           0.0625rem solid token.$brand-gold-opacity;
 
-$menu-item-color:        token.$color-text-muted-on-dark;
 $menu-item-size:         token.$font-20;
 $menu-item-pad-block:    token.$space-24;
 $menu-item-index-size:   token.$font-14;
@@ -77,11 +77,6 @@ $menu-stagger-step:      0.15s; // extra delay for each following item
   width: 100%;
   max-width: 100%;
 
-  color: $header-text-color;
-  font-weight: $header-text-weight;
-  letter-spacing: $header-letetr-spacing;
-  text-transform: uppercase;
-
   background-color: $header-bg-color;
   border: $header-border;
   box-shadow: $header-box-shadow;
@@ -103,6 +98,16 @@ $menu-stagger-step:      0.15s; // extra delay for each following item
     padding: $header-pad;
     transition: padding $header-transition;
   }
+
+  &__nav,
+  &__nav-cta {
+    font-family: $header-font-family;
+    font-weight: $header-text-weight;
+    letter-spacing: $header-letter-spacing;
+    text-transform: uppercase;
+    color: $header-text-color;
+  }
+
 
   &.is-scrolled {
     transform: translateY(1.5rem);     // 24px
@@ -232,7 +237,7 @@ $menu-stagger-step:      0.15s; // extra delay for each following item
         position: absolute;
         inset: 0;
 
-        background: url('/assets/media/img/marble-bg.webp') center / cover;
+        background: url('/assets/media/img/menu/marble-bg.webp') center / cover;
 
         opacity: token.$opacity-0;
         mix-blend-mode: overlay;
@@ -260,7 +265,7 @@ $menu-stagger-step:      0.15s; // extra delay for each following item
           @include mix.flex($justify: flex-start, $align: center, $gap: 0);
           padding-block: $menu-item-pad-block;
 
-          color: $menu-item-color;
+          color: inherit;
           font-size: $menu-item-size;
           transition: color $header-nav-transition-duration $header-nav-transition;
 
@@ -298,6 +303,7 @@ $menu-stagger-step:      0.15s; // extra delay for each following item
 
       .header__panel-footer {
         text-align: center;
+
         flex-shrink: 0;
         padding: $menu-pad-inline;
         padding-bottom: calc(#{$menu-pad-inline} + env(safe-area-inset-bottom, 0px)); // iPhone home bar
@@ -311,12 +317,15 @@ $menu-stagger-step:      0.15s; // extra delay for each following item
         &-text {
           @include mix.flex($justify: center, $align: center, $gap: token.$space-4);
           margin-top: token.$space-16;
-
-          line-height: 0;
+          
+          font-family: token.$font-family-base;
+          letter-spacing: token.$tracking-wide;
           text-transform: none;
-          color: token.$color-text-muted-on-dark;
+          color: token.$color-text-on-dark;
           
           opacity: token.$opacity-60;
+
+          svg { @media (max-width: 340px) { display: none; } }
         }  
       }
 
