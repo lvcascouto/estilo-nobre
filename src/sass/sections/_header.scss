@@ -10,9 +10,10 @@
 // Semantic Header Tokens
 // ---------------------------------------------------
 // Header Bar
-$header-transition:   token.$duration-1000 token.$ease-header;
-$header-text-color:   token.$color-text-on-dark;
-$header-text-weight:  token.$weight-light;
+$header-transition:     token.$duration-800 token.$ease-header;
+$header-text-color:     token.$color-text-on-dark;
+$header-text-weight:    token.$weight-light;
+$header-letetr-spacing: token.$tracking-widest;
 
 $header-bg-color:     transparent;
 $header-border-width: 0.0625rem;
@@ -33,7 +34,7 @@ $header-bg-color-open: token.$color-surface-dark;
 $header-border-open:   token.$color-surface-accent-op;
 
 // Logo
-$header-logo-height: clamp(2.1875rem, 1.75rem + 1.88vw, 3.4375rem);
+$header-logo-height: clamp(2.375rem, 2rem + 1.6vw, 3.4375rem);
 
 // Navigation (desktop)
 $header-nav-transition: token.$ease-header-nav;
@@ -51,13 +52,12 @@ $menu-item-color:        token.$color-text-muted-on-dark;
 $menu-item-size:         token.$font-24;
 $menu-item-pad-block:    token.$space-24;
 $menu-item-index-size:   token.$font-14;
-$menu-item-icon-size:    1.375rem;
 
 $menu-line-width:        3rem;
 $menu-line-gap:          token.$space-10;
 
-$menu-stagger-start:     0.25s; // delay before the first item appears
-$menu-stagger-step:      0.20s; // extra delay for each following item
+$menu-stagger-start:     0.20s; // delay before the first item appears
+$menu-stagger-step:      0.15s; // extra delay for each following item
 // ---------------------------------------------------
 
 // body { background-color: token.$color-surface-dark; }
@@ -79,6 +79,7 @@ $menu-stagger-step:      0.20s; // extra delay for each following item
 
   color: $header-text-color;
   font-weight: $header-text-weight;
+  letter-spacing: $header-letetr-spacing;
   text-transform: uppercase;
 
   background-color: $header-bg-color;
@@ -218,6 +219,28 @@ $menu-stagger-step:      0.20s; // extra delay for each following item
       background-color: $menu-bg-color;
       border-top: $header-border-width solid $header-border-open;
 
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0; // Fica atrás dos links
+
+        background-image: url('/assets/media/img/dark-marble-bg.png'); // Ajuste o caminho da sua imagem
+        background-size: cover;
+        background-position: center;
+
+        opacity: 1; // Suave e elegante
+        mix-blend-mode: overlay;
+        pointer-events: none;
+      }
+
+      // Garante que o conteúdo rolável e o botão do rodapé fiquem acima da textura
+      .header__panel-scroll,
+      .header__panel-footer {
+        position: relative;
+        z-index: 1;
+      }
+
       // Closed: collapsed + out of the tab order / accessibility tree.
       // `visibility` only flips after the close animation has finished.
       clip-path: inset(0 0 100% 0);
@@ -244,7 +267,7 @@ $menu-stagger-step:      0.20s; // extra delay for each following item
           transform $menu-transition;
 
         a {
-          @include mix.flex($justify: flex-start, $align: center, $gap: $menu-line-gap);
+          @include mix.flex($justify: flex-start, $align: center, $gap: 0);
           padding-block: $menu-item-pad-block;
 
           color: $menu-item-color;
@@ -264,27 +287,12 @@ $menu-stagger-step:      0.20s; // extra delay for each following item
               margin-right $header-nav-transition-duration $header-nav-transition;
           }
 
-          // Arrow ↗ (same asset as the button, rotated)
-          &::after {
-            content: "";
-            flex-shrink: 0;
-            width: $menu-item-icon-size;
-            height: $menu-item-icon-size;
-            margin-left: auto;
-            background-color: $header-nav-item-color-hover;
-            -webkit-mask: url("/assets/svg/icon/arrow-right.svg") no-repeat center / contain;
-            mask: url("/assets/svg/icon/arrow-right.svg") no-repeat center / contain;
-            transform: rotate(-45deg);
-            transition: transform $header-nav-transition-duration $header-nav-transition;
-          }
-
           &:hover,
           &:focus-visible,
           &:active {
             color: $header-nav-item-color-hover;
 
             &::before { width: $menu-line-width; margin-right: $menu-line-gap; }
-            &::after  { transform: rotate(-45deg) translateX(0.25rem); }
           }
         }
       }
@@ -312,12 +320,10 @@ $menu-stagger-step:      0.20s; // extra delay for each following item
 
       // Same secondary button, but filled by default (no hover on touch)
       .header__panel-cta.button.is-secondary {
-        
         width: 100%;
         min-height: 3.5rem;
         color: token.$color-text-primary;
-        font-size: token.$font-18;
-        @include mix.respond(3xs) { font-size: token.$font-16; }
+        font-size: clamp(1rem, 0.641rem + 1.53vw, 1.375rem);
 
         &::before { width: 100%; }
       }
