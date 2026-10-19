@@ -150,7 +150,7 @@ $menu-stagger-step:      0.15s; // extra delay for each following item
           visibility 0s linear 0s;
         
         &::before {
-          opacity: token.$opacity-30;
+          opacity: token.$opacity-40;
           transition-delay: $menu-stagger-step;
         }  
       }
@@ -309,10 +309,14 @@ $menu-stagger-step:      0.15s; // extra delay for each following item
           transform $menu-transition;
         
         &-text {
-          @include mix.flex($justify: center, $align: center, $gap: 2px);
+          @include mix.flex($justify: center, $align: center, $gap: token.$space-4);
+          margin-top: token.$space-16;
+
+          line-height: 0;
           text-transform: none;
           color: token.$color-text-muted-on-dark;
-          margin-top: token.$space-16;
+          
+          opacity: token.$opacity-60;
         }  
       }
 
