@@ -49,7 +49,7 @@ $menu-pad-inline:        token.$space-24;
 $menu-divider:           0.0625rem solid token.$brand-gold-opacity;
 
 $menu-item-color:        token.$color-text-muted-on-dark;
-$menu-item-size:         token.$font-24;
+$menu-item-size:         token.$font-20;
 $menu-item-pad-block:    token.$space-24;
 $menu-item-index-size:   token.$font-14;
 
@@ -148,6 +148,11 @@ $menu-stagger-step:      0.15s; // extra delay for each following item
         transition:
           clip-path $menu-transition,
           visibility 0s linear 0s;
+        
+        &::before {
+          opacity: token.$opacity-30;
+          transition-delay: $menu-stagger-step;
+        }  
       }
 
       // Items + CTA: staggered reveal
@@ -163,12 +168,7 @@ $menu-stagger-step:      0.15s; // extra delay for each following item
   }
 
   // Logo
-  &__logo {
-    img {
-      height: $header-logo-height;
-      width: auto;
-    }
-  }
+  &__logo { img { height: $header-logo-height; width: auto; } }
 
   // Navigation
   &__panel {
@@ -218,29 +218,7 @@ $menu-stagger-step:      0.15s; // extra delay for each following item
       @include mix.flex(column, $justify: flex-start, $align: stretch);
       background-color: $menu-bg-color;
       border-top: $header-border-width solid $header-border-open;
-
-      &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: 0; // Fica atrás dos links
-
-        background-image: url('/assets/media/img/dark-marble-bg.png'); // Ajuste o caminho da sua imagem
-        background-size: cover;
-        background-position: center;
-
-        opacity: 0.5; // Suave e elegante
-        mix-blend-mode: overlay;
-        pointer-events: none;
-      }
-
-      // Garante que o conteúdo rolável e o botão do rodapé fiquem acima da textura
-      .header__panel-scroll,
-      .header__panel-footer {
-        position: relative;
-        z-index: 1;
-      }
-
+      
       // Closed: collapsed + out of the tab order / accessibility tree.
       // `visibility` only flips after the close animation has finished.
       clip-path: inset(0 0 100% 0);
@@ -249,9 +227,21 @@ $menu-stagger-step:      0.15s; // extra delay for each following item
         clip-path $menu-transition,
         visibility 0s linear $menu-duration;
 
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+
+        background: url('/assets/media/img/marble-bg.webp') center / cover;
+
+        opacity: token.$opacity-0;
+        mix-blend-mode: overlay;
+        pointer-events: none;
+        transition: opacity $menu-transition;
+      }  
+
       .header__nav-list {
-        @include mix.flex(column, flex-start, stretch);
-        gap: 0;
+        @include mix.flex(column, flex-start, stretch, 0);
         counter-reset: menu-item;
       }
 
@@ -307,15 +297,23 @@ $menu-stagger-step:      0.15s; // extra delay for each following item
       }
 
       .header__panel-footer {
+        text-align: center;
         flex-shrink: 0;
         padding: $menu-pad-inline;
         padding-bottom: calc(#{$menu-pad-inline} + env(safe-area-inset-bottom, 0px)); // iPhone home bar
 
-        opacity: 0;
+        opacity: token.$opacity-0;
         transform: translateY(0.75rem);
         transition:
           opacity $menu-transition,
           transform $menu-transition;
+        
+        &-text {
+          @include mix.flex($justify: center, $align: center, $gap: 2px);
+          text-transform: none;
+          color: token.$color-text-muted-on-dark;
+          margin-top: token.$space-16;
+        }  
       }
 
       // Same secondary button, but filled by default (no hover on touch)
@@ -323,7 +321,7 @@ $menu-stagger-step:      0.15s; // extra delay for each following item
         width: 100%;
         min-height: 3.5rem;
         color: token.$color-text-primary;
-        font-size: clamp(1rem, 0.641rem + 1.53vw, 1.375rem);
+        font-size: clamp(1rem, 0.761rem + 1.02vw, 1.25rem);
 
         &::before { width: 100%; }
       }

@@ -50,7 +50,7 @@ $font-family-base: "Lato", Ubuntu, system-ui, -apple-system, sans-serif;
 $font-size-base:   $font-16;
 $font-weight-base: $weight-regular;
 $line-height-base: $lh-normal;
-$letter-spc-base:  $tracking-wide; // TODO: Ou wider?
+$letter-spc-base:  $tracking-wider; // TODO: Ou wide?
 
 // Headings
 $font-family-heading: "Tenor Sans", Oxygen, system-ui, -apple-system, sans-serif;
@@ -65,6 +65,9 @@ $font-size-h5: $font-24;
 $font-size-h6: $font-20;
 
 // Other Elements
-$font-size-small:  $font-14;
+$font-size-small:   $font-12;
+$font-weight-small: $weight-regular;
+$letter-spc-small:  $tracking-wider;
+
 $font-weight-bold: $weight-bold;
 // ---------------------------------------------------

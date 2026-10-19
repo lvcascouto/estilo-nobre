@@ -36,6 +36,8 @@ h6 { font-size: token.$font-size-h6; }
 // == Other Elements ==
 small {
   font-size: token.$font-size-small;
+  font-weight: token.$font-weight-small;
+  letter-spacing: token.$letter-spc-small;
 }
 
 strong, b {

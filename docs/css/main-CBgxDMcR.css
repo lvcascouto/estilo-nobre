@@ -61,7 +61,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 body {
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   font-family:
     Lato,
     Ubuntu,
@@ -107,7 +107,9 @@ h6 {
   font-size: 1.25rem;
 }
 small {
-  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+  font-weight: 400;
 }
 strong,
 b {
@@ -1288,8 +1290,8 @@ i {
     transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
     background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: block;
-  -webkit-mask: url(/assets/svg/icon/arrow-right.svg) 50% / contain no-repeat;
-  mask: url(/assets/svg/icon/arrow-right.svg) 50% / contain no-repeat;
+  -webkit-mask: url(../assets/svg/icon/arrow-right.svg) 50% / contain no-repeat;
+  mask: url(../assets/svg/icon/arrow-right.svg) 50% / contain no-repeat;
 }
 .button.is-secondary:hover {
   color: var(--sec-hover-text);
@@ -1543,6 +1545,10 @@ i {
       clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1),
       visibility linear;
   }
+  .header:has(.check-icon:checked) .header__panel:before {
+    opacity: 0.3;
+    transition-delay: 0.15s;
+  }
   :is(
     .header:has(.check-icon:checked) .header__nav-item,
     .header:has(.check-icon:checked) .header__panel-footer
@@ -1593,6 +1599,8 @@ i {
 }
 @media (width<48rem) {
   .header__panel {
+    clip-path: inset(0 0 100%);
+    visibility: hidden;
     background-color: #121212;
     border-top: 0.0625rem solid #c5a05933;
     flex-direction: column;
@@ -1600,6 +1608,9 @@ i {
     align-items: stretch;
     width: calc(100% + 0.125rem);
     height: calc(100dvh - 100% - 0.0625rem);
+    transition:
+      clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0s linear 0.8s;
     display: flex;
     position: absolute;
     top: 100%;
@@ -1607,27 +1618,13 @@ i {
   }
   .header__panel:before {
     content: "";
-    z-index: 0;
-    opacity: 1;
+    opacity: 0;
     mix-blend-mode: overlay;
     pointer-events: none;
-    background-image: url(../assets/media/img/dark-marble-bg.png);
-    background-position: 50%;
-    background-size: cover;
+    background: url(../assets/media/img/marble-bg.webp) 50% / cover;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     position: absolute;
     inset: 0;
-  }
-  .header__panel .header__panel-scroll,
-  .header__panel .header__panel-footer {
-    z-index: 1;
-    position: relative;
-  }
-  .header__panel {
-    clip-path: inset(0 0 100%);
-    visibility: hidden;
-    transition:
-      clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-      visibility 0s linear 0.8s;
   }
   .header__panel .header__nav-list {
     counter-reset: menu-item;
@@ -1653,7 +1650,7 @@ i {
     align-items: center;
     gap: 0;
     padding-block: 1.5rem;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     transition: color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     display: flex;
   }
@@ -1687,6 +1684,7 @@ i {
     overflow-y: auto;
   }
   .header__panel .header__panel-footer {
+    text-align: center;
     padding: 1.5rem;
     padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
     opacity: 0;
@@ -1696,11 +1694,20 @@ i {
       transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     transform: translateY(0.75rem);
   }
+  .header__panel .header__panel-footer-text {
+    text-transform: none;
+    color: #e8e2d5;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    margin-top: 1rem;
+    display: flex;
+  }
   .header__panel .header__panel-cta.button.is-secondary {
     color: #121212;
     width: 100%;
     min-height: 3.5rem;
-    font-size: clamp(1rem, 0.641rem + 1.53vw, 1.375rem);
+    font-size: clamp(1rem, 0.761rem + 1.02vw, 1.25rem);
   }
   .header__panel .header__panel-cta.button.is-secondary:before {
     width: 100%;
