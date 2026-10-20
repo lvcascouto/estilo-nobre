@@ -10,11 +10,6 @@
 // Semantic Header Tokens
 // ---------------------------------------------------
 // Header Bar
-$header-font-family:    token.$font-family-heading;
-$header-text-weight:    token.$weight-regular;
-$header-letter-spacing: token.$tracking-widest;
-$header-text-color:     token.$color-text-on-dark-alt;
-
 $header-transition:   token.$duration-600 token.$ease-header;
 $header-bg-color:     transparent;
 $header-border-width: 0.0625rem;
@@ -38,6 +33,12 @@ $header-border-open:   token.$color-surface-accent-op;
 $header-logo-height: clamp(2.375rem, 2rem + 1.6vw, 3.4375rem);
 
 // Navigation (desktop)
+$header-font-family:    token.$font-family-heading;
+$header-font-size:      token.$font-16;
+$header-text-weight:    token.$weight-regular;
+$header-line-height:    token.$lh-none;
+$header-text-color:     token.$color-text-on-dark-alt;
+
 $header-nav-transition: token.$ease-header-nav;
 $header-nav-transition-duration: token.$duration-400;
 $header-nav-item-color-hover: token.$color-accent;
@@ -99,14 +100,6 @@ $menu-stagger-step:      0.14s; // extra delay for each following item
     transition: padding $header-transition;
   }
 
-  &__nav {
-    font-family: $header-font-family;
-    font-weight: $header-text-weight;
-    letter-spacing: $header-letter-spacing;
-    text-transform: uppercase;
-    color: $header-text-color;
-  }
-
   &.is-scrolled {
     transform: translateY(1.5rem);     // 24px
     width: calc(100% - 3rem);          // 48px
@@ -153,7 +146,7 @@ $menu-stagger-step:      0.14s; // extra delay for each following item
           visibility 0s linear 0s;
         
         &::before {
-          opacity: token.$opacity-40;
+          opacity: token.$opacity-30;
           transition-delay: $menu-stagger-step;
         }  
       }
@@ -175,6 +168,14 @@ $menu-stagger-step:      0.14s; // extra delay for each following item
 
   // Navigation
   &__panel {
+    &-scroll {
+      font-family: $header-font-family;
+      font-size: $header-font-size;
+      font-weight: $header-text-weight;
+      line-height: $header-line-height;
+      color: $header-text-color;
+      text-transform: uppercase;
+    }
 
     // == Desktop (>= md) ==
     @include mix.respond-up(md) {
@@ -183,7 +184,7 @@ $menu-stagger-step:      0.14s; // extra delay for each following item
           position: relative;
           display: block;
           padding-block: 1rem; // 16px
-          color: inherit;
+
           transition-timing-function: $header-nav-transition;
           transition-duration: $header-nav-transition-duration;
           transition-property: color;
@@ -314,27 +315,15 @@ $menu-stagger-step:      0.14s; // extra delay for each following item
         
         &-text {
           @include mix.flex($justify: center, $align: center, $gap: token.$space-4);
-          margin-top: token.$space-16;
+          margin-top: token.$space-24;
           
-          font-family: token.$font-family-base;
-          letter-spacing: token.$tracking-wide;
+          color: token.$color-text-on-dark;
           text-transform: none;
-          color: token.$color-text-on-dark-alt;
           
-          // opacity: token.$opacity-60;
+          opacity: token.$opacity-80;
 
-          svg { @media (max-width: 340px) { display: none; } }
+          svg { @media (max-width: 345px) { display: none; } }
         }  
-      }
-
-      // Same secondary button, but filled by default (no hover on touch)
-      .header__panel-cta.button.is-secondary {
-        width: 100%;
-        min-height: 3.5rem;
-        color: token.$color-text-primary;
-        font-size: clamp(1rem, 0.761rem + 1.02vw, 1.25rem);
-
-        &::before { width: 100%; }
       }
     }
   }

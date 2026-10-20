@@ -20,13 +20,19 @@ $hero-content-width:  38rem;    // 608px
 
 // Image
 $hero-img-position:        50% 70%;
+$hero-img-position-wide:   0% 70%;
 $hero-img-height-mobile:   125vw; // 4:5, same ratio as hero-mobile-1080.webp
 $hero-img-overlap-mobile:  25vw;  // how much the image tucks under the CTA (just the dark ceiling)
 
+// Tablet range (480px → 767px): wider screens can afford showing more photo
+$hero-img-height-tablet:   min(125vw, max(80svh, 100vw)); // taller box → less vertical crop
+$hero-img-overlap-tablet:  20vw;
+$hero-fade-tablet:         linear-gradient(180deg, transparent 0%, #000 26%); // shorter dark fade
+
 // Overlay (keeps the text readable, tweak the alphas here)
 $hero-ink:            token.$brand-ink;
-$hero-overlay-side:   linear-gradient(90deg, rgba($hero-ink, $alpha: 0.88) 0%, rgba($hero-ink, $alpha: 0.55) 42%, rgba($hero-ink, $alpha: 0) 72%);
-$hero-overlay-top:    linear-gradient(180deg, rgba($hero-ink, $alpha: 0.6) 0%, rgba($hero-ink, $alpha: 0) 24%);
+$hero-overlay-side:   linear-gradient(90deg, color.change($hero-ink, $alpha: 0.88) 0%, color.change($hero-ink, $alpha: 0.55) 42%, color.change($hero-ink, $alpha: 0) 72%);
+$hero-overlay-top:    linear-gradient(180deg, color.change($hero-ink, $alpha: 0.6) 0%, color.change($hero-ink, $alpha: 0) 24%);
 $hero-fade-mobile:    linear-gradient(180deg, transparent 0%, #000 38%); // image dissolves into the dark background
 
 // Typography
@@ -71,6 +77,10 @@ $hero-cta-transition:  token.$duration-400 token.$ease-header-nav;
   &__img {
     object-fit: cover;
     object-position: $hero-img-position;
+
+    // Wide screens: keep the left edge anchored, so the stone stays pushed to
+    // the right of the text (the image has extra dark wall on its left side)
+    @media (min-aspect-ratio: 5/4) { object-position: $hero-img-position-wide; }
   }
 
   // Overlay: dark on the text side, light on the stone side
@@ -98,7 +108,6 @@ $hero-cta-transition:  token.$duration-400 token.$ease-header-nav;
     margin-bottom: token.$space-24;
 
     color: $hero-accent;
-    font-size: $hero-eyebrow-size;
     letter-spacing: token.$tracking-widest * 2; // 0.16em
     text-transform: uppercase;
 
@@ -114,8 +123,11 @@ $hero-cta-transition:  token.$duration-400 token.$ease-header-nav;
 
   &__title {
     margin-bottom: token.$space-24;
-    font-size: $hero-title-size;
     text-wrap: balance;
+
+    @include mix.respond(xs) {
+      font-size: 46px;
+    }
   }
 
   &__title-highlight {
@@ -124,39 +136,15 @@ $hero-cta-transition:  token.$duration-400 token.$ease-header-nav;
 
   &__description {
     max-width: 30rem;
-    margin-bottom: token.$space-40;
+    margin-bottom: token.$space-24;
     color: $hero-desc-color;
-    font-size: $hero-desc-size;
-    line-height: token.$lh-relaxed;
-  }
 
-  &__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: token.$space-12;
-    padding: $hero-cta-pad;
-
-    color: $hero-cta-text;
-    background-color: $hero-cta-bg;
-    font-size: token.$font-14;
-    letter-spacing: token.$tracking-widest;
-    line-height: token.$lh-none;
-    text-transform: uppercase;
-    white-space: nowrap;
-
-    transition:
-      background-color $hero-cta-transition,
-      transform $hero-cta-transition;
-
-    svg {
-      flex-shrink: 0;
-      transition: transform $hero-cta-transition;
+    @include mix.respond(xs) {
+      font-size: 16px;
     }
-
-    &:hover { background-color: $hero-cta-bg-hover; }
-    &:hover svg { transform: translateX(0.375rem); }
-    &:active { transform: scale(0.98); }
   }
+
+  
 
   // == Mobile (< md) ==
   // Text first, stone image right below it (in the flow, so text never covers
@@ -192,6 +180,22 @@ $hero-cta-transition:  token.$duration-400 token.$ease-header-nav;
     &__cta {
       width: 100%;
       justify-content: center;
+    }
+
+    // Tablet range: more of the photo, less dark fade
+    @media (min-width: 30rem) {
+      &__container { margin-bottom: calc(-1 * #{$hero-img-overlap-tablet}); }
+
+      &__media {
+        height: $hero-img-height-tablet;
+        -webkit-mask-image: $hero-fade-tablet;
+        mask-image: $hero-fade-tablet;
+      }
+    }
+
+    // Landscape phones: never taller than the screen
+    @media (max-height: 32rem) {
+      &__media { height: min(#{$hero-img-height-mobile}, 80svh); }
     }
   }
 }

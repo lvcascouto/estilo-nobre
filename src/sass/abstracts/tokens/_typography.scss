@@ -47,16 +47,16 @@ $tracking-widest:  0.08em;
 // ---------------------------------------------------
 // Base
 $font-family-base: "Lato", Ubuntu, system-ui, -apple-system, sans-serif;
-$font-size-base:   $font-16;
-$font-weight-base: $weight-regular;
+$font-size-base:   $font-18;
+$font-weight-base: $weight-light; // TODO: Ou regular?
 $line-height-base: $lh-normal;
-$letter-spc-base:  $tracking-wide;
+$letter-spc-base:  $tracking-wider;
 
 // Headings
 $font-family-heading: "Tenor Sans", Oxygen, system-ui, -apple-system, sans-serif;
 $font-weight-heading: $weight-regular;
 $line-height-heading: $lh-tight;
-$letter-spc-heading:  $tracking-tight;
+$letter-spc-heading:  $tracking-tighter;
 $font-size-h1: $font-64;
 $font-size-h2: $font-48;
 $font-size-h3: $font-40;
