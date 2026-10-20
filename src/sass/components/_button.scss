@@ -14,7 +14,6 @@ $gap-btn:         token.$space-6;
 $font-family-btn: token.$font-family-heading;
 $font-weight-btn: token.$font-weight-heading;
 $line-height-btn: token.$lh-none;
-$letter-spc-btn:  token.$tracking-wide;
 $transition-btn:  token.$duration-400 token.$ease-header-nav;
 
 // Secondary
@@ -71,6 +70,14 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
 
     border: none;
     // color: inherit;
+
+    $header-font-family:    token.$font-family-heading;
+    $header-text-weight:    token.$weight-regular;
+
+    &.is-menu {
+      letter-spacing: token.$tracking-widest;
+      color: token.$color-text-on-dark-alt;
+    }
 
     --sec-hover-bg:   #{ $btn-sec-bg-color-hover };
     --sec-hover-text: #{ $btn-sec-text-color-hover };
