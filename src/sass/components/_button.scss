@@ -11,7 +11,6 @@
 // ---------------------------------------------------
 // Default
 $gap-btn:            token.$space-8;
-$font-family-btn:    token.$font-family-heading;
 $font-size-btn:      token.$font-16;
 $font-weight-btn:    token.$font-weight-heading;
 $line-height-btn:    token.$lh-none;
@@ -23,14 +22,15 @@ $btn-asset-arrow-size: 1.25rem; // 20px
 $btn-asset-arrow-path: url("/assets/svg/icon/arrow-right.svg");
 
 // Primary
-$btn-primary-bg-color:     token.$color-accent;
-$btn-primary-text-color:   token.$color-text-primary;
-$btn-primary-shine-color:  token.$brand-stone-opacity;
+$btn-primary-bg-color:    token.$color-accent;
+$btn-primary-text-color:  token.$color-text-primary;
+$btn-primary-shine-color: token.$brand-stone-opacity;
 
 $btn-primary-label-offset: calc(($btn-asset-arrow-size + $gap-btn) / 2);
 
 // Secondary
-$btn-secondary-header-color:        token.$color-text-on-dark-alt;
+$btn-secondary-header-font:          token.$font-family-heading;
+$btn-secondary-header-color:         token.$color-text-on-dark-alt;
 
 $btn-secondary-menu-color:           token.$color-text-primary;
 $btn-secondary-menu-min-height:      3.75rem;                                 // 60px
@@ -64,11 +64,11 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
   background-color: transparent;
   border: none;
   
-  font-family: $font-family-btn;
-  font-size: $font-size-btn;
-  font-weight: $font-weight-btn;
-  line-height: $line-height-btn;
-  letter-spacing: token.$tracking-wide;
+  // font-family: $font-family-btn;
+  // font-size: $font-size-btn;
+  // font-weight: $font-weight-btn;
+  // line-height: $line-height-btn;
+  // letter-spacing: token.$tracking-wide;
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
@@ -175,9 +175,13 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
 
   // == Button Secondary ==
   &.secondary {
-
+    
     // Secondary Variants
-    &.is-header { color: $btn-secondary-header-color; letter-spacing: token.$tracking-wider; }
+    &.is-header {
+      color: $btn-secondary-header-color;
+      font-family: $btn-secondary-header-font;
+      letter-spacing: token.$tracking-wider;
+    }
 
     // TODO: Verificar se faz sentido o inverted, se não tiramos
     --sec-hover-bg:   #{ $btn-secondary-bg-color-hover };
