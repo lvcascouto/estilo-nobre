@@ -48,7 +48,7 @@ $tracking-widest:  0.08em;
 // Base
 $font-family-base: "Lato", Ubuntu, system-ui, -apple-system, sans-serif;
 $font-size-base:   clamp(0.9375rem, 14.09px + 0.51vw, $font-18); // 15px → 18px
-$font-weight-base: $weight-light; // TODO: Ou regular?
+$font-weight-base: $weight-regular; // TODO: Ou regular?
 $line-height-base: $lh-normal;
 $letter-spc-base:  $tracking-wider;
 
