@@ -11,8 +11,7 @@
 // ---------------------------------------------------
 // Default
 $gap-btn:            token.$space-8;
-$font-size-btn:      token.$font-16;
-$font-weight-btn:    token.$font-weight-heading;
+$font-weight-btn:    token.$weight-regular;
 $line-height-btn:    token.$lh-none;
 $transition-btn:     token.$duration-400 token.$ease-header-nav;
 $transition-btn-alt: token.$duration-800 token.$ease-header-nav;
@@ -30,9 +29,11 @@ $btn-primary-label-offset: calc(($btn-asset-arrow-size + $gap-btn) / 2);
 
 // Secondary
 $btn-secondary-header-font-family:   token.$font-family-heading;
-$btn-secondary-header-font-size:     clamp(token.$font-16, 0.8481rem + 0.32vw, token.$font-18); // 16px → 18px
+$btn-secondary-font-weight:   token.$weight-light;
+$btn-secondary-header-font-size:     clamp(token.$font-16, 0.848rem + 0.316vw, token.$font-18);// clamp(token.$font-16, 0.8481rem + 0.32vw, token.$font-18); // 16px → 18px
 $btn-secondary-header-color:         token.$color-text-on-dark-alt;
 
+//TODO: VERIFICAR E APAGAR
 $btn-secondary-menu-color:           token.$color-text-primary;
 $btn-secondary-menu-min-height:      3.75rem;                                 // 60px
 $btn-secondary-menu-font-size:       clamp(1rem, 0.761rem + 1.02vw, 1.25rem); // 16px - 20px
@@ -64,12 +65,11 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
   padding: 0;
   background-color: transparent;
   border: none;
-  
-  // font-family: $font-family-btn;
-  // font-size: $font-size-btn;
-  // font-weight: $font-weight-btn;
+
+  font-size: inherit;
+  font-weight: $font-weight-btn;
   line-height: $line-height-btn;
-  // letter-spacing: token.$tracking-wide;
+  letter-spacing: inherit;
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
@@ -91,7 +91,8 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
 
     width: $btn-asset-arrow-size;
     height: $btn-asset-arrow-size;
-    margin-bottom: 0.0625rem; // 1px to align with text baseline
+    margin-block: 0 0.0625rem; // 1px to align with text baseline
+    @include mix.respond(md) { margin-block: 0.125rem 0; };
 
     background-color: currentColor;
 
@@ -115,6 +116,10 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
 
     background-color: $btn-primary-bg-color;
     color: $btn-primary-text-color;
+
+    &.is-mobile {
+      font-size: clamp(token.$font-16, calc(0.8214rem + 0.89vw), token.$font-20); // clamp(0.9375rem, 0.8806rem + 0.51vw, token.$font-18); // 15px → 18px // clamp(token.$font-20, 1.0713rem + 0.89vw, token.$font-24); // 20px → 24px
+    }
 
     &::before {
       content: "";
@@ -175,12 +180,12 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
 
   // == Button Secondary ==
   &.secondary {
+    font-weight: $btn-secondary-font-weight;
     
     // Secondary Variants
     &.is-header {
       font-family: $btn-secondary-header-font-family;
-      font-size:   $btn-secondary-header-font-size;
-      letter-spacing: token.$tracking-wider;
+      font-size: $btn-secondary-header-font-size;
       color: $btn-secondary-header-color;
     }
 
@@ -207,6 +212,7 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
 
     &:hover,
     &:focus-visible {
+      font-weight: token.$weight-regular;
       color: var(--sec-hover-text);
 
       &::before { width: 100%; }

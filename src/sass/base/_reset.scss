@@ -21,7 +21,8 @@ html {
   -ms-text-size-adjust: 100%;     // IE/Edge
   text-size-adjust: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: 127px; // TODO: VERIFICAR @include mix.respond(md) { scroll-margin-top: calc(76px + 48px); }
+  scroll-padding-top: calc(clamp(5.475rem, 5.049rem + 2.13vw, 6.4125rem) + 1.5rem);
+  @include mix.respond(md) { scroll-padding-top: calc(clamp(5.475rem, 5.049rem + 2.13vw, 6.4125rem) + 0.25rem); }
 }
 
 // == List Reset ==

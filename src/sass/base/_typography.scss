@@ -38,6 +38,10 @@ small {
   font-size: token.$font-size-small;
 }
 
+address {
+  font-size: token.$font-size-address;
+}
+
 strong, b {
   font-weight: token.$font-weight-bold;
 }

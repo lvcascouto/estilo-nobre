@@ -4,6 +4,7 @@
 // ===================================================
 
 $z-layers: (
+  hero:     -2,   // Hero background image
   back:     -1,   // Background elements
   base:     0,    // Default stacking context
   sticky:   10,   // Sticky navigation & sub-headers

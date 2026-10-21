@@ -42,13 +42,14 @@ $tracking-normal:  0;
 $tracking-wide:    0.02em;
 $tracking-wider:   0.04em;
 $tracking-widest:  0.08em;
+$tracking-eyebrow: 0.18em; // TODO: CONFIRMAR
 
 // == Semantic Layer Tokens ==
 // ---------------------------------------------------
 // Base
 $font-family-base: "Lato", Ubuntu, system-ui, -apple-system, sans-serif;
-$font-size-base:   clamp(0.9375rem, 14.09px + 0.51vw, $font-18); // 15px → 18px
-$font-weight-base: $weight-regular; // TODO: Ou regular?
+$font-size-base:   clamp(0.9375rem, 0.954rem + 0.2vw, 1.125rem); // clamp(0.9375rem, 0.8806rem + 0.51vw, $font-18); // 15px → 18px
+$font-weight-base: $weight-light;
 $line-height-base: $lh-normal;
 $letter-spc-base:  $tracking-wider;
 
@@ -57,7 +58,7 @@ $font-family-heading: "Tenor Sans", Oxygen, system-ui, -apple-system, sans-serif
 $font-weight-heading: $weight-regular;
 $line-height-heading: $lh-tight;
 $letter-spc-heading:  $tracking-tighter;
-$font-size-h1: $font-64;
+$font-size-h1: $font-72;
 $font-size-h2: $font-48;
 $font-size-h3: $font-40;
 $font-size-h4: $font-32;
@@ -65,7 +66,12 @@ $font-size-h5: $font-24;
 $font-size-h6: $font-20;
 
 // Other Elements
-$font-size-small:   $font-12;
+$font-size-eyebrow:   $font-12;
+$font-weight-eyebrow: $weight-regular;
+$line-height-eyebrow: $lh-none;
+$letter-spc-eyebrow:  $tracking-widest;
 
-$font-weight-bold: $weight-bold;
+$font-size-small:   $font-14;
+$font-size-address: $font-14;
+$font-weight-bold:  $weight-regular;
 // ---------------------------------------------------
