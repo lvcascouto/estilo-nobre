@@ -34,7 +34,7 @@ $header-logo-height: clamp(2.375rem, 2rem + 1.6vw, 3.4375rem);
 
 // Navigation (desktop)
 $header-font-family:    token.$font-family-heading;
-$header-font-size:      token.$font-16;
+$header-font-size:      clamp(token.$font-16, 0.8481rem + 0.32vw, token.$font-18); // 16px → 18px
 $header-text-weight:    token.$weight-regular;
 $header-line-height:    token.$lh-none;
 $header-text-color:     token.$color-text-on-dark-alt;
@@ -60,8 +60,6 @@ $menu-line-gap:          token.$space-10;
 $menu-stagger-start:     0.16s; // delay before the first item appears
 $menu-stagger-step:      0.14s; // extra delay for each following item
 // ---------------------------------------------------
-
-// body { background-color: token.$color-surface-dark; }
 
 // == Header Bar ==
 .header-wrapper {
@@ -173,6 +171,7 @@ $menu-stagger-step:      0.14s; // extra delay for each following item
       font-size: $header-font-size;
       font-weight: $header-text-weight;
       line-height: $header-line-height;
+      letter-spacing: inherit;
       color: $header-text-color;
       text-transform: uppercase;
     }

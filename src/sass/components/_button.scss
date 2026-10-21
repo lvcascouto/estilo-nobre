@@ -29,7 +29,8 @@ $btn-primary-shine-color: token.$brand-stone-opacity;
 $btn-primary-label-offset: calc(($btn-asset-arrow-size + $gap-btn) / 2);
 
 // Secondary
-$btn-secondary-header-font:          token.$font-family-heading;
+$btn-secondary-header-font-family:   token.$font-family-heading;
+$btn-secondary-header-font-size:     clamp(token.$font-16, 0.8481rem + 0.32vw, token.$font-18); // 16px → 18px
 $btn-secondary-header-color:         token.$color-text-on-dark-alt;
 
 $btn-secondary-menu-color:           token.$color-text-primary;
@@ -67,7 +68,7 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
   // font-family: $font-family-btn;
   // font-size: $font-size-btn;
   // font-weight: $font-weight-btn;
-  // line-height: $line-height-btn;
+  line-height: $line-height-btn;
   // letter-spacing: token.$tracking-wide;
   text-decoration: none;
   text-transform: uppercase;
@@ -112,7 +113,6 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
     isolation: isolate;
     overflow: hidden;
 
-    letter-spacing: token.$tracking-wide;
     background-color: $btn-primary-bg-color;
     color: $btn-primary-text-color;
 
@@ -178,9 +178,10 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
     
     // Secondary Variants
     &.is-header {
-      color: $btn-secondary-header-color;
-      font-family: $btn-secondary-header-font;
+      font-family: $btn-secondary-header-font-family;
+      font-size:   $btn-secondary-header-font-size;
       letter-spacing: token.$tracking-wider;
+      color: $btn-secondary-header-color;
     }
 
     // TODO: Verificar se faz sentido o inverted, se não tiramos

@@ -139,9 +139,9 @@ $hero-cta-transition:  token.$duration-400 token.$ease-header-nav;
     margin-bottom: token.$space-24;
     color: $hero-desc-color;
 
-    @include mix.respond(xs) {
-      font-size: 16px;
-    }
+    // @include mix.respond(xs) {
+    //   font-size: 16px;
+    // }
   }
 
   
