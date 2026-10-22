@@ -30,35 +30,36 @@ $header-bg-color-open: token.$color-surface-dark;
 $header-border-open:   token.$color-surface-accent-op;
 
 // Logo
-$header-logo-height: clamp(2.375rem, 2rem + 1.6vw, 3.4375rem);
+$header-logo-height: clamp(2.375rem, 2rem + 1.6vw, 3.4375rem); // 38px → 55px
 
 // Navigation (desktop)
 $header-font-family:    token.$font-family-heading;
 $header-font-size:      clamp(0.9375rem, 0.852rem + 0.1791vw, 1.0188rem); // 15px (768 bp) → 16.3px (1492 bp)
 $header-text-weight:    token.$weight-regular;
 $header-line-height:    token.$lh-none;
+$header-letter-spc:     token.$tracking-normal;
 $header-text-color:     token.$color-text-on-dark-alt;
 
-$header-nav-transition: token.$ease-header-nav;
+$header-nav-transition:          token.$ease-header-nav;
 $header-nav-transition-duration: token.$duration-400;
-$header-nav-item-color-hover: token.$color-accent;
+$header-nav-item-color-hover:    token.$color-accent;
 
 // Mobile Menu (< md)
-$menu-duration:          token.$duration-600;
-$menu-transition:        $menu-duration token.$ease-header;
-$menu-bg-color:          token.$color-surface-dark;
-$menu-pad-inline:        token.$space-24;
-$menu-divider:           0.0625rem solid token.$brand-gold-opacity;
+$menu-duration:        token.$duration-600;
+$menu-transition:      $menu-duration token.$ease-header;
+$menu-bg-color:        token.$color-surface-dark;
+$menu-pad-inline:      token.$space-24;
+$menu-divider:         0.0625rem solid token.$brand-gold-opacity;
 
-$menu-item-size:         clamp(token.$font-20, 1.0714rem + 0.8929vw, token.$font-24); // 20px (320 bp) → 24px (768 bp)
-$menu-item-pad-block:    token.$space-24;
-$menu-item-index-size:   token.$font-14;
+$menu-item-size:       clamp(token.$font-20, 1.0714rem + 0.8929vw, token.$font-24); // 20px (320 bp) → 24px (768 bp)
+$menu-item-pad-block:  token.$space-24;
+$menu-item-index-size: token.$font-14;
 
-$menu-line-width:        3rem;
-$menu-line-gap:          token.$space-10;
+$menu-line-width:      token.$font-48;
+$menu-line-gap:        token.$space-10;
 
-$menu-stagger-start:     0.16s; // delay before the first item appears
-$menu-stagger-step:      0.07s; // extra delay for each following item
+$menu-stagger-start:   0.16s; // delay before the first item appears
+$menu-stagger-step:    0.07s; // extra delay for each following item
 // ---------------------------------------------------
 
 // == Header Bar ==
@@ -169,7 +170,7 @@ $menu-stagger-step:      0.07s; // extra delay for each following item
       font-size: $header-font-size;
       font-weight: $header-text-weight;
       line-height: $header-line-height;
-      letter-spacing: inherit;
+      letter-spacing: $header-letter-spc;
       color: $header-text-color;
       text-transform: uppercase;
     }
@@ -180,7 +181,7 @@ $menu-stagger-step:      0.07s; // extra delay for each following item
         a {
           position: relative;
           display: block;
-          padding-block: 1rem; // 16px
+          padding-block: token.$space-16;
 
           transition-timing-function: $header-nav-transition;
           transition-duration: $header-nav-transition-duration;
@@ -189,7 +190,7 @@ $menu-stagger-step:      0.07s; // extra delay for each following item
           &::after {
             content: "";
             pointer-events: none;
-            bottom: 0.75rem; // 12px
+            bottom: token.$space-12;
             left: 50%;
             position: absolute;
             width: 0%;
@@ -216,7 +217,7 @@ $menu-stagger-step:      0.07s; // extra delay for each following item
       height: calc(100vh - 100% - #{$header-border-width});
       height: calc(100dvh - 100% - #{$header-border-width});
 
-      @include mix.flex(column, $justify: flex-start, $align: stretch);
+      @include mix.flex(column, flex-start, stretch, 0);
       background-color: $menu-bg-color;
       border-top: $header-border-width solid $header-border-open;
       
@@ -258,7 +259,7 @@ $menu-stagger-step:      0.07s; // extra delay for each following item
           transform $menu-transition;
 
         a {
-          @include mix.flex($justify: flex-start, $align: center, $gap: 0);
+          @include mix.flex(row, flex-start, center, 0);
           padding-block: $menu-item-pad-block;
 
           color: inherit;
@@ -311,7 +312,7 @@ $menu-stagger-step:      0.07s; // extra delay for each following item
           transform $menu-transition;
         
         &-text {
-          @include mix.flex($justify: center, $align: center, $gap: token.$space-6);
+          @include mix.flex(row, center, center, token.$space-6);
           margin-top: token.$space-24;
           
           font-style: normal;

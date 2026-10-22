@@ -14,30 +14,26 @@ $gap-btn:            token.$space-8;
 $font-family-btn:    token.$font-family-heading;
 $font-weight-btn:    token.$weight-regular;
 $line-height-btn:    token.$lh-none;
+$letter-spc-btn:     token.$tracking-normal;
 $transition-btn:     token.$duration-400 token.$ease-header-nav;
 $transition-btn-alt: token.$duration-800 token.$ease-header-nav;
 
 // Shared Arrow
-$btn-asset-arrow-size: 1.25rem; // 20px
+$btn-asset-arrow-size: token.$font-20;
 $btn-asset-arrow-path: url("/assets/svg/icon/arrow-right.svg");
 
 // Primary
-$btn-primary-font-size:   clamp(1.0625rem, 0.8271rem + 1.1765vw, 1.125rem); // 17px (320 bp) → 18px (405 bp)
-$btn-primary-font-color:  token.$color-text-primary;
-$btn-primary-bg-color:    token.$color-accent;
-$btn-primary-shine-color: token.$brand-stone-opacity;
+$btn-primary-font-size:    token.$font-18; //clamp(1.0625rem, 0.8271rem + 1.1765vw, 1.125rem); // 17px (320 bp) → 18px (405 bp)
+$btn-primary-font-color:   token.$color-text-primary;
+$btn-primary-bg-color:     token.$color-accent;
+$btn-primary-shine-color:  token.$brand-stone-opacity;
 $btn-primary-label-offset: calc(($btn-asset-arrow-size + $gap-btn) / 2);
+$btn-primary-menu-font-size: token.$font-20;
+$btn-primary-menu-color:   token.$color-text-primary;
+
 
 // Secondary
-$btn-secondary-header-font-size:     inherit; // TODO: VERIFICAR SE PRECISA MESMO DESTE TOKEN, SE NÃO TIRAMOS
-$btn-primary-menu-color:         token.$color-surface-dark;
-
-//TODO: VERIFICAR E APAGAR
-$btn-secondary-menu-color:           token.$color-text-primary;
-$btn-secondary-menu-min-height:      3.75rem;                                 // 60px
-$btn-secondary-menu-font-size:       clamp(1rem, 0.761rem + 1.02vw, 1.25rem); // 16px - 20px
-$btn-secondary-menu-letter-spc:      token.$tracking-wide;
-
+$btn-secondary-header-color:      token.$color-text-on-dark-alt;
 $btn-secondary-bg-color-hover:       token.$color-accent;
 $btn-secondary-bg-color-alt-hover:   token.$brand-slate;
 $btn-secondary-text-color-hover:     token.$color-text-primary;
@@ -67,7 +63,7 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
   font-family: $font-family-btn;
   font-weight: $font-weight-btn;
   line-height: $line-height-btn;
-  letter-spacing: inherit;
+  letter-spacing: $letter-spc-btn;
   text-decoration: none;
   white-space: nowrap;
   -webkit-user-select: none;
@@ -119,9 +115,8 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
 
     // Primary Variants
     &.is-menu {
-      text-transform: uppercase;
+      font-size: $btn-primary-menu-font-size;
       color: $btn-primary-menu-color;
-      letter-spacing: token.$tracking-tighter;
     }
 
     &::before {
@@ -184,6 +179,9 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
   // == Button Secondary ==
   &.secondary {
     font-size: inherit;
+
+    // Secondary Variants
+    &.is-header { color: $btn-secondary-header-color; }
 
     // TODO: Verificar se faz sentido o inverted, se não tiramos
     --sec-hover-bg:   #{ $btn-secondary-bg-color-hover };
