@@ -48,7 +48,7 @@ $tracking-eyebrow: 0.18em; // TODO: CONFIRMAR
 // ---------------------------------------------------
 // Base
 $font-family-base: "Lato", Ubuntu, system-ui, -apple-system, sans-serif;
-$font-size-base:   clamp(0.9375rem, 0.958rem + 0.1791vw, 1.125rem); // 15px → 18px (1492 bp)
+$font-size-base:   clamp(0.9375rem, 0.958rem + 0.1791vw, $font-18); // 15px → 18px (1492 bp)
 $font-weight-base: $weight-light;
 $line-height-base: $lh-normal;
 $letter-spc-base:  $tracking-wider;
@@ -57,7 +57,7 @@ $letter-spc-base:  $tracking-wider;
 $font-family-heading: "Tenor Sans", Oxygen, system-ui, -apple-system, sans-serif;
 $font-weight-heading: $weight-regular;
 $line-height-heading: $lh-tight;
-$letter-spc-heading:  $tracking-tighter;
+$letter-spc-heading:  $tracking-tight;
 $font-size-h1: $font-72;
 $font-size-h2: $font-48;
 $font-size-h3: $font-40;

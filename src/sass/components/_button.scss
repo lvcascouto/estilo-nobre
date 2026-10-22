@@ -19,21 +19,21 @@ $transition-btn:     token.$duration-400 token.$ease-header-nav;
 $transition-btn-alt: token.$duration-800 token.$ease-header-nav;
 
 // Shared Arrow
-$btn-asset-arrow-size: token.$font-20;
+$btn-asset-arrow-size: token.$font-18;
 $btn-asset-arrow-path: url("/assets/svg/icon/arrow-right.svg");
 
 // Primary
-$btn-primary-font-size:    token.$font-18; //clamp(1.0625rem, 0.8271rem + 1.1765vw, 1.125rem); // 17px (320 bp) → 18px (405 bp)
-$btn-primary-font-color:   token.$color-text-primary;
-$btn-primary-bg-color:     token.$color-accent;
-$btn-primary-shine-color:  token.$brand-stone-opacity;
-$btn-primary-label-offset: calc(($btn-asset-arrow-size + $gap-btn) / 2);
+$btn-primary-font-size:      token.$font-18;
+$btn-primary-font-color:     token.$color-text-primary;
+$btn-primary-bg-color:       token.$color-accent;
+$btn-primary-shine-color:    token.$brand-stone-opacity;
+$btn-primary-label-offset:   calc(($btn-asset-arrow-size + $gap-btn) / 2);
 $btn-primary-menu-font-size: token.$font-20;
-$btn-primary-menu-color:   token.$color-text-primary;
+$btn-primary-menu-color:     token.$color-text-primary;
 
 
 // Secondary
-$btn-secondary-header-color:      token.$color-text-on-dark-alt;
+$btn-secondary-header-color:         token.$color-text-on-dark-alt;
 $btn-secondary-bg-color-hover:       token.$color-accent;
 $btn-secondary-bg-color-alt-hover:   token.$brand-slate;
 $btn-secondary-text-color-hover:     token.$color-text-primary;
@@ -86,8 +86,8 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
     height: $btn-asset-arrow-size;
 
     // TODO: VERIFICAR SE PRECISA MESMO DO MARGIN-BLOCK, SE NÃO TIRAMOS
-    margin-block: 0 0.0625rem; // 1px to align with text baseline
-    @include mix.respond(md) { margin-block: 0.125rem 0; };
+    margin-top: 0.0625rem; // 1px to align with text baseline
+    // @include mix.respond(md) { margin-block: 0.125rem 0; };
 
     background-color: currentColor;
 

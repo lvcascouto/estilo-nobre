@@ -105,7 +105,7 @@ $hero-cta-transition:  token.$duration-400 token.$ease-header-nav;
     text-wrap: balance;
 
     @include mix.respond(xs) {
-      font-size: 47px;
+      font-size: 45px;
     }
   }
 
