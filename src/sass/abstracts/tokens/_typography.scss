@@ -48,7 +48,7 @@ $tracking-eyebrow: 0.18em; // TODO: CONFIRMAR
 // ---------------------------------------------------
 // Base
 $font-family-base: "Lato", Ubuntu, system-ui, -apple-system, sans-serif;
-$font-size-base:   clamp(0.9375rem, 0.954rem + 0.2vw, 1.125rem); // clamp(0.9375rem, 0.8806rem + 0.51vw, $font-18); // 15px → 18px
+$font-size-base:   clamp(0.9375rem, 0.958rem + 0.1791vw, 1.125rem); // 15px → 18px (1492 bp)
 $font-weight-base: $weight-light;
 $line-height-base: $lh-normal;
 $letter-spc-base:  $tracking-wider;

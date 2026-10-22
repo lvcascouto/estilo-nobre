@@ -34,7 +34,7 @@ $header-logo-height: clamp(2.375rem, 2rem + 1.6vw, 3.4375rem);
 
 // Navigation (desktop)
 $header-font-family:    token.$font-family-heading;
-$header-font-size:      clamp(token.$font-16, calc(0.848rem + 0.316vw), token.$font-18); // clamp(token.$font-16, 0.8481rem + 0.32vw, token.$font-18); // 16px → 18px
+$header-font-size:      clamp(0.9375rem, 0.852rem + 0.1791vw, 1.0188rem); // 15px (768 bp) → 16.3px (1492 bp)
 $header-text-weight:    token.$weight-regular;
 $header-line-height:    token.$lh-none;
 $header-text-color:     token.$color-text-on-dark-alt;
@@ -50,7 +50,7 @@ $menu-bg-color:          token.$color-surface-dark;
 $menu-pad-inline:        token.$space-24;
 $menu-divider:           0.0625rem solid token.$brand-gold-opacity;
 
-$menu-item-size:         clamp(token.$font-20, 1.0713rem + 0.89vw, token.$font-24); // 20px → 24px
+$menu-item-size:         clamp(token.$font-20, 1.0714rem + 0.8929vw, token.$font-24); // 20px (320 bp) → 24px (768 bp)
 $menu-item-pad-block:    token.$space-24;
 $menu-item-index-size:   token.$font-14;
 
@@ -132,8 +132,6 @@ $menu-stagger-step:      0.07s; // extra delay for each following item
 
       border-color: transparent;
       box-shadow: $header-box-shadow;
-
-      .header__container { padding: $header-pad; }
 
       // Panel: drops from the header's bottom edge
       .header__panel {

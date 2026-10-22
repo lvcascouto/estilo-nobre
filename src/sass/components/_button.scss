@@ -11,6 +11,7 @@
 // ---------------------------------------------------
 // Default
 $gap-btn:            token.$space-8;
+$font-family-btn:    token.$font-family-heading;
 $font-weight-btn:    token.$weight-regular;
 $line-height-btn:    token.$lh-none;
 $transition-btn:     token.$duration-400 token.$ease-header-nav;
@@ -21,17 +22,15 @@ $btn-asset-arrow-size: 1.25rem; // 20px
 $btn-asset-arrow-path: url("/assets/svg/icon/arrow-right.svg");
 
 // Primary
+$btn-primary-font-size:   clamp(1.0625rem, 0.8271rem + 1.1765vw, 1.125rem); // 17px (320 bp) → 18px (405 bp)
+$btn-primary-font-color:  token.$color-text-primary;
 $btn-primary-bg-color:    token.$color-accent;
-$btn-primary-text-color:  token.$color-text-primary;
 $btn-primary-shine-color: token.$brand-stone-opacity;
-
 $btn-primary-label-offset: calc(($btn-asset-arrow-size + $gap-btn) / 2);
 
 // Secondary
-$btn-secondary-header-font-family:   token.$font-family-heading;
-$btn-secondary-font-weight:   token.$weight-light;
-$btn-secondary-header-font-size:     clamp(token.$font-16, 0.848rem + 0.316vw, token.$font-18);// clamp(token.$font-16, 0.8481rem + 0.32vw, token.$font-18); // 16px → 18px
-$btn-secondary-header-color:         token.$color-text-on-dark-alt;
+$btn-secondary-header-font-size:     inherit; // TODO: VERIFICAR SE PRECISA MESMO DESTE TOKEN, SE NÃO TIRAMOS
+$btn-primary-menu-color:         token.$color-surface-dark;
 
 //TODO: VERIFICAR E APAGAR
 $btn-secondary-menu-color:           token.$color-text-primary;
@@ -65,13 +64,11 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
   padding: 0;
   background-color: transparent;
   border: none;
-
-  font-size: inherit;
+  font-family: $font-family-btn;
   font-weight: $font-weight-btn;
   line-height: $line-height-btn;
-  letter-spacing: token.$tracking-normal;
+  letter-spacing: inherit;
   text-decoration: none;
-  // text-transform: uppercase;
   white-space: nowrap;
   -webkit-user-select: none;
   user-select: none;
@@ -91,6 +88,8 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
 
     width: $btn-asset-arrow-size;
     height: $btn-asset-arrow-size;
+
+    // TODO: VERIFICAR SE PRECISA MESMO DO MARGIN-BLOCK, SE NÃO TIRAMOS
     margin-block: 0 0.0625rem; // 1px to align with text baseline
     @include mix.respond(md) { margin-block: 0.125rem 0; };
 
@@ -114,11 +113,15 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
     isolation: isolate;
     overflow: hidden;
 
+    font-size: $btn-primary-font-size;
+    color: $btn-primary-font-color;
     background-color: $btn-primary-bg-color;
-    color: $btn-primary-text-color;
 
-    &.is-mobile {
-      font-size: clamp(token.$font-16, calc(0.8214rem + 0.89vw), token.$font-20); // clamp(0.9375rem, 0.8806rem + 0.51vw, token.$font-18); // 15px → 18px // clamp(token.$font-20, 1.0713rem + 0.89vw, token.$font-24); // 20px → 24px
+    // Primary Variants
+    &.is-menu {
+      text-transform: uppercase;
+      color: $btn-primary-menu-color;
+      letter-spacing: token.$tracking-tighter;
     }
 
     &::before {
@@ -180,14 +183,7 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
 
   // == Button Secondary ==
   &.secondary {
-    font-weight: $btn-secondary-font-weight;
-    
-    // Secondary Variants
-    &.is-header {
-      font-family: $btn-secondary-header-font-family;
-      font-size: $btn-secondary-header-font-size;
-      color: $btn-secondary-header-color;
-    }
+    font-size: inherit;
 
     // TODO: Verificar se faz sentido o inverted, se não tiramos
     --sec-hover-bg:   #{ $btn-secondary-bg-color-hover };
