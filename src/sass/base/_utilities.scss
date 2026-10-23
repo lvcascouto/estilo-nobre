@@ -55,38 +55,49 @@
   }
 }
 
-// == Eyebrow Utility Classes ==
-.u-eyebrow {
-  @include mix.flex($align: center, $justify: flex-start, $gap: token.$space-8);
-  margin-bottom: var(--eyebrow-mb, #{token.$space-16});
+// ===================================================
+// ESTILO NOBRE ▪︎ UTILITY CLASSES
+// Official utility classes for the project
+// ===================================================
 
-  font-size:      token.$font-size-eyebrow; @include mix.respond(xs) { font-size: token.$font-10; }
-  font-weight:    token.$font-weight-eyebrow;
-  line-height:    token.$line-height-eyebrow;
-  letter-spacing: token.$letter-spc-eyebrow;
-  color:          token.$color-accent;
-  text-transform: uppercase;
-
-  &::before {
-    content: "";
-    flex-shrink: 0;
-    width: 0.45em;
-    height: 0.45em;
-    background-color: currentColor;
-    transform: rotate(45deg); // losango; tire se preferir o quadrado
-  }
-
-  // Esconde só se houver JS para adicionar o .is-visible
-  @media (scripting: enabled) {
-    &:not(.is-visible)::before { opacity: 0; transform: rotate(45deg) scale(0); }
-  }
-
-  &.is-visible::before {
-    animation: eyebrow-marker token.$duration-600 token.$ease-out both;
-  }
+// == Highlight ==
+.u-highlight {
+  color: token.$color-accent;
 }
 
-@keyframes eyebrow-marker {
-  from { opacity: 0; transform: rotate(0deg) scale(0); }
-  to   { opacity: 1; transform: rotate(45deg) scale(1); }
-}
+// == Eyebrow ==
+// .u-eyebrow {
+//   @include mix.flex($align: center, $justify: flex-start, $gap: token.$space-8);
+//   margin-bottom: var(--eyebrow-mb, #{token.$space-16});
+
+//   font-size:      token.$font-size-eyebrow;
+//   font-weight:    token.$font-weight-eyebrow;
+//   line-height:    token.$line-height-eyebrow;
+//   letter-spacing: token.$letter-spc-eyebrow;
+//   color:          token.$color-accent;
+//   text-transform: uppercase;
+
+//   &::before {
+//     content: "";
+//     flex-shrink: 0;
+//     width: 0.45em;
+//     height: 0.45em;
+//     margin-bottom: 0.0313rem;
+//     background-color: currentColor;
+//     transform: rotate(45deg);
+//   }
+
+//   // Esconde só se houver JS para adicionar o .is-visible
+//   @media (scripting: enabled) {
+//     &:not(.is-visible)::before { opacity: 0; transform: rotate(45deg) scale(0); }
+//   }
+
+//   &.is-visible::before {
+//     animation: eyebrow-marker token.$duration-600 token.$ease-out both;
+//   }
+// }
+
+// @keyframes eyebrow-marker {
+//   from { opacity: 0; transform: rotate(0deg) scale(0); }
+//   to   { opacity: 1; transform: rotate(45deg) scale(1); }
+// }

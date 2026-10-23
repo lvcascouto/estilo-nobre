@@ -1,7 +1,7 @@
 @use "../abstracts/tokens" as token;
 
 // ===================================================
-// AXIS ▪︎ GLOBAL KEYFRAMES
+// ESTILO NOBRE ▪︎ GLOBAL KEYFRAMES
 // Fundamental animation instructions for UI interactions
 // ===================================================
 
@@ -11,11 +11,12 @@
   to   { opacity: token.$opacity-100; }
 }
 
-// == Slide & Fade ==
-@keyframes slide-up {
+// == Rise ==
+// Distance comes from --rise-y (default 16px; .u-rise-lg → 24px)
+@keyframes rise {
   from {
     opacity: token.$opacity-0;
-    transform: translateY(token.$space-16);
+    transform: translateY(var(--rise-y, #{token.$space-16}));
   }
   to {
     opacity: token.$opacity-100;
@@ -23,8 +24,28 @@
   }
 }
 
-// == Spin ==
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+// == Write ==
+// Left → right reveal. Drives --write, which the element uses in a mask.
+@property --write {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+ 
+@keyframes write {
+  from { --write: 0; }
+  to   { --write: 1; }
+}
+ 
+// == Marker ==
+// Diamond that spins and grows in (eyebrow)
+@keyframes marker-in {
+  from { opacity: token.$opacity-0; transform: rotate(0deg) scale(0); }
+  to   { opacity: token.$opacity-100; transform: rotate(45deg) scale(1); }
+}
+ 
+// == Shine ==
+@keyframes shine-sweep {
+  from { opacity: token.$opacity-100; transform: translateX(-160%) skewX(-20deg); }
+  to   { opacity: token.$opacity-100; transform: translateX(650%) skewX(-20deg); }
 }

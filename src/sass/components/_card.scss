@@ -8,7 +8,7 @@
 
 // Semantic Card Token
 // ---------------------------------------------------
-$transition-card:    token.$duration-300 token.$ease-standard;
+$transition-card:    token.$motion-duration-hover token.$motion-ease-state;
 
 $shadow-card-hover:  token.$shadow-md;
 $shadow-card-active: token.$shadow-sm;

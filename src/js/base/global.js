@@ -4,7 +4,12 @@
 // ===================================================
 
 // == Scroll Reveal ==
-const REVEAL_SELECTORS = [".u-eyebrow"];
+// ---------------------------------------------------
+// Every selector listed here gets `.is-visible` once it enters the screen.
+// The animation itself lives in the Sass (base/_reveal.scss), one utility per
+// effect. New entrance? Create the class in the Sass and add it to this list.
+// ---------------------------------------------------
+const REVEAL_SELECTORS = [".u-eyebrow", ".u-reveal-fade", ".u-reveal-up"];
 
 const REVEAL_OPTIONS = {
   root: null,
@@ -17,7 +22,23 @@ const REVEAL_OPTIONS = {
   threshold: 0.15,
 };
 
-const initScrollAnimations = () => {
+// The entrances only start once the fonts are in, so the text does not swap
+// typefaces in the middle of the animation. Never waits more than FONT_WAIT_MAX.
+const FONTS_TO_WAIT = ['300 1em "Lato"', '1em "Tenor Sans"'];
+const FONT_WAIT_MAX = 1000; // ms
+
+const whenFontsReady = () => {
+  if (!document.fonts || !document.fonts.load) return Promise.resolve();
+
+  const fonts = Promise.all(
+    FONTS_TO_WAIT.map((font) => document.fonts.load(font)),
+  ).catch(() => {});
+  const timeout = new Promise((resolve) => setTimeout(resolve, FONT_WAIT_MAX));
+
+  return Promise.race([fonts, timeout]);
+};
+
+const initScrollAnimations = async () => {
   const elements = document.querySelectorAll(REVEAL_SELECTORS.join(","));
 
   if (elements.length === 0) return;
@@ -27,6 +48,8 @@ const initScrollAnimations = () => {
     elements.forEach((el) => el.classList.add("is-visible"));
     return;
   }
+
+  await whenFontsReady();
 
   const handleIntersection = (entries, observer) => {
     entries.forEach((entry) => {

@@ -1,4 +1,5 @@
 @use "../abstracts/tokens" as token;
+@use "../abstracts/mixins" as mix;
 
 // ===================================================
 // AXIS ▪︎ TYPOGRAPHY BASE STYLES
@@ -8,6 +9,11 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  // TODO: VERIFICAR 
+  // @include mix.respond-up(3xl) { // A partir de 1536px
+  //   font-size: clamp(100%, 1.041vw, 125%);
+  // }
 }
 
 body {
@@ -24,9 +30,13 @@ h1, h2, h3, h4, h5, h6 {
   font-weight:    token.$font-weight-heading;
   line-height:    token.$line-height-heading;
   letter-spacing: token.$letter-spc-heading;
+  text-wrap:      balance;
 }
 
-h1 { font-size: token.$font-size-h1; }
+h1 {
+  font-size: token.$font-size-h1;
+  @include mix.respond(md) { font-size: token.$font-size-h1-mobile; }
+}
 h2 { font-size: token.$font-size-h2; }
 h3 { font-size: token.$font-size-h3; }
 h4 { font-size: token.$font-size-h4; }
@@ -34,12 +44,17 @@ h5 { font-size: token.$font-size-h5; }
 h6 { font-size: token.$font-size-h6; }
 
 // == Other Elements ==
-small {
-  font-size: token.$font-size-small;
+// == Text Wrapping ==
+p, 
+li, 
+blockquote, 
+figcaption,
+dd {
+  text-wrap: pretty;
 }
 
-address {
-  font-size: token.$font-size-address;
+small {
+  font-size: token.$font-size-small;
 }
 
 strong, b {

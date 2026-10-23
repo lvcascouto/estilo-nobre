@@ -15,8 +15,8 @@ $font-family-btn:    token.$font-family-heading;
 $font-weight-btn:    token.$weight-regular;
 $line-height-btn:    token.$lh-none;
 $letter-spc-btn:     token.$tracking-normal;
-$transition-btn:     token.$duration-400 token.$ease-header-nav;
-$transition-btn-alt: token.$duration-800 token.$ease-header-nav;
+$transition-btn:     token.$motion-duration-hover token.$motion-ease-hover;
+$transition-btn-alt: token.$motion-duration-reveal token.$motion-ease-hover;
 
 // Shared Arrow
 $btn-asset-arrow-size: token.$font-18;
@@ -73,7 +73,7 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
   transition:
     background-color $transition-btn,
     color $transition-btn,
-    // border-color $transition-btn, // TODO: VERIFICAR SE BORDA ANIMA EM ALGUM BUTTOn DO SITE QUE ATIVO
+    // border-color $transition-btn, // TODO: VERIFICAR SE BORDA ANIMA EM ALGUM BUTTON DO SITE QUE ATIVO
     transform $transition-btn;
 
   // Icons
@@ -84,10 +84,7 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
 
     width: $btn-asset-arrow-size;
     height: $btn-asset-arrow-size;
-
-    // TODO: VERIFICAR SE PRECISA MESMO DO MARGIN-BLOCK, SE NÃO TIRAMOS
     margin-top: 0.0625rem; // 1px to align with text baseline
-    // @include mix.respond(md) { margin-block: 0.125rem 0; };
 
     background-color: currentColor;
 
@@ -171,7 +168,7 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
 
         transition:
           transform $transition-btn-alt,
-          opacity 100ms token.$ease-out;
+          opacity token.$duration-100 token.$ease-standard;
       }
     }
   }

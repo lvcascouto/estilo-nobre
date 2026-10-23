@@ -1,0 +1,104 @@
+@use "../abstracts/tokens" as token;
+@use "../abstracts/mixins" as mix;
+
+// ===================================================
+// ESTILO NOBRE ▪︎ REVEAL (Entrance Utilities)
+// Each utility defines its own entrance. The JS (js/base/global.js) only adds
+// `.is-visible` when the element enters the screen. To create a new one:
+//   1. write (or reuse) a @keyframes in base/_keyframes.scss
+//   2. .u-reveal-xxx { @include reveal(keyframes-name); }
+//   3. add ".u-reveal-xxx" to REVEAL_SELECTORS in js/base/global.js
+// ===================================================
+
+// Semantic Reveal Tokens
+// ---------------------------------------------------
+$reveal-duration:    token.$motion-duration-reveal;
+$reveal-ease:        token.$motion-ease-enter;
+$reveal-delay-step:  token.$motion-delay-step;
+$reveal-delay-max:   6;
+$reveal-rise-lg:     token.$space-24;
+
+// Eyebrow
+$eyebrow-gap:             token.$space-8;
+$eyebrow-marker-size:     0.45em;
+$eyebrow-marker-duration: token.$motion-duration-enter;
+$eyebrow-marker-ease:     token.$motion-ease-enter;
+$eyebrow-write-delay:     token.$duration-500; // text starts when the marker has visually landed
+$eyebrow-write-duration:  token.$motion-duration-enter;
+$eyebrow-write-ease:      token.$motion-ease-write;
+$eyebrow-write-feather:   1.6em;               // soft leading edge of the "ink"
+// ---------------------------------------------------
+
+// == Mixin ▪︎ Reveal ==
+// Hidden state + entrance. Works inside any selector.
+//  - Hidden only while JS is available → no JS = content stays visible
+//  - Disabled with prefers-reduced-motion → content just shows
+//  - Per-element delay: .u-delay-N or style="--reveal-delay: 0.3s"
+//  - fill-mode is `backwards` (not `both`) on purpose: after the entrance the
+//    element goes back to its own styles, so hover/active transforms still work
+@mixin reveal($keyframes, $duration: $reveal-duration, $ease: $reveal-ease) {
+  @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+    &:not(.is-visible) { opacity: 0; }
+
+    &.is-visible {
+      animation: $keyframes $duration $ease var(--reveal-delay, 0s) backwards;
+    }
+  }
+}
+
+// == Utilities ▪︎ Entrance ==
+.u-reveal-fade { @include reveal(fade-in); }
+.u-reveal-up   { @include reveal(rise); }
+
+// Bigger rise for large type (h1)
+.u-rise-lg { --rise-y: #{$reveal-rise-lg}; }
+
+// == Utilities ▪︎ Delay (.u-delay-1 … .u-delay-6 = 0.1s … 0.6s) ==
+@for $i from 1 through $reveal-delay-max {
+  .u-delay-#{$i} { --reveal-delay: #{$i * $reveal-delay-step}; }
+}
+
+// == Eyebrow ==
+// 1. the diamond spins in   2. once it lands, the text is "written" left → right
+.u-eyebrow {
+  @include mix.flex($align: center, $justify: flex-start, $gap: $eyebrow-gap);
+  margin-bottom: var(--eyebrow-mb, #{token.$space-16});
+
+  font-size:      token.$font-size-eyebrow;
+  font-weight:    token.$font-weight-eyebrow;
+  line-height:    token.$line-height-eyebrow;
+  letter-spacing: token.$letter-spc-eyebrow;
+  color:          token.$color-accent;
+  text-transform: uppercase;
+
+  &::before {
+    content: "";
+    flex-shrink: 0;
+    width: $eyebrow-marker-size;
+    height: $eyebrow-marker-size;
+    background-color: currentColor;
+    transform: rotate(45deg); // diamond
+  }
+
+  @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+    // Marker (+ gap) is always visible; the text appears behind a moving soft edge
+    --eyebrow-reserved: calc(#{$eyebrow-marker-size} + #{$eyebrow-gap});
+    --eyebrow-edge: calc(
+      var(--eyebrow-reserved) - #{$eyebrow-write-feather}
+      + var(--write) * (100% - var(--eyebrow-reserved) + #{$eyebrow-write-feather} * 2)
+    );
+    -webkit-mask-image: linear-gradient(90deg, #121212 var(--eyebrow-edge), transparent calc(var(--eyebrow-edge) + #{$eyebrow-write-feather}));
+            mask-image: linear-gradient(90deg, #121212 var(--eyebrow-edge), transparent calc(var(--eyebrow-edge) + #{$eyebrow-write-feather}));
+
+    &:not(.is-visible)::before { opacity: 0; transform: rotate(45deg) scale(0); }
+
+    &.is-visible {
+      // `both` here only holds --write at 1 (it is not a visual property)
+      animation: write $eyebrow-write-duration $eyebrow-write-ease calc(var(--reveal-delay, 0s) + #{$eyebrow-write-delay}) both;
+    }
+
+    &.is-visible::before {
+      animation: marker-in $eyebrow-marker-duration $eyebrow-marker-ease var(--reveal-delay, 0s) backwards;
+    }
+  }
+}

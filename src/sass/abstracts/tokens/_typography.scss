@@ -58,20 +58,20 @@ $font-family-heading: "Tenor Sans", Oxygen, system-ui, -apple-system, sans-serif
 $font-weight-heading: $weight-regular;
 $line-height-heading: $lh-tight;
 $letter-spc-heading:  $tracking-tight;
-$font-size-h1: $font-72;
-$font-size-h2: $font-48;
-$font-size-h3: $font-40;
-$font-size-h4: $font-32;
-$font-size-h5: $font-24;
-$font-size-h6: $font-20;
+$font-size-h1:        clamp(3.5rem, 2.439rem + 2.21vw, 4.5rem);  // 56px (768 bp) → 72px (1492 bp)
+$font-size-h1-mobile: clamp(2.375rem, -0.425rem + 14vw, 3.5rem); // 38px (320 bp) → 56px (448 bp) 
+$font-size-h2:        $font-48;
+$font-size-h3:        $font-40;
+$font-size-h4:        $font-32;
+$font-size-h5:        $font-24;
+$font-size-h6:        $font-20;
 
 // Other Elements
-$font-size-eyebrow:   $font-12;
+$font-size-eyebrow:   clamp($font-10, 0.515rem + 0.368vw, $font-12); // 10px (480 bp) -> 12px (1024 bp)
 $font-weight-eyebrow: $weight-regular;
 $line-height-eyebrow: $lh-none;
 $letter-spc-eyebrow:  $tracking-widest;
 
 $font-size-small:   $font-14;
-$font-size-address: $font-14;
 $font-weight-bold:  $weight-regular;
 // ---------------------------------------------------

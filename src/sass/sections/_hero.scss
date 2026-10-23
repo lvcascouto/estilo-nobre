@@ -13,8 +13,6 @@
 // Layout
 $hero-pad-top:        clamp(5.475rem, 5.049rem + 2.13vw, 6.4125rem); // 88px → 103 (clears the header)
 $hero-bg-color:       token.$color-surface-dark;
-$hero-text-color:     token.$color-text-on-dark;
-$hero-content-width:  38rem;    // 608px
 
 // Image
 $hero-img-position:        50% 70%;
@@ -22,31 +20,21 @@ $hero-img-position-wide:   0% 70%;
 $hero-img-height-mobile:   125vw; // 4:5, same ratio as hero-mobile-1080.webp
 $hero-img-overlap-mobile:  25vw;  // how much the image tucks under the CTA (just the dark ceiling)
 
-// Tablet range (480px → 767px): wider screens can afford showing more photo
+// Tablet range (480px → 767px)
 $hero-img-height-tablet:   min(125vw, max(80svh, 100vw)); // taller box → less vertical crop
 $hero-img-overlap-tablet:  20vw;
-$hero-fade-tablet:         linear-gradient(180deg, transparent 0%, #121212 26%); // shorter dark fade
+$hero-fade-tablet:         linear-gradient(180deg, transparent 0%, token.$brand-ink 26%); // shorter dark fade
 
-// Overlay (keeps the text readable, tweak the alphas here)
+// Overlay
 $hero-ink:            token.$brand-ink;
 $hero-overlay-side:   linear-gradient(90deg, color.change($hero-ink, $alpha: 0.88) 0%, color.change($hero-ink, $alpha: 0.55) 42%, color.change($hero-ink, $alpha: 0) 72%);
 $hero-overlay-top:    linear-gradient(180deg, color.change($hero-ink, $alpha: 0.6) 0%, color.change($hero-ink, $alpha: 0) 24%);
-$hero-fade-mobile:    linear-gradient(180deg, transparent 0%, #121212 38%); // image dissolves into the dark background
+$hero-fade-mobile:    linear-gradient(180deg, transparent 0%, #121212 38%);
 
-// Typography
-$hero-eyebrow-size:    token.$font-12;
-$hero-eyebrow-line:    token.$space-40;
-$hero-title-size:      clamp(2.5rem, 1.6rem + 3.4vw, 4.5rem); // 40px → 72px
-$hero-desc-size:       clamp(1rem, 0.95rem + 0.25vw, 1.25rem); // 16px → 20px
-$hero-desc-color:      token.$color-text-on-dark;
-$hero-accent:          token.$color-accent;
-
-// CTA
-$hero-cta-bg:          token.$color-accent;
-$hero-cta-bg-hover:    fn.color-light(token.$color-accent, 8%);
-$hero-cta-text:        token.$color-text-primary;
-$hero-cta-pad:         token.$space-16 token.$space-32;
-$hero-cta-transition:  token.$duration-400 token.$ease-header-nav;
+// Content
+$hero-content-width:  50ch;
+$hero-content-color:  token.$color-text-on-dark;
+$hero-desc-marg-top:  token.$space-16;
 // ---------------------------------------------------
 
 .hero {
@@ -57,8 +45,6 @@ $hero-cta-transition:  token.$duration-400 token.$ease-header-nav;
   min-height: 100svh;
   padding-top: $hero-pad-top;
   overflow: clip;
-
-  color: $hero-text-color;
   background-color: $hero-bg-color;
 
   // == Background image ==
@@ -67,18 +53,19 @@ $hero-cta-transition:  token.$duration-400 token.$ease-header-nav;
     position: absolute;
     inset: 0;
     z-index: fn.z(hero);
+    width: 100%;
+    height: 100%;
   }
+
+  &__media { animation: fade-in token.$motion-duration-media token.$motion-ease-state backwards; }
 
   &__img {
     object-fit: cover;
     object-position: $hero-img-position;
-
-    // Wide screens: keep the left edge anchored, so the stone stays pushed to
-    // the right of the text (the image has extra dark wall on its left side)
     @media (min-aspect-ratio: 5/4) { object-position: $hero-img-position-wide; }
   }
 
-  // Overlay: dark on the text side, light on the stone side
+  // == Overlay ==
   &::after {
     content: "";
     position: absolute;
@@ -90,46 +77,14 @@ $hero-cta-transition:  token.$duration-400 token.$ease-header-nav;
 
   // == Content ==
   &__content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     max-width: $hero-content-width;
+    color: $hero-content-color;
 
-    p { margin-top: token.$space-16; }
-
-    
+    p { margin-top: $hero-desc-marg-top; }
   }
 
-  &__title {
-    // margin-bottom: token.$space-24;
-    text-wrap: balance;
-
-    @include mix.respond(xs) {
-      font-size: 45px;
-    }
-  }
-
-  &__title-highlight {
-    color: $hero-accent;
-  }
-
-  &__description {
-    max-width: 30rem;
-    // margin-bottom: token.$space-24;
-    color: $hero-desc-color;
-
-    // @include mix.respond(xs) {
-    //   font-size: 16px;
-    // }
-  }
-
-  
-
-  // == Mobile (< md) ==
-  // Text first, stone image right below it (in the flow, so text never covers
-  // the photo on short screens). The image tucks slightly under the CTA and
-  // dissolves into the dark background; extra height goes above the image.
-  @include mix.respond(md) {
+  // == Mobile ==
+  @include mix.respond(sm) {
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
@@ -138,12 +93,13 @@ $hero-cta-transition:  token.$duration-400 token.$ease-header-nav;
 
     &__container {
       position: relative;
-      z-index: 1;
       margin-bottom: calc(-1 * #{$hero-img-overlap-mobile});
 
-      margin-top: token.$space-24;
+      margin-top: token.$space-32; // TODO: OU 24
     
     }
+
+    &__content, &__cta { width: 100%; max-width: 100%; }
 
     &__media {
       position: relative;
@@ -158,12 +114,8 @@ $hero-cta-transition:  token.$duration-400 token.$ease-header-nav;
 
     &__img { object-position: center bottom; }
 
-    &__cta {
-      width: 100%;
-      justify-content: center;
-    }
 
-    // Tablet range: more of the photo, less dark fade
+    // TODO: NAO SEI SE DEIXA ISSO OU NAO, REVISAR
     @media (min-width: 30rem) {
       &__container { margin-bottom: calc(-1 * #{$hero-img-overlap-tablet}); }
 
@@ -174,7 +126,7 @@ $hero-cta-transition:  token.$duration-400 token.$ease-header-nav;
       }
     }
 
-    // Landscape phones: never taller than the screen
+    // TODO: NAO SEI SE DEIXA ISSO OU NAO, REVISAR
     @media (max-height: 32rem) {
       &__media { height: min(#{$hero-img-height-mobile}, 80svh); }
     }

@@ -10,7 +10,7 @@
 // Semantic Header Tokens
 // ---------------------------------------------------
 // Header Bar
-$header-transition:   token.$duration-600 token.$ease-header;
+$header-transition:   token.$motion-duration-enter token.$motion-ease-enter;
 $header-bg-color:     transparent;
 $header-border-width: 0.0625rem;
 $header-border:       $header-border-width solid transparent;
@@ -25,12 +25,14 @@ $header-box-shadow-scrolled: token.$shadow-lg;
 $header-pad:          token.$space-24;
 $header-pad-scrolled: token.$space-16;
 
+$header-enter-delay:  0.2s;
+
 // Header Bar (mobile menu open → docked at the top)
 $header-bg-color-open: token.$color-surface-dark;
 $header-border-open:   token.$color-surface-accent-op;
 
 // Logo
-$header-logo-height: clamp(2.375rem, 2rem + 1.6vw, 3.4375rem); // 38px → 55px
+$header-logo-height: clamp(2.375rem, 2rem + 1.6vw, 3.125rem); // 38px → 50px
 
 // Navigation (desktop)
 $header-font-family:    token.$font-family-heading;
@@ -40,13 +42,13 @@ $header-line-height:    token.$lh-none;
 $header-letter-spc:     token.$tracking-normal;
 $header-text-color:     token.$color-text-on-dark-alt;
 
-$header-nav-transition:          token.$ease-header-nav;
-$header-nav-transition-duration: token.$duration-400;
+$header-nav-transition:          token.$motion-ease-hover;
+$header-nav-transition-duration: token.$motion-duration-hover;
 $header-nav-item-color-hover:    token.$color-accent;
 
 // Mobile Menu (< md)
-$menu-duration:        token.$duration-600;
-$menu-transition:      $menu-duration token.$ease-header;
+$menu-duration:        token.$motion-duration-enter;
+$menu-transition:      $menu-duration token.$motion-ease-enter;
 $menu-bg-color:        token.$color-surface-dark;
 $menu-pad-inline:      token.$space-24;
 $menu-divider:         0.0625rem solid token.$brand-gold-opacity;
@@ -70,7 +72,7 @@ $menu-stagger-step:    0.07s; // extra delay for each following item
   z-index: fn.z(header);
 }
 
-.header {
+.header { 
   position: absolute;
   inset: 0 0 auto;
   margin-inline: auto;
@@ -93,6 +95,8 @@ $menu-stagger-step:    0.07s; // extra delay for each following item
     -webkit-backdrop-filter $header-transition,
     backdrop-filter $header-transition;
 
+  animation: fade-in token.$motion-duration-enter token.$motion-ease-enter $header-enter-delay backwards;  
+
   &__container {
     @include mix.container;
     padding: $header-pad;
@@ -100,9 +104,9 @@ $menu-stagger-step:    0.07s; // extra delay for each following item
   }
 
   &.is-scrolled {
-    transform: translateY(1.5rem);     // 24px
-    width: calc(100% - 3rem);          // 48px
-    max-width: calc(fn.bp(xl) - 3rem);
+    transform: translateY(token.$space-24);
+    width: calc(100% - token.$space-48);
+    max-width: calc(fn.bp(xl) - token.$space-48);
 
     background-color: $header-bg-color-scrolled;
     -webkit-backdrop-filter: $header-backdrop-scrolled;
@@ -315,9 +319,18 @@ $menu-stagger-step:    0.07s; // extra delay for each following item
           @include mix.flex(row, center, center, token.$space-6);
           margin-top: token.$space-24;
           
+          font-size: token.$font-10;
           font-style: normal;
+          text-transform: uppercase;
           line-height: 0;
+          // letter-spacing: token.$tracking-widest;
           color: token.$color-text-on-dark-alt;
+
+          svg {
+            width: 0.8125rem;
+            height: auto;
+            margin-bottom: 0.0938rem;
+          }
         }  
       }
     }
