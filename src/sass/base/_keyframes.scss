@@ -2,17 +2,15 @@
 
 // ===================================================
 // ESTILO NOBRE ▪︎ GLOBAL KEYFRAMES
-// Fundamental animation instructions for UI interactions
+// Entrances that play once. Reversible states stay as transitions.
 // ===================================================
 
-// == Fade ==
 @keyframes fade-in {
   from { opacity: token.$opacity-0; }
   to   { opacity: token.$opacity-100; }
 }
 
-// == Rise ==
-// Distance comes from --rise-y (default 16px; .u-rise-lg → 24px)
+// Distance comes from --rise-y (default 16px, .u-rise-lg = 24px)
 @keyframes rise {
   from {
     opacity: token.$opacity-0;
@@ -24,27 +22,19 @@
   }
 }
 
-// == Write ==
-// Left → right reveal. Drives --write, which the element uses in a mask.
+// Drives --write, the progress of the eyebrow's left → right mask
 @property --write {
   syntax: "<number>";
   inherits: false;
   initial-value: 0;
 }
- 
+
 @keyframes write {
   from { --write: 0; }
   to   { --write: 1; }
 }
- 
-// == Marker ==
-// Diamond that spins and grows in (eyebrow)
-@keyframes marker-in {
-  from { opacity: token.$opacity-0; transform: rotate(0deg) scale(0); }
-  to   { opacity: token.$opacity-100; transform: rotate(45deg) scale(1); }
-}
- 
-// == Shine ==
+
+// Same travel as the primary button hover, played once
 @keyframes shine-sweep {
   from { opacity: token.$opacity-100; transform: translateX(-160%) skewX(-20deg); }
   to   { opacity: token.$opacity-100; transform: translateX(650%) skewX(-20deg); }

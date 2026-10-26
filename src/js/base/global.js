@@ -1,29 +1,15 @@
 // ===================================================
 // AXIS ▪︎ GLOBAL SCRIPTS
-// Global helpers and utility functions
 // ===================================================
 
-// == Scroll Reveal ==
-// ---------------------------------------------------
-// Every selector listed here gets `.is-visible` once it enters the screen.
-// The animation itself lives in the Sass (base/_reveal.scss), one utility per
-// effect. New entrance? Create the class in the Sass and add it to this list.
-// ---------------------------------------------------
+// Elements that receive `.is-visible` when they enter the screen
 const REVEAL_SELECTORS = [".u-eyebrow", ".u-reveal-fade", ".u-reveal-up"];
 
-const REVEAL_OPTIONS = {
-  root: null,
-  // Keep rootMargin at 0: a negative margin (e.g. "-10%") leaves elements at the
-  // very end of the page (footer, last section) stuck hidden, since they never
-  // get past the margin even at max scroll.
-  rootMargin: "0px",
-  // Fires when 15% is visible. Do not use on blocks taller than ~6 screens
-  // (they would never reach 15%); use threshold 0 for those.
-  threshold: 0.15,
-};
+// rootMargin must stay 0: a negative margin leaves elements at the very end of
+// the page stuck hidden. threshold 0.15 does not fit blocks taller than ~6 screens.
+const REVEAL_OPTIONS = { root: null, rootMargin: "0px", threshold: 0.15 };
 
-// The entrances only start once the fonts are in, so the text does not swap
-// typefaces in the middle of the animation. Never waits more than FONT_WAIT_MAX.
+// Entrances wait for the fonts (max FONT_WAIT_MAX) so text never swaps mid-animation
 const FONTS_TO_WAIT = ['300 1em "Lato"', '1em "Tenor Sans"'];
 const FONT_WAIT_MAX = 1000; // ms
 
@@ -43,7 +29,6 @@ const initScrollAnimations = async () => {
 
   if (elements.length === 0) return;
 
-  // Safety net: without IntersectionObserver nothing would ever be revealed
   if (!("IntersectionObserver" in window)) {
     elements.forEach((el) => el.classList.add("is-visible"));
     return;
@@ -51,19 +36,14 @@ const initScrollAnimations = async () => {
 
   await whenFontsReady();
 
-  const handleIntersection = (entries, observer) => {
+  const animationObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
 
       entry.target.classList.add("is-visible");
       observer.unobserve(entry.target);
     });
-  };
-
-  const animationObserver = new IntersectionObserver(
-    handleIntersection,
-    REVEAL_OPTIONS,
-  );
+  }, REVEAL_OPTIONS);
 
   elements.forEach((el) => animationObserver.observe(el));
 };

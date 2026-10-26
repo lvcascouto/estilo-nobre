@@ -1,44 +1,35 @@
 // ===================================================
-// AXIS ▪︎ MOTION (Primitive Tokens)
-// Define temporal rhythm across the system
+// AXIS ▪︎ MOTION (Primitive + Semantic Tokens)
 // ===================================================
 
 // == Duration Scale ==
-$duration-100: 0.1s;
-$duration-200: 0.2s;
-$duration-300: 0.3s;
-$duration-400: 0.4s;
-$duration-500: 0.5s;
-$duration-600: 0.6s;
-$duration-800: 0.8s;
-$duration-1000:  1s;
+$duration-100:  0.1s;
+$duration-200:  0.2s;
+$duration-300:  0.3s;
+$duration-400:  0.4s;
+$duration-500:  0.5s;
+$duration-600:  0.6s;
+$duration-800:  0.8s;
+$duration-1000: 1s;
 
-// == Easing Curves ==
-// $ease-standard:   cubic-bezier(0.4, 0, 0.2, 1);      // Default UI motion 
-// $ease-in:         cubic-bezier(0.4, 0, 1, 1);        // Exit transitions 
-// $ease-out:        cubic-bezier(0, 0, 0.2, 1);        // Enter transitions (elements appearing)
-// $ease-back:       cubic-bezier(0.34, 1.56, 0.64, 1); // Playful micro-interactions
-// $ease-header:     cubic-bezier(0.16, 1, 0.3, 1);     // Header Bar transitions
-// $ease-header-nav: cubic-bezier(0.25, 0.8, 0.25, 1);   // Header Navigation transitions
-
-$ease-standard: cubic-bezier(0.4, 0, 0.2, 1);     // Balanced in-out: state changes, writing
-$ease-expo:     cubic-bezier(0.16, 1, 0.3, 1);    // Fast start, long soft landing: entrances, big movements
-$ease-soft:     cubic-bezier(0.25, 0.8, 0.25, 1); // Gentle deceleration: hover, micro-interactions
+// == Easing Curves (named by shape) ==
+$ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-expo:     cubic-bezier(0.16, 1, 0.3, 1);
+$ease-soft:     cubic-bezier(0.25, 0.8, 0.25, 1);
 
 // == Semantic Layer Tokens ==
 // ---------------------------------------------------
-// Duration by role
-$motion-duration-hover:  $duration-400;  // hover / focus (buttons, links, cards)
-$motion-duration-enter:  $duration-600;  // small entrances and big moves (header, menu, marker, eyebrow)
-$motion-duration-reveal: $duration-800;  // content blocks (titles, text, shine)
-$motion-duration-media:  $duration-1000; // large media (hero image)
- 
-// Easing by role
+
+$motion-duration-hover:  $duration-400;
+$motion-duration-enter:  $duration-600;
+$motion-duration-reveal: $duration-800;
+$motion-duration-media:  $duration-1000;
+
 $motion-ease-hover: $ease-soft;
 $motion-ease-state: $ease-standard;
 $motion-ease-enter: $ease-expo;
 $motion-ease-write: $ease-standard;
- 
-// Rhythm: every delay in the system lives on this grid (.u-delay-N = N × step)
+
+// Delay grid: .u-delay-N = N × step
 $motion-delay-step: 0.1s;
 // ---------------------------------------------------
