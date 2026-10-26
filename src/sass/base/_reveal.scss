@@ -13,13 +13,17 @@ $reveal-delay-step: token.$motion-delay-step;
 $reveal-delay-max:  12;
 $reveal-rise-lg:    token.$space-24;
 
-$eyebrow-gap:            0.5em;
-$eyebrow-marker-size:    0.64em;
-$eyebrow-fade-duration:  token.$motion-duration-enter;
-$eyebrow-write-delay:    token.$duration-500;
-$eyebrow-write-duration: token.$duration-300;
-$eyebrow-write-ease:     token.$motion-ease-write;
-$eyebrow-write-feather:  1.6em;
+$eyebrow-gap:             0.5em;
+$eyebrow-square:          0.45em;
+$eyebrow-marker-size:     0.64em; // the square's diagonal, so turning never leaves the box
+$eyebrow-marker-inset:    ($eyebrow-marker-size - $eyebrow-square) * 0.5;
+$eyebrow-fade-duration:   token.$duration-200;
+$eyebrow-turn-duration:   token.$motion-duration-enter;
+$eyebrow-turn-ease:       token.$motion-ease-write;
+$eyebrow-write-delay:     $eyebrow-turn-duration; // text starts when the diamond has landed
+$eyebrow-write-duration:  token.$duration-500;
+$eyebrow-write-ease:      token.$motion-ease-write;
+$eyebrow-write-feather:   1.6em;
 
 // Hidden only with JS and without reduced motion. `backwards` (not `both`) so the
 // element returns to its own styles afterwards and hover transforms keep working.
@@ -43,7 +47,7 @@ $eyebrow-write-feather:  1.6em;
 }
 
 // == Eyebrow ==
-// The diamond fades in, then the text is written left → right
+// A square turns into a diamond, then the text is written left → right
 .u-eyebrow {
   @include mix.flex($align: center, $justify: flex-start, $gap: $eyebrow-gap);
   width: fit-content; // the write mask follows the text width
@@ -59,20 +63,21 @@ $eyebrow-write-feather:  1.6em;
   &::before {
     content: "";
     flex-shrink: 0;
+    box-sizing: border-box;
     width: $eyebrow-marker-size;
     height: $eyebrow-marker-size;
+    padding: $eyebrow-marker-inset;
     background-color: currentColor;
-    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    background-clip: content-box;
+    transform: rotate(45deg);
   }
 
   @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
-    --eyebrow-reserved: calc(#{$eyebrow-marker-size} + #{$eyebrow-gap}); // marker area, never masked
-    --eyebrow-edge: calc(
-      var(--eyebrow-reserved) - #{$eyebrow-write-feather}
-      + var(--write) * (100% - var(--eyebrow-reserved) + #{$eyebrow-write-feather} * 2)
-    );
-    -webkit-mask-image: linear-gradient(90deg, #000 var(--eyebrow-edge), transparent calc(var(--eyebrow-edge) + #{$eyebrow-write-feather}));
-            mask-image: linear-gradient(90deg, #000 var(--eyebrow-edge), transparent calc(var(--eyebrow-edge) + #{$eyebrow-write-feather}));
+    // Marker stays fully opaque; the soft edge starts at the text and widens as it advances
+    --eyebrow-edge: calc(#{$eyebrow-marker-size} + var(--write) * (100% - #{$eyebrow-marker-size}));
+    --eyebrow-soft: calc(#{$eyebrow-gap} + var(--write) * (#{$eyebrow-write-feather} - #{$eyebrow-gap}));
+    -webkit-mask-image: linear-gradient(90deg, #000 var(--eyebrow-edge), transparent calc(var(--eyebrow-edge) + var(--eyebrow-soft)));
+            mask-image: linear-gradient(90deg, #000 var(--eyebrow-edge), transparent calc(var(--eyebrow-edge) + var(--eyebrow-soft)));
 
     &:not(.is-visible)::before { opacity: 0; }
 
@@ -82,7 +87,9 @@ $eyebrow-write-feather:  1.6em;
     }
 
     &.is-visible::before {
-      animation: fade-in $eyebrow-fade-duration $reveal-ease var(--reveal-delay, 0s) backwards;
+      animation:
+        fade-in $eyebrow-fade-duration $reveal-ease var(--reveal-delay, 0s) backwards,
+        marker-turn $eyebrow-turn-duration $eyebrow-turn-ease var(--reveal-delay, 0s) backwards;
     }
   }
 }

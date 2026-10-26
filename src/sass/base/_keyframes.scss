@@ -34,8 +34,7 @@
   to   { --write: 1; }
 }
 
-// Same travel as the primary button hover, played once
-@keyframes shine-sweep {
-  from { opacity: token.$opacity-100; transform: translateX(-160%) skewX(-20deg); }
-  to   { opacity: token.$opacity-100; transform: translateX(650%) skewX(-20deg); }
+@keyframes marker-turn {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(45deg); }
 }

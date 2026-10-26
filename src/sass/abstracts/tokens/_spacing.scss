@@ -32,7 +32,8 @@ $space-128: 8rem;     // 128px
 
 // == Semantic Layer Tokens ==
 // ---------------------------------------------------
-$gutter:      $space-24;  // Column spacing
-$row-gap:     $space-32;  // Row spacing
-$section-pad: $space-64;  // Vertical spacing between sections
+$gutter:             $space-24;  // Column spacing
+$row-gap:            $space-32;  // Row spacing
+$section-pad:        $space-64;  // Vertical spacing between sections
+$section-pad-mobile: $space-40;  // Vertical spacing between sections on mobile
 // ---------------------------------------------------

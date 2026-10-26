@@ -1,0 +1,145 @@
+@use "../abstracts/tokens" as token;
+@use "../abstracts/mixins" as mix;
+// @use "../abstracts/functions" as fn;
+
+// ===================================================
+// AXIS ▪︎ ABOUT (Global Section)
+// Structural foundation for the about section
+// ===================================================
+
+// Semantic About Tokens
+// ---------------------------------------------------
+$about-section-pad:    token.$section-pad;
+$about-section-pad-sm: token.$section-pad-mobile;
+$about-section-bg:     token.$color-surface-stone;
+
+$about-desc-marg-top: token.$space-16;
+// ---------------------------------------------------
+
+.about {
+  padding-block: $about-section-pad;
+  background-color: $about-section-bg;
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: token.$space-32;
+  }
+
+  &__content {
+    @include mix.flex(column, flex-start, flex-start, token.$space-20);
+
+    p { margin-top: $about-desc-marg-top; }
+    a { align-self: end; }
+  }
+  
+  &__visual {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+
+    &-list {
+      max-width: fit-content;
+      padding-block: token.$space-20;
+      border-bottom: 0.0625rem solid transparent;
+      border-image: linear-gradient(to right, token.$color-accent 60%, transparent 40%) 1;
+
+      ul {
+        @include mix.flex(column, flex-start, flex-start, token.$space-20);
+
+        li {
+          text-transform: uppercase;
+          font-size: token.$font-12;
+          font-weight: token.$font-weight-eyebrow;
+          line-height: token.$line-height-eyebrow;
+          letter-spacing: token.$letter-spc-eyebrow;
+          color: token.$color-accent;
+        }
+      }
+    }
+  }
+
+  @include mix.respond(xl) {
+    &__visual {
+      grid-template-columns: 1fr;
+      align-items: flex-start;
+
+      &-list {
+        padding-block: token.$space-16;
+        border-image: linear-gradient(to right, token.$color-accent 45%, transparent 65%) 1;
+
+        ul {
+          flex-wrap: wrap;
+          flex-direction: row;
+          gap: token.$space-12;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 55rem) {
+    &__wrapper { grid-template-columns: 1fr; gap: token.$space-24; }
+
+    &__content {
+      gap: token.$space-20;
+
+      a { align-self: center; }
+    }
+
+    &__visual {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+
+      &-list {
+        padding-block: token.$space-20;
+
+        ul {
+          flex-direction: column;
+          gap: token.$space-20;
+        }
+      }
+    }
+
+    @include mix.respond(sm) {
+      padding-block: $about-section-pad-sm;
+
+      &__content { a { width: 100%; } }
+    }
+
+    @include mix.respond(xs) {
+       &__visual-list {
+        padding-block: token.$space-12;
+
+        ul {
+          gap: token.$space-12;
+        }
+      }
+    }
+
+    @include mix.respond(xxs) {
+
+      &__wrapper { gap: token.$space-16; }
+
+      &__content { gap: token.$space-16; }
+
+      &__visual {
+        grid-template-columns: 1fr;
+
+        &-list {
+          padding-block: token.$space-20 0;
+          border: none;
+
+          ul {
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: token.$space-10 token.$space-12;
+
+            li {
+              font-size: token.$font-10;
+            }
+          }
+        }
+      }
+    }
+  }
+}

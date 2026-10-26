@@ -12,14 +12,14 @@ $duration-600:  0.6s;
 $duration-800:  0.8s;
 $duration-1000: 1s;
 
-// == Easing Curves (named by shape) ==
+// == Easing Curves ==
 $ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
 $ease-expo:     cubic-bezier(0.16, 1, 0.3, 1);
 $ease-soft:     cubic-bezier(0.25, 0.8, 0.25, 1);
+$ease-smooth:   cubic-bezier(0.37, 0, 0.63, 1);
 
 // == Semantic Layer Tokens ==
 // ---------------------------------------------------
-
 $motion-duration-hover:  $duration-400;
 $motion-duration-enter:  $duration-600;
 $motion-duration-reveal: $duration-800;
@@ -28,7 +28,7 @@ $motion-duration-media:  $duration-1000;
 $motion-ease-hover: $ease-soft;
 $motion-ease-state: $ease-standard;
 $motion-ease-enter: $ease-expo;
-$motion-ease-write: $ease-standard;
+$motion-ease-write: $ease-smooth;
 
 // Delay grid: .u-delay-N = N × step
 $motion-delay-step: 0.1s;

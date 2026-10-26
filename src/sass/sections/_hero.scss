@@ -17,13 +17,13 @@ $hero-bg-color:       token.$color-surface-dark;
 // Image
 $hero-img-position:        50% 70%;
 $hero-img-position-wide:   0% 70%;
-$hero-img-height-mobile:   125vw; // 4:5, same ratio as hero-mobile-1080.webp
-$hero-img-overlap-mobile:  25vw;  // how much the image tucks under the CTA (just the dark ceiling)
+$hero-img-height-mobile:   125vw;
+$hero-img-overlap-mobile:  25vw;
 
 // Tablet range (480px → 767px)
-$hero-img-height-tablet:   min(125vw, max(80svh, 100vw)); // taller box → less vertical crop
+$hero-img-height-tablet:   min(125vw, max(80svh, 100vw));
 $hero-img-overlap-tablet:  20vw;
-$hero-fade-tablet:         linear-gradient(180deg, transparent 0%, token.$brand-ink 26%); // shorter dark fade
+$hero-fade-tablet:         linear-gradient(180deg, transparent 0%, token.$brand-ink 26%);
 
 // Overlay
 $hero-ink:            token.$brand-ink;
@@ -93,10 +93,7 @@ $hero-desc-marg-top:  token.$space-16;
 
     &__container {
       position: relative;
-      margin-bottom: calc(-1 * #{$hero-img-overlap-mobile});
-
-      margin-top: token.$space-32; // TODO: OU 24
-    
+      margin-block: token.$space-24 calc(-1 * #{$hero-img-overlap-mobile});
     }
 
     &__content, &__cta { width: 100%; max-width: 100%; }
@@ -106,7 +103,7 @@ $hero-desc-marg-top:  token.$space-16;
       inset: auto;
       order: 2;
       margin-top: auto;
-      height: min(#{$hero-img-height-mobile}, 80svh); // 80svh caps it on landscape phones
+      height: min(#{$hero-img-height-mobile}, 80svh);
 
       -webkit-mask-image: $hero-fade-mobile;
       mask-image: $hero-fade-mobile;
