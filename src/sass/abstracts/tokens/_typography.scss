@@ -69,7 +69,7 @@ $font-size-h6:        $font-20;
 
 // Other Elements
 $font-size-eyebrow:   clamp($font-10, 0.515rem + 0.368vw, $font-12); // 10px (480 bp) -> 12px (1024 bp) // TODO: VERIFICAR SE DEIXA SÓ 12PX OU CLAMP
-$font-weight-eyebrow: $weight-bold;
+$font-weight-eyebrow: $weight-bold; // TODO: VERIFICAR SE DEIXA SÓ BOLD OU REGULAR
 $line-height-eyebrow: $lh-none;
 $letter-spc-eyebrow:  $tracking-eyebrow;
 

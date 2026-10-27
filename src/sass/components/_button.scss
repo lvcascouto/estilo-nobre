@@ -31,8 +31,10 @@ $btn-primary-label-offset:   calc(($btn-asset-arrow-size + $gap-btn) / 2);
 $btn-primary-menu-font-size: token.$font-20;
 $btn-primary-menu-color:     token.$color-text-primary;
 
-
 // Secondary
+$btn-secondary-main-pad:             token.$space-16 token.$space-16 token.$space-16 0;
+$btn-secondary-main-bottom:          token.$space-16;
+$btn-secondary-main-height:          token.$space-8;
 $btn-secondary-header-color:         token.$color-text-on-dark-alt;
 $btn-secondary-bg-color-hover:       token.$color-accent;
 $btn-secondary-bg-color-alt-hover:   token.$brand-slate;
@@ -43,7 +45,6 @@ $btn-secondary-text-color-alt-hover: token.$color-text-on-dark;
 $op-dsbld-btn:    token.$opacity-50;
 $rd-full-round:   token.$radius-full;
 
-$padding-btn-xs:  token.$space-16;
 $padding-btn-sm:  token.$space-8  token.$space-16;
 $padding-btn-md:  token.$space-10 token.$space-20;
 $padding-btn-lg:  token.$space-12 token.$space-24;
@@ -179,6 +180,16 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
     font-size: inherit;
 
     // Secondary Variants
+    &.is-main {
+      padding: $btn-secondary-main-pad;
+      
+      &::before {
+        top: auto;
+        bottom: $btn-secondary-main-bottom;
+        height: $btn-secondary-main-height;
+      }
+    }
+
     &.is-header { color: $btn-secondary-header-color; }
 
     // TODO: Verificar se faz sentido o inverted, se não tiramos
@@ -220,7 +231,6 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
   &.size-md { padding: $padding-btn-md; }
   &.size-lg { padding: $padding-btn-lg; }
   &.size-xl { padding: $padding-btn-xl; }
-  &.size-xs { padding: $padding-btn-xs; }
 
   // Button Shape & Variant Modifiers
   &.shape-square { aspect-ratio: 1 / 1; }
