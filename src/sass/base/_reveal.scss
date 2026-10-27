@@ -51,10 +51,10 @@ $eyebrow-write-feather:   1.6em;
 .u-reveal-right { --slide-x:  #{$reveal-slide}; @include reveal(slide-in); }
 
 // Layout empilhado: a entrada lateral vira uma subida curta
-@include mix.respond(sm) {
-  .u-reveal-left,
-  .u-reveal-right { --slide-x: 0; --slide-y: #{token.$space-16}; }
-}
+// @include mix.respond(sm) {
+//   .u-reveal-left,
+//   .u-reveal-right { --slide-x: 0; --slide-y: #{token.$space-16}; }
+// }
 
 // == Eyebrow ==
 // A square turns into a diamond, then the text is written left → right
