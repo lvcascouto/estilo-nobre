@@ -3,7 +3,7 @@
 // ===================================================
 
 // Elements that receive `.is-visible` when they enter the screen
-const REVEAL_SELECTORS = [".u-eyebrow", ".u-reveal-fade", ".u-reveal-up"];
+const REVEAL_SELECTORS = [".u-eyebrow", ".u-reveal-fade", ".u-reveal-up", ".u-reveal-left", ".u-reveal-right"];
 
 // rootMargin must stay 0: a negative margin leaves elements at the very end of
 // the page stuck hidden. threshold 0.15 does not fit blocks taller than ~6 screens.

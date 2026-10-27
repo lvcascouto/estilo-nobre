@@ -16,7 +16,7 @@ $about-section-bg:      token.$color-surface-stone;
 $about-content-width:   52ch;
 $about-desc-marg-top:   token.$space-16;
 
-$about-visual-list-pad: token.$space-20;
+$about-visual-list-pad: token.$space-16;
 // ---------------------------------------------------
 
 .about {
@@ -45,10 +45,10 @@ $about-visual-list-pad: token.$space-20;
       max-width: fit-content;
       padding-block: $about-visual-list-pad;
       border-bottom: 0.125rem solid transparent;
-      border-image: linear-gradient(to right, token.$color-accent 60%, transparent 40%) 1;
+      border-image: linear-gradient(to right, token.$color-accent 55%, transparent 35%) 1;
 
       ul {
-        @include mix.flex(column, flex-start, flex-start, token.$space-16 $about-visual-list-pad);
+        @include mix.flex(column, flex-start, flex-start, $about-visual-list-pad);
 
         li {
           font-size: token.$font-size-eyebrow;
