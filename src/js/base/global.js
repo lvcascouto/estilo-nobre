@@ -13,7 +13,11 @@ const REVEAL_SELECTORS = [
 
 // rootMargin must stay 0: a negative margin leaves elements at the very end of
 // the page stuck hidden. threshold 0.15 does not fit blocks taller than ~6 screens.
-const REVEAL_OPTIONS = { root: null, rootMargin: "0px", threshold: 0.15 };
+const REVEAL_OPTIONS = {
+  root: null,
+  rootMargin: "0px 0px -15% 0px",
+  threshold: 0,
+};
 
 // Entrances wait for the fonts (max FONT_WAIT_MAX) so text never swaps mid-animation
 const FONTS_TO_WAIT = ['300 1em "Lato"', '1em "Tenor Sans"'];

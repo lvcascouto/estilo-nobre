@@ -50,11 +50,12 @@ $header-nav-item-color-hover:    token.$color-accent;
 $menu-duration:        token.$motion-duration-enter;
 $menu-transition:      $menu-duration token.$motion-ease-enter;
 $menu-bg-color:        token.$color-surface-dark;
-$menu-pad-inline:      token.$space-24;
+$menu-pad-inline:      token.$space-16;
 $menu-divider:         0.0625rem solid token.$brand-gold-opacity;
 
 $menu-item-size:       clamp(token.$font-20, 1.0714rem + 0.8929vw, token.$font-24); // 20px (320 bp) → 24px (768 bp)
 $menu-item-pad-block:  token.$space-24;
+$menu-item-pad-inline: token.$space-16;
 $menu-item-index-size: token.$font-14;
 
 $menu-line-width:      token.$font-48;
@@ -247,6 +248,7 @@ $menu-stagger-step:    0.07s; // extra delay for each following item
       .header__nav-list {
         @include mix.flex(column, flex-start, stretch, 0);
         counter-reset: menu-item;
+        padding-inline: $menu-item-pad-inline;
       }
 
       .header__nav-item {
@@ -262,7 +264,7 @@ $menu-stagger-step:    0.07s; // extra delay for each following item
 
         a {
           @include mix.flex(row, flex-start, center, 0);
-          padding: $menu-item-pad-block;
+          padding-block: $menu-item-pad-block;
 
           color: inherit;
           font-size: $menu-item-size;
@@ -303,7 +305,7 @@ $menu-stagger-step:    0.07s; // extra delay for each following item
         text-align: center;
 
         flex-shrink: 0;
-        padding: $menu-pad-inline;
+        padding-inline: $menu-pad-inline;
         padding-bottom: calc(#{$menu-pad-inline} + env(safe-area-inset-bottom, 0px)); // iPhone home bar
 
         opacity: token.$opacity-0;
@@ -314,7 +316,7 @@ $menu-stagger-step:    0.07s; // extra delay for each following item
         
         &-text {
           @include mix.flex(row, center, center, token.$space-4);
-          margin-top: token.$space-24;
+          margin-block: token.$space-24 token.$space-8;
           
           font-size: token.$font-10;
           font-weight: token.$font-weight-eyebrow;
