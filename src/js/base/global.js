@@ -15,7 +15,7 @@ const REVEAL_SELECTORS = [
 // the page stuck hidden. threshold 0.15 does not fit blocks taller than ~6 screens.
 const REVEAL_OPTIONS = {
   root: null,
-  rootMargin: "0px 0px -15% 0px",
+  rootMargin: "0px 0px -5% 0px",
   threshold: 0,
 };
 

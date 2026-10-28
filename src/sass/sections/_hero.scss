@@ -93,7 +93,7 @@ $hero-desc-marg-top:  token.$space-16;
 
     &__container {
       position: relative;
-      margin-block: token.$space-24 calc(-1 * #{$hero-img-overlap-mobile});
+      margin-block: token.$space-16 calc(-1 * #{$hero-img-overlap-mobile});
     }
 
     &__content, &__cta { width: 100%; max-width: 100%; }

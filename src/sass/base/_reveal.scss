@@ -12,7 +12,7 @@ $reveal-ease:       token.$motion-ease-enter;
 $reveal-delay-step: token.$motion-delay-step;
 $reveal-delay-max:  12;
 $reveal-rise-lg:    token.$space-24;
-$reveal-slide:      token.$space-48;
+$reveal-slide:      token.$space-40;
 
 $eyebrow-gap:             0.5em;
 $eyebrow-square:          0.45em;
@@ -50,11 +50,10 @@ $eyebrow-write-feather:   1.6em;
 .u-reveal-left  { --slide-x: -#{$reveal-slide}; @include reveal(slide-in); }
 .u-reveal-right { --slide-x:  #{$reveal-slide}; @include reveal(slide-in); }
 
-// Layout empilhado: a entrada lateral vira uma subida curta
-// @include mix.respond(sm) {
-//   .u-reveal-left,
-//   .u-reveal-right { --slide-x: 0; --slide-y: #{token.$space-16}; }
-// }
+@include mix.respond(lg) {
+  .u-reveal-left,
+  .u-reveal-right { --slide-x: 0; --slide-y: #{token.$space-16}; }
+}
 
 // == Eyebrow ==
 // A square turns into a diamond, then the text is written left → right

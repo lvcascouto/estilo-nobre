@@ -37,7 +37,7 @@ $btn-secondary-main-bottom:          token.$space-16;
 $btn-secondary-main-height:          token.$space-8;
 $btn-secondary-header-color:         token.$color-text-on-dark-alt;
 $btn-secondary-bg-color-hover:       token.$color-accent;
-$btn-secondary-bg-color-alt-hover:   token.$brand-slate;
+// $btn-secondary-bg-color-alt-hover:   token.$brand-slate;
 $btn-secondary-text-color-hover:     token.$color-text-primary;
 $btn-secondary-text-color-alt-hover: token.$color-text-on-dark;
 
@@ -197,7 +197,7 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
     --sec-hover-text: #{ $btn-secondary-text-color-hover };
 
     &.is-inverted {
-      --sec-hover-bg:   #{ $btn-secondary-bg-color-alt-hover };
+      // --sec-hover-bg:   #{ $btn-secondary-bg-color-alt-hover };
       --sec-hover-text: #{ $btn-secondary-text-color-alt-hover };
     }
 
@@ -215,7 +215,6 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
 
     &:hover,
     &:focus-visible {
-      font-weight: token.$weight-regular;
       color: var(--sec-hover-text);
 
       &::before { width: 100%; }

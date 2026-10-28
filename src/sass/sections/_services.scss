@@ -1,0 +1,43 @@
+@use "../abstracts/tokens" as token;
+@use "../abstracts/mixins" as mix;
+
+// ===================================================
+// AXIS ▪︎ SERVICES (Global Section)
+// Structural foundation for the services section
+// ===================================================
+
+// Semantic Services Tokens
+// ---------------------------------------------------
+$services-section-pad:     token.$section-pad;
+$services-section-pad-sm:  token.$section-pad-mobile;
+$services-section-bg:      token.$color-surface-dark;
+$servives-section-color:   token.$color-text-on-dark;
+
+$services-content-gap:     token.$space-8;
+$services-content-width:   52ch;
+$services-desc-marg-top:   token.$space-16;
+
+// $services-visual-list-pad: token.$space-16;
+// ---------------------------------------------------
+
+.services {
+  padding-block: $services-section-pad;
+  @include mix.respond(sm) { padding-block: $services-section-pad-sm; }
+
+  background-color: $services-section-bg;
+  color: $servives-section-color;
+
+  &__content {
+    @include mix.flex(column, flex-start, flex-start, $services-content-gap);
+    max-width: $services-content-width;
+
+    p { margin-top: $services-desc-marg-top; }
+  }
+
+
+  @include mix.respond(lg) {
+    &__wrapper { gap: token.$space-32; } // TODO: verificar se faz sentido o gap do wrapper, se não tiramos
+
+    &__content { max-width: none; }
+  }
+}

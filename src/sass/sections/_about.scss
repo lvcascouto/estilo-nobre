@@ -1,6 +1,5 @@
 @use "../abstracts/tokens" as token;
 @use "../abstracts/mixins" as mix;
-// @use "../abstracts/functions" as fn;
 
 // ===================================================
 // AXIS ▪︎ ABOUT (Global Section)
@@ -14,6 +13,7 @@ $about-section-pad-sm:  token.$section-pad-mobile;
 $about-section-bg:      token.$color-surface-stone;
 
 $about-content-width:   52ch;
+$about-content-gap:     token.$space-8;
 $about-desc-marg-top:   token.$space-16;
 
 $about-visual-list-pad: token.$space-16;
@@ -24,13 +24,8 @@ $about-visual-list-pad: token.$space-16;
   padding-block: $about-section-pad;
   @include mix.respond(sm) { padding-block: $about-section-pad-sm; }
 
-  &__wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
   &__content {
-    @include mix.flex(column, flex-start, flex-start, $about-desc-marg-top);
+    @include mix.flex(column, flex-start, flex-start, $about-content-gap);
     max-width: $about-content-width;
 
     p { margin-top: $about-desc-marg-top; }
@@ -63,8 +58,6 @@ $about-visual-list-pad: token.$space-16;
   }
 
   @include mix.respond(xl) {
-    &__wrapper { gap: token.$space-24; }
-
     &__visual {
       grid-template-columns: 1fr;
       align-items: flex-start;
@@ -82,7 +75,7 @@ $about-visual-list-pad: token.$space-16;
   }
 
   @include mix.respond(lg) {
-    &__wrapper { grid-template-columns: 1fr; gap: token.$space-16; }
+    &__wrapper { gap: token.$space-16; }
 
     &__content { max-width: none; }
 
@@ -101,8 +94,6 @@ $about-visual-list-pad: token.$space-16;
   }
 
   @include mix.respond(xxs) {
-    &__content { gap: token.$space-10; }
-
     &__visual {
       grid-template-columns: 1fr;
       align-items: flex-start;
