@@ -31,5 +31,5 @@ $motion-ease-enter: $ease-expo;
 $motion-ease-write: $ease-smooth;
 
 // Delay grid: .u-delay-N = N × step
-$motion-delay-step: 0.1s;
+$motion-delay-step: $duration-100;
 // ---------------------------------------------------

@@ -7,27 +7,35 @@
 // New entrance: create the class here and add it to REVEAL_SELECTORS.
 // ===================================================
 
+// == Semantic Layer Tokens ==
+// ---------------------------------------------------
+// Core Reveal Variables & Mixin
 $reveal-duration:   token.$motion-duration-reveal;
 $reveal-ease:       token.$motion-ease-enter;
 $reveal-delay-step: token.$motion-delay-step;
 $reveal-delay-max:  12;
-$reveal-rise-lg:    token.$space-24;
-$reveal-slide:      token.$space-40;
+$reveal-rise-lg:    token.$space-48;
 
+// Eyebrow Entrance Variables
 $eyebrow-gap:             0.5em;
 $eyebrow-square:          0.45em;
-$eyebrow-marker-size:     0.64em; // the square's diagonal, so turning never leaves the box
+$eyebrow-marker-size:     0.64em;
 $eyebrow-marker-inset:    ($eyebrow-marker-size - $eyebrow-square) * 0.5;
 $eyebrow-fade-duration:   token.$duration-200;
 $eyebrow-turn-duration:   token.$motion-duration-enter;
 $eyebrow-turn-ease:       token.$motion-ease-write;
-$eyebrow-write-delay:     $eyebrow-turn-duration; // text starts when the diamond has landed
+$eyebrow-write-delay:     $eyebrow-turn-duration;
 $eyebrow-write-duration:  token.$duration-500;
 $eyebrow-write-ease:      token.$motion-ease-write;
 $eyebrow-write-feather:   1.6em;
+// ---------------------------------------------------
 
-// Hidden only with JS and without reduced motion. `backwards` (not `both`) so the
-// element returns to its own styles afterwards and hover transforms keep working.
+// == 1. Mixin for reveal animations ==
+// ---------------------------------------------------
+// Usage:
+//  ▪︎ @include reveal(fade-in, 0.8s, ease-expo);
+//  ▪︎ @include reveal(rise, 0.8s, ease-expo);
+// ---------------------------------------------------
 @mixin reveal($keyframes, $duration: $reveal-duration, $ease: $reveal-ease) {
   @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
     &:not(.is-visible) { opacity: 0; }
@@ -38,28 +46,29 @@ $eyebrow-write-feather:   1.6em;
   }
 }
 
+// == 2. Entrance Utility Classes ==
+// ---------------------------------------------------
+// Usage:
+//  ▪︎ .u-reveal-fade           → fade-in
+//  ▪︎ .u-reveal-up             → entrance default (32px)
+//  ▪︎ .u-reveal-up .u-rise-lg  → entrance with rise (48px)
+//  ▪︎ .u-delay-1 … .u-delay-12 → staggered entrance delays (0.1s … 1.2s)
+// ---------------------------------------------------
 .u-reveal-fade { @include reveal(fade-in); }
 .u-reveal-up   { @include reveal(rise); }
 .u-rise-lg     { --rise-y: #{$reveal-rise-lg}; }
 
-// .u-delay-1 … .u-delay-12 = 0.1s … 1.2s
 @for $i from 1 through $reveal-delay-max {
   .u-delay-#{$i} { --reveal-delay: #{$i * $reveal-delay-step}; }
 }
 
-.u-reveal-left  { --slide-x: -#{$reveal-slide}; @include reveal(slide-in); }
-.u-reveal-right { --slide-x:  #{$reveal-slide}; @include reveal(slide-in); }
-
-@include mix.respond(lg) {
-  .u-reveal-left,
-  .u-reveal-right { --slide-x: 0; --slide-y: #{token.$space-16}; }
-}
-
-// == Eyebrow ==
+// == 3. Eyebrow Utility Classes ==
+// ---------------------------------------------------
 // A square turns into a diamond, then the text is written left → right
+// ---------------------------------------------------
 .u-eyebrow {
   @include mix.flex($align: center, $justify: flex-start, $gap: $eyebrow-gap);
-  width: fit-content; // the write mask follows the text width
+  width: fit-content;
   margin-bottom: var(--eyebrow-mb, #{token.$space-16});
 
   font-size:      token.$font-size-eyebrow;
@@ -82,7 +91,6 @@ $eyebrow-write-feather:   1.6em;
   }
 
   @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
-    // Marker stays fully opaque; the soft edge starts at the text and widens as it advances
     --eyebrow-edge: calc(#{$eyebrow-marker-size} + var(--write) * (100% - #{$eyebrow-marker-size}));
     --eyebrow-soft: calc(#{$eyebrow-gap} + var(--write) * (#{$eyebrow-write-feather} - #{$eyebrow-gap}));
     -webkit-mask-image: linear-gradient(90deg, #000 var(--eyebrow-edge), transparent calc(var(--eyebrow-edge) + var(--eyebrow-soft)));
@@ -90,7 +98,6 @@ $eyebrow-write-feather:   1.6em;
 
     &:not(.is-visible)::before { opacity: 0; }
 
-    // `both` only holds --write at 1 (not a visual property)
     &.is-visible {
       animation: write $eyebrow-write-duration $eyebrow-write-ease calc(var(--reveal-delay, 0s) + #{$eyebrow-write-delay}) both;
     }

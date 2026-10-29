@@ -16,7 +16,7 @@ $about-content-width:   52ch;
 $about-content-gap:     token.$space-8;
 $about-desc-marg-top:   token.$space-16;
 
-$about-visual-list-pad: token.$space-16;
+$about-visual-list-pad: token.$space-20;
 // ---------------------------------------------------
 
 .about {
@@ -38,12 +38,10 @@ $about-visual-list-pad: token.$space-16;
 
     &-list {
       max-width: fit-content;
-      padding-block: $about-visual-list-pad;
-      border-bottom: 0.125rem solid transparent;
-      border-image: linear-gradient(to right, token.$color-accent 55%, transparent 35%) 1;
-
+      
       ul {
-        @include mix.flex(column, flex-start, flex-start, $about-visual-list-pad);
+        @include mix.flex(column, flex-start, flex-start, token.$space-16 $about-visual-list-pad);
+        flex-wrap: wrap;
 
         li {
           font-size: token.$font-size-eyebrow;
@@ -63,13 +61,9 @@ $about-visual-list-pad: token.$space-16;
       align-items: flex-start;
       
       &-list {
-        padding-block: token.$space-24 0;
-        border: none;
+        padding-top: token.$space-24;
 
-        ul {
-          flex-direction: row;
-          flex-wrap: wrap;
-        }
+        ul { flex-direction: row; }
       }
     }
   }
@@ -84,14 +78,23 @@ $about-visual-list-pad: token.$space-16;
       align-items: center;
       
       &-list {
-        padding-block: token.$space-16;
-        border-bottom: 0.125rem solid transparent;
-        border-image: linear-gradient(to right, token.$color-accent 60%, transparent 40%) 1;
+        padding-top: 0;
 
-        ul { flex-direction: column; }
+        ul {
+          flex-direction: column;
+          gap: token.$space-24
+        }
       }
     }
   }
+
+  @include mix.respond(md) {
+    ul {
+      flex-direction: column;
+      gap: token.$space-16 $about-visual-list-pad;
+    }
+  }
+  
 
   @include mix.respond(xxs) {
     &__visual {
@@ -99,12 +102,10 @@ $about-visual-list-pad: token.$space-16;
       align-items: flex-start;
       
       &-list {
-        padding-block: token.$space-24 0;
-        border: none;
+        padding-top: token.$space-24;
 
         ul {
           flex-direction: row;
-          flex-wrap: wrap;
           gap: token.$space-10 token.$space-12;
         }
       }

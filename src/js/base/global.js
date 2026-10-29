@@ -2,36 +2,12 @@
 // AXIS ▪︎ GLOBAL SCRIPTS
 // ===================================================
 
-// Elements that receive `.is-visible` when they enter the screen
-const REVEAL_SELECTORS = [
-  ".u-eyebrow",
-  ".u-reveal-fade",
-  ".u-reveal-up",
-  ".u-reveal-left",
-  ".u-reveal-right",
-];
+const REVEAL_SELECTORS = [".u-eyebrow", ".u-reveal-fade", ".u-reveal-up"];
 
-// rootMargin must stay 0: a negative margin leaves elements at the very end of
-// the page stuck hidden. threshold 0.15 does not fit blocks taller than ~6 screens.
 const REVEAL_OPTIONS = {
   root: null,
   rootMargin: "0px 0px -5% 0px",
   threshold: 0,
-};
-
-// Entrances wait for the fonts (max FONT_WAIT_MAX) so text never swaps mid-animation
-const FONTS_TO_WAIT = ['300 1em "Lato"', '1em "Tenor Sans"'];
-const FONT_WAIT_MAX = 1000; // ms
-
-const whenFontsReady = () => {
-  if (!document.fonts || !document.fonts.load) return Promise.resolve();
-
-  const fonts = Promise.all(
-    FONTS_TO_WAIT.map((font) => document.fonts.load(font)),
-  ).catch(() => {});
-  const timeout = new Promise((resolve) => setTimeout(resolve, FONT_WAIT_MAX));
-
-  return Promise.race([fonts, timeout]);
 };
 
 const initScrollAnimations = async () => {
@@ -44,7 +20,12 @@ const initScrollAnimations = async () => {
     return;
   }
 
-  await whenFontsReady();
+  if (document.fonts && document.fonts.ready) {
+    await Promise.race([
+      document.fonts.ready,
+      new Promise((resolve) => setTimeout(resolve, 800)),
+    ]);
+  }
 
   const animationObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
@@ -67,3 +48,99 @@ if (document.readyState === "loading") {
 } else {
   initScrollAnimations();
 }
+
+// ===================================================
+// AXIS ▪︎ SERVICES ACCORDION
+// ===================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const accordionItems = document.querySelectorAll(".services__item");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (!accordionItems.length) return;
+
+  function getElements(item) {
+    return {
+      trigger: item.querySelector(".services__item-trigger"),
+      content: item.querySelector(".services__item-content"),
+    };
+  }
+
+  function closeItem(item) {
+    const { trigger, content } = getElements(item);
+
+    if (!trigger || !content) return;
+
+    item.classList.remove("active");
+    trigger.setAttribute("aria-expanded", "false");
+
+    content.inert = true;
+    content.setAttribute("aria-hidden", "true");
+
+    if (reduceMotion.matches || content.hidden) {
+      content.hidden = true;
+    }
+  }
+
+  function openItem(item) {
+    const { trigger, content } = getElements(item);
+
+    if (!trigger || !content) return;
+
+    content.hidden = false;
+    content.inert = false;
+    content.removeAttribute("aria-hidden");
+
+    // Registra o estado fechado antes de iniciar a transição.
+    if (!item.classList.contains("active")) {
+      void content.offsetHeight;
+    }
+
+    item.classList.add("active");
+    trigger.setAttribute("aria-expanded", "true");
+  }
+
+  accordionItems.forEach((item) => {
+    const { trigger, content } = getElements(item);
+
+    if (!trigger || !content) return;
+
+    const isActive = item.classList.contains("active");
+
+    trigger.setAttribute("aria-expanded", String(isActive));
+    content.hidden = !isActive;
+    content.inert = !isActive;
+
+    if (isActive) {
+      content.removeAttribute("aria-hidden");
+    } else {
+      content.setAttribute("aria-hidden", "true");
+    }
+
+    content.addEventListener("transitionend", (event) => {
+      if (
+        event.target === content &&
+        event.propertyName === "grid-template-rows" &&
+        !item.classList.contains("active")
+      ) {
+        content.hidden = true;
+      }
+    });
+
+    trigger.addEventListener("click", () => {
+      const isOpen = item.classList.contains("active");
+
+      accordionItems.forEach((otherItem) => {
+        if (otherItem !== item) {
+          closeItem(otherItem);
+        }
+      });
+
+      if (isOpen) {
+        closeItem(item);
+      } else {
+        openItem(item);
+      }
+    });
+  });
+});

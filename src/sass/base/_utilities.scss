@@ -35,8 +35,8 @@
 // == Responsive Visibility (Desktop-first) ==
 // ---------------------------------------------------
 // Naming:
-// .hide-{breakpoint}-down  → max-width
-// .hide-{breakpoint}-up    → min-width
+//  ▪︎ .hide-{breakpoint}-down  → max-width
+//  ▪︎ .hide-{breakpoint}-up    → min-width
 // ---------------------------------------------------
 @each $bp, $value in token.$breakpoints {
 

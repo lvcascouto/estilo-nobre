@@ -42,7 +42,11 @@ h2 {
   font-size: token.$font-size-h2;
   @include mix.respond(xs) { font-size: token.$font-size-h2-mobile; }
 }
-h3 { font-size: token.$font-size-h3; }
+
+h3 {
+  font-size: token.$font-size-h3;
+  @include mix.respond(xs) { font-size: token.$font-32; }
+}
 h4 { font-size: token.$font-size-h4; }
 h5 { font-size: token.$font-size-h5; }
 h6 { font-size: token.$font-size-h6; }
@@ -56,9 +60,9 @@ dd {
   text-wrap: pretty;
 }
 
-small {
-  font-size: token.$font-size-small;
-}
+// small {
+//   font-size: token.$font-size-small;
+// }
 
 strong, b {
   font-weight: token.$font-weight-bold;

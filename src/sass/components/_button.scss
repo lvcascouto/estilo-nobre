@@ -10,12 +10,12 @@
 // Semantic Button Tokens
 // ---------------------------------------------------
 // Default
-$gap-btn:            token.$space-8;
-$font-family-btn:    token.$font-family-heading;
-$font-weight-btn:    token.$weight-regular;
-$line-height-btn:    token.$lh-none;
-$letter-spc-btn:     token.$tracking-normal;
-$transition-btn:     token.$motion-duration-hover token.$motion-ease-hover;
+$gap-btn: token.$space-8;
+$font-family-btn: token.$font-family-heading;
+$font-weight-btn: token.$weight-regular;
+$line-height-btn: token.$lh-none;
+$letter-spc-btn: token.$tracking-normal;
+$transition-btn: token.$motion-duration-hover token.$motion-ease-hover;
 $transition-btn-alt: token.$motion-duration-reveal token.$motion-ease-hover;
 
 // Shared Arrow
@@ -23,34 +23,33 @@ $btn-asset-arrow-size: token.$font-18;
 $btn-asset-arrow-path: url("/assets/svg/icon/arrow-right.svg");
 
 // Primary
-$btn-primary-font-size:      token.$font-18;
-$btn-primary-font-color:     token.$color-text-primary;
-$btn-primary-bg-color:       token.$color-accent;
-$btn-primary-shine-color:    token.$brand-stone-opacity;
-$btn-primary-label-offset:   calc(($btn-asset-arrow-size + $gap-btn) / 2);
+$btn-primary-font-size: token.$font-18;
+$btn-primary-font-color: token.$color-text-primary;
+$btn-primary-bg-color: token.$color-accent;
+$btn-primary-shine-color: token.$brand-stone-opacity;
+$btn-primary-label-offset: calc(($btn-asset-arrow-size + $gap-btn) / 2);
 $btn-primary-menu-font-size: token.$font-20;
-$btn-primary-menu-color:     token.$color-text-primary;
+$btn-primary-menu-color: token.$color-text-primary;
 
 // Secondary
-$btn-secondary-main-pad:             token.$space-16 token.$space-16 token.$space-16 0;
-$btn-secondary-main-bottom:          token.$space-16;
-$btn-secondary-main-height:          token.$space-8;
-$btn-secondary-header-color:         token.$color-text-on-dark-alt;
-$btn-secondary-bg-color-hover:       token.$color-accent;
-// $btn-secondary-bg-color-alt-hover:   token.$brand-slate;
-$btn-secondary-text-color-hover:     token.$color-text-primary;
+$btn-secondary-main-pad: token.$space-16 token.$space-16 token.$space-16 0;
+$btn-secondary-main-bottom: token.$space-16;
+$btn-secondary-main-height: token.$space-8;
+$btn-secondary-header-color: token.$color-text-on-dark-alt;
+$btn-secondary-bg-color-hover: token.$color-accent;
+$btn-secondary-bg-color-alt-hover: rgba(token.$color-accent, token.$opacity-70);
+$btn-secondary-text-color-hover: token.$color-text-primary;
 $btn-secondary-text-color-alt-hover: token.$color-text-on-dark;
 
 // Variants & Modifiers
-$op-dsbld-btn:    token.$opacity-50;
-$rd-full-round:   token.$radius-full;
+$op-dsbld-btn: token.$opacity-50;
+$rd-full-round: token.$radius-full;
 
-$padding-btn-sm:  token.$space-8  token.$space-16;
-$padding-btn-md:  token.$space-10 token.$space-20;
-$padding-btn-lg:  token.$space-12 token.$space-24;
-$padding-btn-xl:  token.$space-16 token.$space-32;
+$padding-btn-sm: token.$space-8 token.$space-16;
+$padding-btn-md: token.$space-10 token.$space-20;
+$padding-btn-lg: token.$space-12 token.$space-24;
+$padding-btn-xl: token.$space-16 token.$space-32;
 // ---------------------------------------------------
-
 
 // == Button Default ==
 .button {
@@ -76,7 +75,8 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
     background-color $transition-btn,
     color $transition-btn,
     // border-color $transition-btn, // TODO: VERIFICAR SE BORDA ANIMA EM ALGUM BUTTON DO SITE QUE ATIVO
-    transform $transition-btn;
+    transform $transition-btn,
+    text-decoration-color $transition-btn;
 
   // Icons
   &::after {
@@ -128,7 +128,12 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
       left: 0;
       width: 22%;
 
-      background: linear-gradient(90deg, transparent, $btn-primary-shine-color, transparent);
+      background: linear-gradient(
+        90deg,
+        transparent,
+        $btn-primary-shine-color,
+        transparent
+      );
       opacity: token.$opacity-0;
 
       transform: translateX(-160%) skewX(-20deg);
@@ -139,7 +144,9 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
       position: relative;
       z-index: fn.z(base);
 
-      transform: translateX($btn-primary-label-offset); // Center the label while the arrow is hidden
+      transform: translateX(
+        $btn-primary-label-offset
+      ); // Center the label while the arrow is hidden
       transition: transform $transition-btn;
     }
 
@@ -157,7 +164,9 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
 
     &:hover,
     &:focus-visible {
-      span { transform: translateX(0); }
+      span {
+        transform: translateX(0);
+      }
 
       &::after {
         opacity: token.$opacity-100;
@@ -182,23 +191,44 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
     // Secondary Variants
     &.is-main {
       padding: $btn-secondary-main-pad;
-      
+
       &::before {
         top: auto;
         bottom: $btn-secondary-main-bottom;
         height: $btn-secondary-main-height;
       }
+
+      &.service {
+        font-family: token.$font-family-base;
+        text-decoration: underline;
+        text-decoration-color: rgba(token.$color-accent, token.$opacity-50);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+
+        &::before,
+        &::after {
+          display: none;
+        }
+
+        &:hover {
+          text-decoration-color: token.$color-accent;
+        }
+      }
     }
 
-    &.is-header { color: $btn-secondary-header-color; }
+    &.is-header {
+      color: $btn-secondary-header-color;
+    }
+
+    
 
     // TODO: Verificar se faz sentido o inverted, se não tiramos
-    --sec-hover-bg:   #{ $btn-secondary-bg-color-hover };
-    --sec-hover-text: #{ $btn-secondary-text-color-hover };
+    --sec-hover-bg: #{$btn-secondary-bg-color-hover};
+    --sec-hover-text: #{$btn-secondary-text-color-hover};
 
     &.is-inverted {
-      // --sec-hover-bg:   #{ $btn-secondary-bg-color-alt-hover };
-      --sec-hover-text: #{ $btn-secondary-text-color-alt-hover };
+      --sec-hover-bg: #{$btn-secondary-bg-color-alt-hover};
+      --sec-hover-text: #{$btn-secondary-text-color-alt-hover};
     }
 
     &::before {
@@ -217,23 +247,48 @@ $padding-btn-xl:  token.$space-16 token.$space-32;
     &:focus-visible {
       color: var(--sec-hover-text);
 
-      &::before { width: 100%; }
-      &::after  { transform: translateX(token.$space-4); }
+      &::before {
+        width: 100%;
+      }
+      &::after {
+        transform: translateX(token.$space-4);
+      }
     }
   }
 
   // == Button Disabled ==
-  &:disabled { cursor: not-allowed; opacity: $op-dsbld-btn; }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: $op-dsbld-btn;
+  }
 
   // Button Size Modifiers
-  &.size-sm { padding: $padding-btn-sm; }
-  &.size-md { padding: $padding-btn-md; }
-  &.size-lg { padding: $padding-btn-lg; }
-  &.size-xl { padding: $padding-btn-xl; }
+  &.size-sm {
+    padding: $padding-btn-sm;
+  }
+  &.size-md {
+    padding: $padding-btn-md;
+  }
+  &.size-lg {
+    padding: $padding-btn-lg;
+  }
+  &.size-xl {
+    padding: $padding-btn-xl;
+  }
 
   // Button Shape & Variant Modifiers
-  &.shape-square { aspect-ratio: 1 / 1; }
-  &.shape-circle { aspect-ratio: 1 / 1; border-radius: $rd-full-round; }
-  &.is-pill  { border-radius: $rd-full-round; }
-  &.is-ghost { text-decoration: underline; border-color: transparent; }
+  &.shape-square {
+    aspect-ratio: 1 / 1;
+  }
+  &.shape-circle {
+    aspect-ratio: 1 / 1;
+    border-radius: $rd-full-round;
+  }
+  &.is-pill {
+    border-radius: $rd-full-round;
+  }
+  &.is-ghost {
+    text-decoration: underline;
+    border-color: transparent;
+  }
 }

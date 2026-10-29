@@ -2,25 +2,24 @@
 
 // ===================================================
 // ESTILO NOBRE ▪︎ GLOBAL KEYFRAMES
-// Entrances that play once. Reversible states stay as transitions.
+// One-time entrance keyframes (compositor accelerated).
+// Reversible hover/active states stay in _transitions.scss.
 // ===================================================
 
+// == 1. Fade Entrance ==
 @keyframes fade-in {
   from { opacity: token.$opacity-0; }
   to   { opacity: token.$opacity-100; }
 }
 
-// Direction comes from --slide-x / --slide-y
-@keyframes slide-in {
-  from { opacity: token.$opacity-0; transform: translate(var(--slide-x, 0), var(--slide-y, 0)); }
-  to   { opacity: token.$opacity-100; transform: translate(0, 0); }
-}
-
-// Distance comes from --rise-y (default 16px, .u-rise-lg = 24px)
+// == 2. Rise Up Entrance ==
+// ---------------------------------------------------
+// Distance is defined via CSS variable --rise-y (defaults to $space-32)
+// ---------------------------------------------------
 @keyframes rise {
   from {
     opacity: token.$opacity-0;
-    transform: translateY(var(--rise-y, #{token.$space-16}));
+    transform: translateY(var(--rise-y, #{token.$space-32}));
   }
   to {
     opacity: token.$opacity-100;
@@ -28,7 +27,7 @@
   }
 }
 
-// Drives --write, the progress of the eyebrow's left → right mask
+// == 3. Eyebrow Mask & Marker Entrance ==
 @property --write {
   syntax: "<number>";
   inherits: false;

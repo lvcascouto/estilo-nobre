@@ -14,6 +14,7 @@ $font-24:  1.5rem;   // 24px
 $font-32:  2rem;     // 32px
 $font-40:  2.5rem;   // 40px
 $font-48:  3rem;     // 48px
+$font-56:  3.5rem;   // 56px
 $font-64:  4rem;     // 64px
 $font-72:  4.5rem;   // 72px
 $font-80:  5rem;     // 80px
@@ -48,7 +49,7 @@ $tracking-eyebrow: 0.12em;
 // ---------------------------------------------------
 // Base
 $font-family-base: "Lato", Ubuntu, system-ui, -apple-system, sans-serif;
-$font-size-base:   clamp(0.9375rem, 0.958rem + 0.1791vw, $font-18); // 15px → 18px (1492 bp)
+$font-size-base:   clamp(0.9375rem, 0.958rem + 0.1791vw, $font-18);  // 15px → 18px (1492 bp)
 $font-weight-base: $weight-light;
 $line-height-base: $lh-normal;
 $letter-spc-base:  $tracking-wider;
@@ -58,22 +59,22 @@ $font-family-heading: "Tenor Sans", Oxygen, system-ui, -apple-system, sans-serif
 $font-weight-heading: $weight-regular;
 $line-height-heading: $lh-tight;
 $letter-spc-heading:  $tracking-tight;
-$font-size-h1:        clamp(3.5rem, 2.439rem + 2.21vw, 4.5rem);      // 56px (768 bp) → 72px (1492 bp)
-$font-size-h1-mobile: clamp(2.375rem, -0.425rem + 14vw, 3.5rem);     // 38px (320 bp) → 56px (448 bp) 
-$font-size-h2:        clamp(2.375rem, 1.982rem + 1.092vw, 3rem); // clamp(1.625rem, 1.25rem + 1.877vw, 3rem); // clamp(2.375rem, 1.712rem + 1.381vw, $font-48); // 38px (768 bp) → 48px (1492 bp)
-$font-size-h2-mobile: clamp(1.625rem, 0.688rem + 4.688vw, 2.375rem);
+$font-size-h1:        clamp($font-56, 2.439rem + 2.21vw, $font-72);  // 56px (768 bp) → 72px (1492 bp)
+$font-size-h1-mobile: clamp(2.375rem, -0.425rem + 14vw, $font-56);   // 38px (320 bp) → 56px (448 bp) 
+$font-size-h2:        clamp(2.375rem, 1.982rem + 1.092vw, $font-48); // 38px (768 bp) → 48px (1492 bp)
+$font-size-h2-mobile: clamp(1.625rem, 0.688rem + 4.688vw, 2.375rem); // 26px (320 bp) → 38px (448 bp) 
 $font-size-h3:        $font-40;
 $font-size-h4:        $font-32;
 $font-size-h5:        $font-24;
 $font-size-h6:        $font-20;
 
 // Other Elements
-$font-size-eyebrow:   clamp($font-10, 0.515rem + 0.368vw, $font-12); // 10px (480 bp) -> 12px (1024 bp) // TODO: VERIFICAR SE DEIXA SÓ 12PX OU CLAMP
-$font-weight-eyebrow: $weight-bold; // TODO: VERIFICAR SE DEIXA SÓ BOLD OU REGULAR
+$font-size-eyebrow:   clamp($font-10, 0.515rem + 0.368vw, $font-12); // 10px (480 bp) -> 12px (1024 bp)
+$font-weight-eyebrow: $weight-bold;
 $line-height-eyebrow: $lh-none;
 $letter-spc-eyebrow:  $tracking-eyebrow;
 
-$font-size-small:   $font-14;
+// $font-size-small:   $font-14;
 
 $font-weight-bold:  $weight-regular;
 // ---------------------------------------------------
