@@ -14,7 +14,7 @@ $reveal-duration:   token.$motion-duration-reveal;
 $reveal-ease:       token.$motion-ease-enter;
 $reveal-delay-step: token.$motion-delay-step;
 $reveal-delay-max:  12;
-$reveal-rise-lg:    token.$space-48;
+$reveal-rise-lg:    token.$space-40;
 
 // Eyebrow Entrance Variables
 $eyebrow-gap:             0.5em;
@@ -50,8 +50,8 @@ $eyebrow-write-feather:   1.6em;
 // ---------------------------------------------------
 // Usage:
 //  ▪︎ .u-reveal-fade           → fade-in
-//  ▪︎ .u-reveal-up             → entrance default (32px)
-//  ▪︎ .u-reveal-up .u-rise-lg  → entrance with rise (48px)
+//  ▪︎ .u-reveal-up             → entrance default (24px)
+//  ▪︎ .u-reveal-up .u-rise-lg  → entrance with rise (40px)
 //  ▪︎ .u-delay-1 … .u-delay-12 → staggered entrance delays (0.1s … 1.2s)
 // ---------------------------------------------------
 .u-reveal-fade { @include reveal(fade-in); }
@@ -59,7 +59,15 @@ $eyebrow-write-feather:   1.6em;
 .u-rise-lg     { --rise-y: #{$reveal-rise-lg}; }
 
 @for $i from 1 through $reveal-delay-max {
-  .u-delay-#{$i} { --reveal-delay: #{$i * $reveal-delay-step}; }
+  .u-delay-#{$i} {
+    --reveal-delay: #{$i * $reveal-delay-step};
+
+    @include mix.respond(lg) {
+      :not(.hero) & {
+        --reveal-delay: 0s;
+      }
+    }
+  }
 }
 
 // == 3. Eyebrow Utility Classes ==

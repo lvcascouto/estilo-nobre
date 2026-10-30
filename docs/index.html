@@ -47,8 +47,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Tenor+Sans&display=swap">
 
     <!-- AXIS MASTER ENTRY (Vite) -->
-    <script type="module" crossorigin src="./js/main-DGDd7m0N.js"></script>
-    <link rel="stylesheet" crossorigin href="./css/main-CV_LLeTD.css">
+    <script type="module" crossorigin src="./js/main-DWQmfByT.js"></script>
+    <link rel="stylesheet" crossorigin href="./css/main-DlPG67v3.css">
   </head>
 
   <body>
@@ -84,7 +84,7 @@
 
         <!-- CTA do menu mobile -->
         <div class="header__panel-footer hide-md-up">
-          <a href="https://wa.me/5511948682024?text=Ol%C3%A1!%20Acessei%20o%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20com%20a%20Estilo%20Nobre." target="_blank" rel="noopener noreferrer" class="header__panel-cta button primary is-menu size-xl">
+          <a class="header__panel-cta button primary is-menu size-xl" href="https://wa.me/TODO?text=Ol%C3%A1!%20Acessei%20o%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20com%20a%20Estilo%20Nobre." target="_blank" rel="noopener noreferrer">
             <span>Solicitar orçamento <span class="hide-xxs-down">no WhatsApp</span></span>
           </a>
 
@@ -97,7 +97,7 @@
       </div>
 
       <!-- CTA do desktop -->
-      <a href="https://wa.me/5511948682024?text=Ol%C3%A1!%20Estava%20no%20site%20da%20Estilo%20Nobre%20e%20gostaria%20de%20um%20orçamento%20para%20um%20projeto." target="_blank" rel="noopener noreferrer" class="header__nav-cta button secondary is-header size-xl hide-lg-down">
+      <a class="header__nav-cta button secondary is-header size-xl hide-lg-down" href="https://wa.me/TODO?text=Ol%C3%A1!%20Estava%20no%20site%20da%20Estilo%20Nobre%20e%20gostaria%20de%20um%20orçamento%20para%20um%20projeto." target="_blank" rel="noopener noreferrer">
         Orçamento
       </a>
 
@@ -135,7 +135,7 @@
               </p>
             </hgroup>
 
-            <a href="https://wa.me/5511948682024?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20o%20meu%20projeto." target="_blank" rel="noopener noreferrer" class="hero__cta button primary size-xl u-reveal-up u-rise-lg u-delay-3">
+            <a class="hero__cta button primary size-xl u-reveal-up u-rise-lg u-delay-3" href="https://wa.me/TODO?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20o%20meu%20projeto." target="_blank" rel="noopener noreferrer">
               <span>Solicitar orçamento <span class="hide-xxs-down">no WhatsApp</span></span>
             </a>
           </div>
@@ -200,14 +200,13 @@
       <!-- SERVIÇOS -->      
       <section class="services" id="servicos" aria-labelledby="services-title">
         <div class="services__container container">
-
-          <span class="u-eyebrow u-delay-8">
-            Nossas soluções
-          </span>
-
           <div class="services__wrapper grid-2 grid-1-lg">
 
             <div class="services__content">
+              <span class="u-eyebrow u-delay-8">
+                Nossas soluções
+              </span>
+
               <hgroup>
                 <h2 class="services__content-title u-reveal-up u-delay-1" id="services-title">
                   A pedra certa para cada ambiente<span class="u-highlight">.</span>
@@ -220,132 +219,187 @@
               </hgroup>
 
               <a href="#projetos" class="services__content-cta button secondary is-main is-inverted u-reveal-up u-delay-3">
-                <span>Confira alguns projetos</span>
+                <span>Ou veja projetos selecionados</span>
               </a>
             </div>
 
             <div class="services__list">
               <ul>
-                
                 <li class="services__item u-reveal-up u-delay-3">
-                  <h3>
-                    <button class="services__item-trigger" aria-expanded="false" aria-controls="content-cozinhas" id="trigger-cozinhas">
-                      <svg class="services__item-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                      </svg>
-                      <span class="services__item-name">Cozinhas</span>
-                    </button>
-                  </h3>
+                  <button class="services__item-trigger" aria-expanded="false" aria-controls="content-cozinhas" id="trigger-cozinhas">
+                    <svg class="services__item-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path class="services__item-icon-plus" fill="currentColor" fill-rule="evenodd" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z M11 7h2v4h4v2h-4v4h-2v-4H7v-2h4Z" />
+                      <path class="services__item-icon-minus" fill="currentColor" fill-rule="evenodd" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z M8 11h8v2H8Z" />
+                    </svg>
+                    <h3 class="services__item-name">Cozinhas</h3>
+                  </button>
                   
                   <div class="services__item-content" id="content-cozinhas" role="region" aria-labelledby="trigger-cozinhas" hidden>
                     <div class="services__item-inner">
                       <p class="services__item-desc">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare.
+                        A bancada é um dos elementos centrais da cozinha, reunindo diferentes funções em uma mesma superfície.
+                        Além das áreas destinadas à pia e ao cooktop, o projeto pode contemplar frontões, ilhas, balcões e prolongamentos que ampliam as
+                        possibilidades de uso e integração do ambiente. Cada composição considera as dimensões do espaço, a disposição dos equipamentos
+                        e a escolha da pedra, buscando um resultado que harmonize funcionalidade e estética.
                       </p>
-                      <a href="TODO" class="services__item-link button secondary is-main service is-inverted">
-                        <span>Saiba mais</span>
+                      <a class="services__item-link button is-link" href="https://wa.me/TODO?text=Ol%C3%A1%21%20Gostaria%20de%20conversar%20sobre%20uma%20solu%C3%A7%C3%A3o%20em%20pedra%20para%20minha%20cozinha.%20Tenho%20interesse%20em%20desenvolver%20uma%20bancada%20ou%20outro%20elemento%20para%20esse%20ambiente%20e%20gostaria%20de%20conhecer%20as%20possibilidades](https://wa.me/TODO?text=Ol%C3%A1%21%20Gostaria%20de%20conversar%20sobre%20uma%20solu%C3%A7%C3%A3o%20em%20pedra%20para%20minha%20cozinha.%20Tenho%20interesse%20em%20desenvolver%20uma%20bancada%20ou%20outro%20elemento%20para%20esse%20ambiente%20e%20gostaria%20de%20conhecer%20as%20possibilidades)." target="_blank" rel="noopener noreferrer">
+                        <span>Conversar sobre minha cozinha</span>
                       </a>
                     </div>
                   </div>
                 </li>
 
                 <li class="services__item u-reveal-up u-delay-4">
-                  <h3>
-                    <button class="services__item-trigger" aria-expanded="false" aria-controls="content-banheiros" id="trigger-banheiros">
-                      <svg class="services__item-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                      </svg>
-                      <span class="services__item-name">Banheiros e lavabos</span>
-                    </button>
-                  </h3>
+                  <button class="services__item-trigger" aria-expanded="false" aria-controls="content-banheiros" id="trigger-banheiros">
+                    <svg class="services__item-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path class="services__item-icon-plus" fill="currentColor" fill-rule="evenodd" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z M11 7h2v4h4v2h-4v4h-2v-4H7v-2h4Z" />
+                      <path class="services__item-icon-minus" fill="currentColor" fill-rule="evenodd" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z M8 11h8v2H8Z" />
+                    </svg>
+                    <h3 class="services__item-name">Banheiros e lavabos</h3>
+                  </button>
                   
                   <div class="services__item-content" id="content-banheiros" role="region" aria-labelledby="trigger-banheiros" hidden>
                     <div class="services__item-inner">
                       <p class="services__item-desc">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare.
+                        Bancadas e lavatórios em pedra ajudam a definir a composição de banheiros e lavabos, aproveitando o espaço e valorizando os detalhes do ambiente.
+                        As possibilidades incluem superfícies para cubas de apoio ou embutidas, modelos com cuba integrada, frontões e laterais que acompanham o desenho
+                        do projeto. Com diferentes formatos e dimensões, cada solução pode ser pensada de acordo com as características do espaço e a proposta desejada.
                       </p>
-                      <a href="TODO" class="services__item-link button secondary is-main service is-inverted">
-                        <span>Saiba mais</span>
+                      <a class="services__item-link button is-link" href="https://wa.me/TODO?text=Ol%C3%A1%21%20Estou%20planejando%20uma%20solu%C3%A7%C3%A3o%20em%20pedra%20para%20meu%20banheiro%2Flavabo%20e%20gostaria%20de%20conversar%20sobre%20possibilidades%20de%20bancada%2C%20lavat%C3%B3rio%20ou%20cuba%20para%20esse%20ambiente](https://wa.me/TODO?text=Ol%C3%A1%21%20Estou%20planejando%20uma%20solu%C3%A7%C3%A3o%20em%20pedra%20para%20meu%20banheiro%2Flavabo%20e%20gostaria%20de%20conversar%20sobre%20possibilidades%20de%20bancada%2C%20lavat%C3%B3rio%20ou%20cuba%20para%20esse%20ambiente)." target="_blank" rel="noopener noreferrer">
+                        <span>Conversar sobre meu banheiro</span>
                       </a>
                     </div>
                   </div>
                 </li>
 
                 <li class="services__item u-reveal-up u-delay-5">
-                  <h3>
-                    <button class="services__item-trigger" aria-expanded="false" aria-controls="content-gourmet" id="trigger-gourmet">
-                      <svg class="services__item-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                      </svg>
-                      <span class="services__item-name">Áreas gourmet</span>
-                    </button>
-                  </h3>
+                  <button class="services__item-trigger" aria-expanded="false" aria-controls="content-gourmet" id="trigger-gourmet">
+                    <svg class="services__item-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path class="services__item-icon-plus" fill="currentColor" fill-rule="evenodd" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z M11 7h2v4h4v2h-4v4h-2v-4H7v-2h4Z" />
+                      <path class="services__item-icon-minus" fill="currentColor" fill-rule="evenodd" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z M8 11h8v2H8Z" />
+                    </svg>
+                    <h3 class="services__item-name">Áreas gourmet</h3>
+                  </button>
                   
                   <div class="services__item-content" id="content-gourmet" role="region" aria-labelledby="trigger-gourmet" hidden>
                     <div class="services__item-inner">
                       <p class="services__item-desc">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare.
+                        Em áreas gourmet, a pedra pode participar de diferentes espaços de preparo, apoio e convivência.
+                        Bancadas, ilhas, balcões e superfícies próximas à churrasqueira podem ser desenvolvidos de acordo com a disposição
+                        dos equipamentos e a integração com os demais elementos do ambiente. Seja em uma área compacta ou em um espaço mais amplo,
+                        a composição das superfícies contribui para aproveitar melhor o espaço e criar uma unidade visual entre os elementos.
                       </p>
-                      <a href="TODO" class="services__item-link button secondary is-main service is-inverted">
-                        <span>Saiba mais</span>
+                      <a class="services__item-link button is-link" href="https://wa.me/TODO?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20desenvolver%20uma%20solu%C3%A7%C3%A3o%20em%20pedra%20para%20minha%20%C3%A1rea%20gourmet.%20Gostaria%20de%20conversar%20sobre%20possibilidades%20para%20bancadas%2C%20ilhas%20ou%20outros%20elementos%20do%20ambiente](https://wa.me/TODO?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20desenvolver%20uma%20solu%C3%A7%C3%A3o%20em%20pedra%20para%20minha%20%C3%A1rea%20gourmet.%20Gostaria%20de%20conversar%20sobre%20possibilidades%20para%20bancadas%2C%20ilhas%20ou%20outros%20elementos%20do%20ambiente)." target="_blank" rel="noopener noreferrer">
+                        <span>Conversar sobre minha área gourmet</span>
                       </a>
                     </div>
                   </div>
                 </li>
 
                 <li class="services__item u-reveal-up u-delay-6">
-                  <h3>
-                    <button class="services__item-trigger" aria-expanded="false" aria-controls="content-escadas" id="trigger-escadas">
-                      <svg class="services__item-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                      </svg>
-                      <span class="services__item-name">Escadas e revestimentos</span>
-                    </button>
-                  </h3>
+                  <button class="services__item-trigger" aria-expanded="false" aria-controls="content-escadas" id="trigger-escadas">
+                    <svg class="services__item-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path class="services__item-icon-plus" fill="currentColor" fill-rule="evenodd" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z M11 7h2v4h4v2h-4v4h-2v-4H7v-2h4Z" />
+                      <path class="services__item-icon-minus" fill="currentColor" fill-rule="evenodd" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z M8 11h8v2H8Z" />
+                    </svg>
+                    <h3 class="services__item-name">Escadas e revestimentos</h3>
+                  </button>
                   
                   <div class="services__item-content" id="content-escadas" role="region" aria-labelledby="trigger-escadas" hidden>
                     <div class="services__item-inner">
                       <p class="services__item-desc">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare.
+                        A pedra também pode assumir um papel importante na composição de escadas, paredes e outras superfícies arquitetônicas.
+                        Em escadas, sua aplicação acompanha o desenho dos degraus, enquanto revestimentos permitem explorar diferentes texturas,
+                        formatos e combinações com os demais acabamentos do ambiente. São soluções que ajudam a criar continuidade visual entre
+                        os espaçose acrescentam personalidade aos projetos.
                       </p>
-                      <a href="TODO" class="services__item-link button secondary is-main service is-inverted">
-                        <span>Saiba mais</span>
+                      <a class="services__item-link button is-link" href="https://wa.me/TODO?text=Ol%C3%A1%21%20Gostaria%20de%20conversar%20sobre%20uma%20aplica%C3%A7%C3%A3o%20de%20pedra%20para%20meu%20projeto%2C%20envolvendo%20escadas%20ou%20revestimentos.%20Tenho%20algumas%20ideias%20e%20gostaria%20de%20entender%20as%20possibilidades](https://wa.me/TODO?text=Ol%C3%A1%21%20Gostaria%20de%20conversar%20sobre%20uma%20aplica%C3%A7%C3%A3o%20de%20pedra%20para%20meu%20projeto%2C%20envolvendo%20escadas%20ou%20revestimentos.%20Tenho%20algumas%20ideias%20e%20gostaria%20de%20entender%20as%20possibilidades)." target="_blank" rel="noopener noreferrer">
+                        <span>Conversar sobre meu projeto</span>
                       </a>
                     </div>
                   </div>
                 </li>
 
                 <li class="services__item u-reveal-up u-delay-7">
-                  <h3>
-                    <button class="services__item-trigger" aria-expanded="false" aria-controls="content-pecas" id="trigger-pecas">
-                      <svg class="services__item-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                      </svg>
-                      <span class="services__item-name">Peças sob medida</span>
-                    </button>
-                  </h3>
+                  <button class="services__item-trigger" aria-expanded="false" aria-controls="content-pecas" id="trigger-pecas">
+                    <svg class="services__item-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path class="services__item-icon-plus" fill="currentColor" fill-rule="evenodd" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z M11 7h2v4h4v2h-4v4h-2v-4H7v-2h4Z" />
+                      <path class="services__item-icon-minus" fill="currentColor" fill-rule="evenodd" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z M8 11h8v2H8Z" />
+                    </svg>
+                    <h3 class="services__item-name">Peças sob medida</h3>
+                  </button>
                   
                   <div class="services__item-content" id="content-pecas" role="region" aria-labelledby="trigger-pecas" hidden>
                     <div class="services__item-inner">
                       <p class="services__item-desc">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare.
+                        Alguns projetos pedem soluções que vão além das aplicações convencionais. Tampos, mesas, cubas, bancadas com formatos diferenciados
+                        e outras peças podem ser pensados conforme as dimensões, características e necessidades de cada ambiente.
+                        A partir da ideia ou referência apresentada, é possível avaliar os materiais, as possibilidades de execução e os detalhes necessários
+                        para desenvolver uma peça que se integre ao projeto.
                       </p>
-                      <a href="TODO" class="services__item-link button secondary is-main service is-inverted">
-                        <span>Saiba mais</span>
+                      <a class="services__item-link button is-link" href="https://wa.me/TODO?text=Ol%C3%A1%21%20Tenho%20uma%20ideia%20para%20desenvolver%20uma%20pe%C3%A7a%20sob%20medida%20em%20pedra%20e%20gostaria%20de%20apresentar%20minha%20refer%C3%AAncia%20para%20entender%20as%20possibilidades%20de%20execu%C3%A7%C3%A3o](https://wa.me/TODO?text=Ol%C3%A1%21%20Tenho%20uma%20ideia%20para%20desenvolver%20uma%20pe%C3%A7a%20sob%20medida%20em%20pedra%20e%20gostaria%20de%20apresentar%20minha%20refer%C3%AAncia%20para%20entender%20as%20possibilidades%20de%20execu%C3%A7%C3%A3o)." target="_blank" rel="noopener noreferrer">
+                        <span>Conversar sobre peças sob medida</span>
                       </a>
                     </div>
                   </div>
                 </li>
-
               </ul>
             </div>
 
-            <!-- <div class="services__list">
-              <style>.redesignee-widget[data-instance-id="rd_jlfoefelz"] #rd-type-acc-1_rd_jlfoefelz {--bg-color: #121212;--text-color:#e8e2d5;--line-color:#333333;--accent-color:#ffffff;--font-family:inherit;font-family:var(--font-family);background:var(--bg-color);color:var(--text-color);padding: 0}.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-container {max-width:900px;margin:0 auto}.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-item {border-top:1px solid var(--line-color);transition:padding 0.4s ease}.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-item:last-child {border-bottom:1px solid var(--line-color)}.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-item.active {padding:20px 0}.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-header {padding:30px 0;display:flex;align-items:baseline;gap:40px;cursor:pointer;transition:color 0.3s}.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-item:hover .rd-type-header {color:var(--accent-color)}.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-num {font-size:1rem;font-weight:700;opacity:0.5}.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-header h2 {color: inherit;font-size:3rem;margin:0;font-weight:800;text-transform:uppercase;transition:transform 0.4s ease,color 0.3s ease;transform-origin:left center}.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-item.active .rd-type-header h2 {transform:scale(1.1);color:var(--accent-color)}.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-body {height:0;overflow:hidden;transition:height 0.5s cubic-bezier(0.19,1,0.22,1)}.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-inner {padding:0 0 50px 70px;max-width:600px}.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-inner p {font-size:1.1rem;line-height:1.6;opacity:0.7;margin:0 0 30px 0}.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-link {color:var(--text-color);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:5px;transition:border-color 0.3s}.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-link:hover {border-color:#fff}@media (max-width:768px){.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-header h2 {font-size:2rem}.redesignee-widget[data-instance-id="rd_jlfoefelz"] .rd-type-inner {padding-left:0}}</style><div class="redesignee-widget"data-instance-id="rd_jlfoefelz"><div class="rd-type-acc" id="rd-type-acc-1_rd_jlfoefelz" data-extra-styles="{&quot;colors&quot;: {&quot;--bg-color&quot;: &quot;#111111&quot;, &quot;--text-color&quot;: &quot;#ffffff&quot;, &quot;--line-color&quot;: &quot;#333333&quot;, &quot;--accent-color&quot;: &quot;#ffffff&quot;}, &quot;typography&quot;: {&quot;--font-family&quot;: &quot;inherit&quot;}}"><div class="rd-type-container"><div class="rd-type-wrapper" data-slides-container=""><div class="rd-type-item" style="" data-slide=""><div class="rd-type-header"><span class="rd-type-num" data-text-editable="" data-text-label="Number" data-family-editable="" id="element-1793218794147-382_rd_jlfoefelz">00</span><h2 data-text-editable="" data-text-label="Title" data-family-editable="" id="element-1793218794147-743_rd_jlfoefelz">Title</h2></div><div class="rd-type-body"><div class="rd-type-inner"><p data-richtext-editable="" data-text-label="Description" data-family-editable="" id="element-1793218794150-73_rd_jlfoefelz">Description text goes here.</p><a href="#" class="rd-type-link" data-link-editable="" data-text-editable="" data-font-size-editable="" data-family-editable="" data-text-label="Link Text" id="element-1793218794151-328_rd_jlfoefelz">Link</a></div></div></div><div class="rd-type-item" style="" data-slide=""><div class="rd-type-header"><span class="rd-type-num" data-text-editable="" data-text-label="Number" data-family-editable="" id="element-1793218795610-932_rd_jlfoefelz">00</span><h2 data-text-editable="" data-text-label="Title" data-family-editable="" id="element-1793218795614-56_rd_jlfoefelz">Title</h2></div><div class="rd-type-body"><div class="rd-type-inner"><p data-richtext-editable="" data-text-label="Description" data-family-editable="" id="element-1793218795614-934_rd_jlfoefelz">Description text goes here.</p><a href="#" class="rd-type-link" data-link-editable="" data-text-editable="" data-font-size-editable="" data-family-editable="" data-text-label="Link Text" id="element-1793218795614-215_rd_jlfoefelz">Link</a></div></div></div><div class="rd-type-item" style="" data-slide=""><div class="rd-type-header"><span class="rd-type-num" data-text-editable="" data-text-label="Number" data-family-editable="" id="element-1793218807154-918_rd_jlfoefelz">00</span><h2 data-text-editable="" data-text-label="Title" data-family-editable="" id="element-1793218807158-179_rd_jlfoefelz">Title</h2></div><div class="rd-type-body"><div class="rd-type-inner"><p data-richtext-editable="" data-text-label="Description" data-family-editable="" id="element-1793218807159-401_rd_jlfoefelz">Description text goes here.</p><a href="#" class="rd-type-link" data-link-editable="" data-text-editable="" data-font-size-editable="" data-family-editable="" data-text-label="Link Text" id="element-1793218807159-964_rd_jlfoefelz">Link</a></div></div></div><div class="rd-type-item" style="" data-slide=""><div class="rd-type-header"><span class="rd-type-num" data-text-editable="" data-text-label="Number" data-family-editable="" id="element-1793218809595-567_rd_jlfoefelz">00</span><h2 data-text-editable="" data-text-label="Title" data-family-editable="" id="element-1793218809598-855_rd_jlfoefelz">Title</h2></div><div class="rd-type-body"><div class="rd-type-inner"><p data-richtext-editable="" data-text-label="Description" data-family-editable="" id="element-1793218809598-74_rd_jlfoefelz">Description text goes here.</p><a href="#" class="rd-type-link" data-link-editable="" data-text-editable="" data-font-size-editable="" data-family-editable="" data-text-label="Link Text" id="element-1793218809598-370_rd_jlfoefelz">Link</a></div></div></div><div class="rd-type-item" style="" data-slide=""><div class="rd-type-header"><span class="rd-type-num" data-text-editable="" data-text-label="Number" data-family-editable="" id="element-1793218813643-969_rd_jlfoefelz">00</span><h2 data-text-editable="" data-text-label="Title" data-family-editable="" id="element-1793218813647-52_rd_jlfoefelz">Title</h2></div><div class="rd-type-body"><div class="rd-type-inner"><p data-richtext-editable="" data-text-label="Description" data-family-editable="" id="element-1793218813647-640_rd_jlfoefelz">Description text goes here.</p><a href="#" class="rd-type-link" data-link-editable="" data-text-editable="" data-font-size-editable="" data-family-editable="" data-text-label="Link Text" id="element-1793218813647-914_rd_jlfoefelz">Link</a></div></div></div></div></div></div></div><script defer> (function() { const uniqueId = "rd_jlfoefelz"; const initFn = function() { const w = document.querySelector('[data-instance-id="' + uniqueId + '"]'); if (w && w.getAttribute('data-js-active') !== 'true') { w.setAttribute('data-js-active', 'true'); try { function initTypeAcc(){const container=document.getElementById('rd-type-acc-1_rd_jlfoefelz');if(!container)return;const items=container.querySelectorAll('.rd-type-item');items.forEach(item=>{item.querySelector('.rd-type-header').addEventListener('click',()=>{items.forEach(i=>{if(i!==item){i.classList.remove('active');i.querySelector('.rd-type-body').style.height='0'}});const body=item.querySelector('.rd-type-body');if(item.classList.contains('active')){item.classList.remove('active');body.style.height='0'}else{item.classList.add('active');body.style.height=body.scrollHeight+'px'}})});const active=container.querySelector('.rd-type-item.active');if(active){active.querySelector('.rd-type-body').style.height=active.querySelector('.rd-type-body').scrollHeight+'px'}}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initTypeAcc)}else{initTypeAcc()} } catch(e) { console.error("Widget Init Error:", e); } } }; initFn(); })();</script> 
-            </div> -->
-
           </div>  
+        </div>
+      </section>
 
+      <section class="about" id="projetos" aria-labelledby="about-title">
+        <div class="about__container container">
+
+          <span class="u-eyebrow u-delay-8">
+            Sobre a Estilo Nobre
+          </span>
+
+          <div class="about__wrapper grid-2 grid-1-lg">
+
+            <div class="about__content">
+              <hgroup>
+                <h2 class="about__content-title u-reveal-up u-delay-1" id="about-title">
+                  TESTE DE SEÇÃO<span class="u-highlight">.</span>
+                </h2>
+
+                <p class="about__content-description u-reveal-up u-delay-2">
+                  Na Marmoraria Estilo Nobre, transformamos ideias em soluções em pedra com a exclusividade que seu ambiente merece.
+                  Executamos projetos sob medida em rochas naturais e industrializadas, com atenção à escolha dos materiais e ao cuidado na execução,
+                  buscando valorizar cada espaço por meio da beleza natural da pedra.<br>
+                  Localizada em Praia Grande, atendemos todo o litoral paulista.
+                </p>
+              </hgroup>
+
+              <a href="#servicos" class="about__content-cta button secondary is-main u-reveal-up u-delay-3">
+                <span>Conheça nossas soluções</span>
+              </a>
+            </div>
+
+            <div class="about__visual">
+              <img class="about__visual-media u-reveal-up u-rise-lg u-delay-2"
+                src="./assets/media/img/about/about-img.webp"
+                alt="Bancada em mármore claro iluminado destacando o acabamento nobre da pedra"
+                width="1100" height="735"
+                loading="lazy"
+                decoding="async"
+              >
+
+              <div class="about__visual-list">
+                <ul>
+                  <li class="u-reveal-up u-delay-3">Mármores</li>
+                  <li class="u-reveal-up u-delay-4">Granitos</li>
+                  <li class="u-reveal-up u-delay-5">Quartzitos</li>
+                  <li class="u-reveal-up u-delay-6">Quartzos</li>
+                  <li class="u-reveal-up u-delay-7">Ultracompactos</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+          
         </div>
       </section>
 

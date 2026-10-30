@@ -45,8 +45,9 @@ h2 {
 
 h3 {
   font-size: token.$font-size-h3;
-  @include mix.respond(xs) { font-size: token.$font-32; }
+  letter-spacing: token.$tracking-tighter;
 }
+
 h4 { font-size: token.$font-size-h4; }
 h5 { font-size: token.$font-size-h5; }
 h6 { font-size: token.$font-size-h6; }

@@ -34,7 +34,7 @@ $lh-tight:   1.1;
 $lh-snug:    1.25;
 $lh-normal:  1.4;
 $lh-relaxed: 1.5;
-$lh-loose:   1.75;
+$lh-loose:   1.65;
 
 // == Letter Spacing Scale ==
 $tracking-tighter: -0.04em;
@@ -51,7 +51,7 @@ $tracking-eyebrow: 0.12em;
 $font-family-base: "Lato", Ubuntu, system-ui, -apple-system, sans-serif;
 $font-size-base:   clamp(0.9375rem, 0.958rem + 0.1791vw, $font-18);  // 15px → 18px (1492 bp)
 $font-weight-base: $weight-light;
-$line-height-base: $lh-normal;
+$line-height-base: $lh-relaxed;
 $letter-spc-base:  $tracking-wider;
 
 // Headings
@@ -62,8 +62,8 @@ $letter-spc-heading:  $tracking-tight;
 $font-size-h1:        clamp($font-56, 2.439rem + 2.21vw, $font-72);  // 56px (768 bp) → 72px (1492 bp)
 $font-size-h1-mobile: clamp(2.375rem, -0.425rem + 14vw, $font-56);   // 38px (320 bp) → 56px (448 bp) 
 $font-size-h2:        clamp(2.375rem, 1.982rem + 1.092vw, $font-48); // 38px (768 bp) → 48px (1492 bp)
-$font-size-h2-mobile: clamp(1.625rem, 0.688rem + 4.688vw, 2.375rem); // 26px (320 bp) → 38px (448 bp) 
-$font-size-h3:        $font-40;
+$font-size-h2-mobile: clamp(1.625rem, -0.5rem + 10vw, 2.375rem);     // 26px (340 bp) → 38px (460 bp)
+$font-size-h3:        clamp(1.75rem, 1.214rem + 2.679vw, $font-40); // 28px (320 bp) → 40px (768 bp)
 $font-size-h4:        $font-32;
 $font-size-h5:        $font-24;
 $font-size-h6:        $font-20;

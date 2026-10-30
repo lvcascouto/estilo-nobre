@@ -13,30 +13,49 @@ $services-section-pad-sm:  token.$section-pad-mobile;
 $services-section-bg:      token.$color-surface-dark;
 $services-section-color:   token.$color-text-on-dark;
 
-$services-content-gap:     token.$space-8;
 $services-content-width:   52ch;
-$services-desc-marg-top:   token.$space-16;
+$services-desc-marg-block: token.$space-16 token.$space-8;
 
 $services-visual-list-pad: token.$space-16;
 // ---------------------------------------------------
 
+// == Section Structure ==
+// ---------------------------------------------------
 .services {
   padding-block: $services-section-pad;
-  @include mix.respond(sm) { padding-block: $services-section-pad-sm; }
-
   background-color: $services-section-bg;
   color: $services-section-color;
 
-  &__wrapper {
-    gap: token.$space-48;
+  @include mix.respond(sm) {
+    padding-block: $services-section-pad-sm;
   }
+
+
+  // == Layout ==
+
+  &__wrapper {
+    gap: token.$space-64;
+    align-items: start;
+  }
+
+
+  // == Content ==
 
   &__content {
-    @include mix.flex(column, flex-start, flex-start, $services-content-gap);
+    position: sticky;
+    top: calc(clamp(5.475rem, 5.049rem + 2.13vw, 6.4125rem) + 3.25rem);
+
+    @include mix.flex(column, flex-start, flex-start, 0);
+
     max-width: $services-content-width;
 
-    p { margin-top: $services-desc-marg-top; }
+    p {
+      margin-block: $services-desc-marg-block;
+    }
   }
+
+
+  // == Services List ==
 
   &__list {
     ul {
@@ -46,77 +65,72 @@ $services-visual-list-pad: token.$space-16;
     }
 
     .services__item {
-      border-top: 1px solid rgba(token.$brand-off-white, 0.1);
+      border-block: 1px solid rgba(token.$brand-off-white, 0.1);
 
       transition:
         padding token.$motion-duration-hover token.$motion-ease-state,
         border-color token.$motion-duration-hover token.$motion-ease-hover;
 
 
-      &:last-child {
-        border-bottom: 1px solid rgba(token.$brand-off-white, 0.1);
-      }
-
-      &.active:last-child {
-        border-color: token.$color-surface-accent-op;
-      }
-
-      &.active {
-        padding-block: 24px 48px;
-        border-color: token.$color-surface-accent-op;
-      }
-
-      h3 {
-        margin: 0;
-        color: token.$color-text-on-dark;
-        opacity: 0.6;
-
-        transition: opacity token.$motion-duration-hover token.$motion-ease-hover;
-      }
-
-      &:hover h3,
-      &:hover .services__item-name,
-      &:focus-visible .services__item-name {
-        opacity: 1;
-      }
+      // == Item Trigger ==
 
       .services__item-trigger {
         width: 100%;
-        @include mix.flex($align: center, $gap: token.$space-32);
 
-        padding-block: token.$space-40;
+        @include mix.flex(
+          $align: center,
+          $gap: clamp(1rem, 0.286rem + 3.571vw, 2rem) // 16px (320 bp) → 32px (768 bp)
+        );
+
+        padding-block: token.$space-32;
         text-align: left;
         background: transparent;
         border: none;
         cursor: pointer;
-
-        @include mix.respond(sm) {
-          gap: 24px;
-        }
-
-
       }
+
+
+      // == Item Icon ==
 
       .services__item-icon {
         flex-shrink: 0;
-        width: 24px;
-        height: 24px;
+        width: clamp(1.25rem, 1.041rem + 0.957vw, 1.5rem); // 20px (350 bp) → 24px (768 bp);
+        height: clamp(1.25rem, 1.041rem + 0.957vw, 1.5rem); // 20px (350 bp) → 24px (768 bp);
         color: currentColor;
         opacity: 0.3;
 
         transition:
           opacity token.$motion-duration-hover token.$motion-ease-hover,
           color token.$motion-duration-hover token.$motion-ease-hover;
+
+        .services__item-icon-plus,
+        .services__item-icon-minus {
+          transition:
+            opacity token.$duration-200 token.$motion-ease-hover;
+        }
+
+        .services__item-icon-minus {
+          opacity: 0;
+        }
       }
+
+
+      // == Item Name ==
 
       .services__item-name {
         margin: 0;
+        color: token.$color-text-on-dark;
+        opacity: 0.6;
         transform-origin: left center;
 
         transition:
+          opacity token.$motion-duration-hover token.$motion-ease-hover,
           transform token.$duration-400 token.$ease-expo,
           color token.$motion-duration-hover token.$motion-ease-hover;
       }
+
+
+      // == Item Content ==
 
       .services__item-content {
         display: grid;
@@ -140,38 +154,67 @@ $services-visual-list-pad: token.$space-16;
       }
 
       .services__item-desc {
-        margin: 0 0 24px 64px;
-        // opacity: 0.8;
+        margin: 0 0 32px 64px;
 
-        @include mix.respond(sm) {
-          margin-left: 0;
+        @include mix.respond(md) {
+          margin: 0 0 32px 0;
         }
       }
 
       .services__item-link {
-        
         float: left;
         margin-left: 64px;
 
-        @include mix.respond(sm) {
+        @include mix.respond(md) {
           margin-left: 0;
         }
       }
 
+
+      // == Interaction States ==
+
+      &:hover {
+        .services__item-name {
+          opacity: 1;
+        }
+      }
+
+      .services__item-trigger:focus-visible {
+        .services__item-name {
+          opacity: 1;
+        }
+      }
+
+
+      // == Active State ==
+
       &.active {
-        h3 {
-            opacity: 1;
+        padding-block: 16px 48px;
+        border-color: token.$color-surface-accent-op;
+
+        .services__item-trigger {
+          color: token.$color-accent;
+        }
+
+        .services__item-name {
+          opacity: 1;
+          transform: scale(1.12);
+          color: token.$color-accent;
+        }
+
+        .services__item-icon {
+          opacity: 1;
+          color: token.$color-accent;
+
+          .services__item-icon-plus {
+            opacity: 0;
           }
 
-          .services__item-icon {
+          .services__item-icon-minus {
             opacity: 1;
-            color: token.$color-accent;
           }
+        }
 
-          .services__item-name {
-            transform: scale(1.1);
-            color: token.$color-accent;
-          }
         .services__item-content {
           grid-template-rows: 1fr;
           opacity: 1;
@@ -182,28 +225,21 @@ $services-visual-list-pad: token.$space-16;
             opacity token.$duration-400 token.$motion-ease-enter,
             visibility 0s;
         }
-
-        .services__item-trigger {
-          color: token.$color-accent;
-        }
-
-        .services__item-icon {
-          opacity: 1;
-          color: token.$color-accent;
-        }
-
-        .services__item-name {
-          transform: scale(1.1);
-          color: token.$color-accent;
-        }
       }
     }
   }
 
 
-  @include mix.respond(lg) {
-    &__wrapper { gap: token.$space-40; } // TODO: verificar se faz sentido o gap do wrapper, se não tiramos
+  // == Responsive ==
 
-    &__content { max-width: none; }
+  @include mix.respond(lg) {
+    &__wrapper {
+      gap: token.$space-40;
+    }
+
+    &__content {
+      position: static;
+      max-width: none;
+    }
   }
 }

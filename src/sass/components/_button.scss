@@ -10,36 +10,46 @@
 // Semantic Button Tokens
 // ---------------------------------------------------
 // Default
-$gap-btn: token.$space-8;
-$font-family-btn: token.$font-family-heading;
-$font-weight-btn: token.$weight-regular;
-$line-height-btn: token.$lh-none;
-$letter-spc-btn: token.$tracking-normal;
-$transition-btn: token.$motion-duration-hover token.$motion-ease-hover;
+$gap-btn:            token.$space-6;
+$font-weight-btn:    token.$weight-regular;
+$line-height-btn:    token.$lh-none;
+$transition-btn:     token.$motion-duration-hover token.$motion-ease-hover;
 $transition-btn-alt: token.$motion-duration-reveal token.$motion-ease-hover;
 
 // Shared Arrow
-$btn-asset-arrow-size: token.$font-18;
-$btn-asset-arrow-path: url("/assets/svg/icon/arrow-right.svg");
+$btn-asset-arrow-size:  token.$font-18;
+$btn-asset-arrow-path:  url("/assets/svg/icon/arrow-right.svg");
+// $btn-asset-arrow-align: 1px;
 
 // Primary
-$btn-primary-font-size: token.$font-18;
-$btn-primary-font-color: token.$color-text-primary;
-$btn-primary-bg-color: token.$color-accent;
-$btn-primary-shine-color: token.$brand-stone-opacity;
+$btn-primary-font-family:  token.$font-family-heading;
+$btn-primary-font-size:    token.$font-18;
+$btn-primary-letter-spc:   token.$tracking-normal;
+$btn-primary-font-color:   token.$color-text-primary;
+$btn-primary-bg-color:     token.$color-accent;
+$btn-primary-shine-color:  token.$brand-stone-opacity;
 $btn-primary-label-offset: calc(($btn-asset-arrow-size + $gap-btn) / 2);
 $btn-primary-menu-font-size: token.$font-20;
-$btn-primary-menu-color: token.$color-text-primary;
 
 // Secondary
-$btn-secondary-main-pad: token.$space-16 token.$space-16 token.$space-16 0;
-$btn-secondary-main-bottom: token.$space-16;
-$btn-secondary-main-height: token.$space-8;
-$btn-secondary-header-color: token.$color-text-on-dark-alt;
-$btn-secondary-bg-color-hover: token.$color-accent;
-$btn-secondary-bg-color-alt-hover: rgba(token.$color-accent, token.$opacity-70);
+$btn-secondary-header-font-family: token.$font-family-heading;
+$btn-secondary-header-color:       token.$color-text-on-dark-alt;
+
+$btn-secondary-main-pad:    token.$space-16 token.$space-16 token.$space-16 0;
+$btn-secondary-main-bottom: token.$space-14;
+$btn-secondary-main-height: token.$space-4;
+
+$btn-secondary-bg-color-hover:   token.$color-accent;
 $btn-secondary-text-color-hover: token.$color-text-primary;
 $btn-secondary-text-color-alt-hover: token.$color-text-on-dark;
+
+// Links
+$btn-link-line-height:               token.$lh-normal;
+$btn-link-text-decoration:           underline;
+$btn-link-text-decoration-color:     fn.color-dark(token.$color-accent, 50%);
+$btn-link-text-decoration-thickness: 0.1875rem; // 3px
+
+// WhatsApp
 
 // Variants & Modifiers
 $op-dsbld-btn: token.$opacity-50;
@@ -61,10 +71,11 @@ $padding-btn-xl: token.$space-16 token.$space-32;
   padding: 0;
   background-color: transparent;
   border: none;
-  font-family: $font-family-btn;
+  font-family: inherit;
   font-weight: $font-weight-btn;
   line-height: $line-height-btn;
-  letter-spacing: $letter-spc-btn;
+  letter-spacing: inherit;
+
   text-decoration: none;
   white-space: nowrap;
   -webkit-user-select: none;
@@ -74,7 +85,6 @@ $padding-btn-xl: token.$space-16 token.$space-32;
   transition:
     background-color $transition-btn,
     color $transition-btn,
-    // border-color $transition-btn, // TODO: VERIFICAR SE BORDA ANIMA EM ALGUM BUTTON DO SITE QUE ATIVO
     transform $transition-btn,
     text-decoration-color $transition-btn;
 
@@ -86,7 +96,7 @@ $padding-btn-xl: token.$space-16 token.$space-32;
 
     width: $btn-asset-arrow-size;
     height: $btn-asset-arrow-size;
-    margin-top: 0.0625rem; // 1px to align with text baseline
+    margin-top: var(--icon-offset-y); // Align the arrow with the text baseline
 
     background-color: currentColor;
 
@@ -105,18 +115,19 @@ $padding-btn-xl: token.$space-16 token.$space-32;
 
   // == Button Primary ==
   &.primary {
+    --icon-offset-y: 0.15em;
+    
     isolation: isolate;
-    overflow: hidden;
+    overflow:  hidden;
 
-    font-size: $btn-primary-font-size;
-    color: $btn-primary-font-color;
+    font-family:    $btn-primary-font-family;
+    font-size:      $btn-primary-font-size;
+    letter-spacing: $btn-primary-letter-spc;
+    color:          $btn-primary-font-color;
     background-color: $btn-primary-bg-color;
 
     // Primary Variants
-    &.is-menu {
-      font-size: $btn-primary-menu-font-size;
-      color: $btn-primary-menu-color;
-    }
+    &.is-menu { font-size: $btn-primary-menu-font-size; }
 
     &::before {
       content: "";
@@ -128,12 +139,7 @@ $padding-btn-xl: token.$space-16 token.$space-32;
       left: 0;
       width: 22%;
 
-      background: linear-gradient(
-        90deg,
-        transparent,
-        $btn-primary-shine-color,
-        transparent
-      );
+      background: linear-gradient(90deg, transparent, $btn-primary-shine-color, transparent);
       opacity: token.$opacity-0;
 
       transform: translateX(-160%) skewX(-20deg);
@@ -143,10 +149,7 @@ $padding-btn-xl: token.$space-16 token.$space-32;
     span {
       position: relative;
       z-index: fn.z(base);
-
-      transform: translateX(
-        $btn-primary-label-offset
-      ); // Center the label while the arrow is hidden
+      transform: translateX($btn-primary-label-offset); // Center the label while the arrow is hidden
       transition: transform $transition-btn;
     }
 
@@ -186,9 +189,18 @@ $padding-btn-xl: token.$space-16 token.$space-32;
 
   // == Button Secondary ==
   &.secondary {
-    font-size: inherit;
+    --icon-offset-y: 0.2em;
+    --sec-hover-bg:   #{$btn-secondary-bg-color-hover};
+    --sec-hover-text: #{$btn-secondary-text-color-hover};
 
     // Secondary Variants
+    &.is-header {
+      --icon-offset-y: 0.1em;
+
+      font-family: $btn-primary-font-family;
+      color: $btn-secondary-header-color;
+    }
+
     &.is-main {
       padding: $btn-secondary-main-pad;
 
@@ -197,37 +209,10 @@ $padding-btn-xl: token.$space-16 token.$space-32;
         bottom: $btn-secondary-main-bottom;
         height: $btn-secondary-main-height;
       }
-
-      &.service {
-        font-family: token.$font-family-base;
-        text-decoration: underline;
-        text-decoration-color: rgba(token.$color-accent, token.$opacity-50);
-        text-decoration-thickness: 2px;
-        text-underline-offset: 3px;
-
-        &::before,
-        &::after {
-          display: none;
-        }
-
-        &:hover {
-          text-decoration-color: token.$color-accent;
-        }
-      }
     }
-
-    &.is-header {
-      color: $btn-secondary-header-color;
-    }
-
-    
-
-    // TODO: Verificar se faz sentido o inverted, se não tiramos
-    --sec-hover-bg: #{$btn-secondary-bg-color-hover};
-    --sec-hover-text: #{$btn-secondary-text-color-hover};
 
     &.is-inverted {
-      --sec-hover-bg: #{$btn-secondary-bg-color-alt-hover};
+      // --sec-hover-bg: #{$btn-secondary-bg-color-alt-hover};
       --sec-hover-text: #{$btn-secondary-text-color-alt-hover};
     }
 
@@ -255,6 +240,21 @@ $padding-btn-xl: token.$space-16 token.$space-32;
       }
     }
   }
+  
+  // == Button Link ==
+  &.is-link {
+    color: inherit;
+    line-height: $btn-link-line-height;
+    text-decoration: $btn-link-text-decoration;
+    text-decoration-color: $btn-link-text-decoration-color;
+    text-decoration-thickness: $btn-link-text-decoration-thickness;
+
+    &::before,
+    &::after { display: none; }
+
+    &:hover,
+    &:focus-visible { text-decoration-color: fn.color-dark(token.$color-accent, 0%); }
+  }
 
   // == Button Disabled ==
   &:disabled {
@@ -263,32 +263,13 @@ $padding-btn-xl: token.$space-16 token.$space-32;
   }
 
   // Button Size Modifiers
-  &.size-sm {
-    padding: $padding-btn-sm;
-  }
-  &.size-md {
-    padding: $padding-btn-md;
-  }
-  &.size-lg {
-    padding: $padding-btn-lg;
-  }
-  &.size-xl {
-    padding: $padding-btn-xl;
-  }
+  &.size-sm { padding: $padding-btn-sm; }
+  &.size-md { padding: $padding-btn-md; }
+  &.size-lg { padding: $padding-btn-lg; }
+  &.size-xl { padding: $padding-btn-xl; }
 
   // Button Shape & Variant Modifiers
-  &.shape-square {
-    aspect-ratio: 1 / 1;
-  }
-  &.shape-circle {
-    aspect-ratio: 1 / 1;
-    border-radius: $rd-full-round;
-  }
-  &.is-pill {
-    border-radius: $rd-full-round;
-  }
-  &.is-ghost {
-    text-decoration: underline;
-    border-color: transparent;
-  }
+  &.shape-square { aspect-ratio: 1 / 1; }
+  &.shape-circle { aspect-ratio: 1 / 1; border-radius: $rd-full-round; }
+  &.is-pill      { border-radius: $rd-full-round; }
 }

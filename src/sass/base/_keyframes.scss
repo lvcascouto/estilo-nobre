@@ -19,7 +19,7 @@
 @keyframes rise {
   from {
     opacity: token.$opacity-0;
-    transform: translateY(var(--rise-y, #{token.$space-32}));
+    transform: translateY(var(--rise-y, #{token.$space-24}));
   }
   to {
     opacity: token.$opacity-100;
