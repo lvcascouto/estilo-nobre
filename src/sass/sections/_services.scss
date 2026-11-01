@@ -87,7 +87,7 @@ $services-visual-list-pad: token.$space-16;
         @include mix.flex($justify: space-between, $align: center, $gap: 0);  // clamp(1rem, 0.286rem + 3.571vw, 2rem) // 16px (320 bp) → 32px (768 bp)
         
 
-        padding: token.$space-32 token.$space-6;
+        padding: token.$space-32 0;
         text-align: left;
         background: transparent;
         border: none;
