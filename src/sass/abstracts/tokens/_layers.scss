@@ -7,6 +7,7 @@ $z-layers: (
   hero:     -2,   // Hero background image
   back:     -1,   // Background elements
   base:     0,    // Default stacking context
+  content:  1,    // Main content
   sticky:   10,   // Sticky navigation & sub-headers
   header:   100,  // Fixed headers
   dropdown: 200,  // Dropdowns & popovers

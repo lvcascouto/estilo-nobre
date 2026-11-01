@@ -32,7 +32,9 @@ $btn-primary-label-offset: calc(($btn-asset-arrow-size + $gap-btn) / 2);
 $btn-primary-menu-font-size: token.$font-20;
 
 // Secondary
-$btn-secondary-header-font-family: token.$font-family-heading;
+$btn-secondary-header-font-family: $btn-primary-font-family;
+$btn-secondary-header-font-size:   token.$font-size-header;
+$btn-secondary-header-letter-spc:  $btn-primary-letter-spc;
 $btn-secondary-header-color:       token.$color-text-on-dark-alt;
 
 $btn-secondary-main-pad:    token.$space-16 token.$space-16 token.$space-16 0;
@@ -195,10 +197,13 @@ $padding-btn-xl: token.$space-16 token.$space-32;
 
     // Secondary Variants
     &.is-header {
-      --icon-offset-y: 0.1em;
+      --icon-offset-y: 0.092em;
 
-      font-family: $btn-primary-font-family;
+      font-family: $btn-secondary-header-font-family;
+      font-size:   $btn-secondary-header-font-size;
+      letter-spacing: $btn-secondary-header-letter-spc;
       color: $btn-secondary-header-color;
+      text-transform: uppercase;
     }
 
     &.is-main {
@@ -255,6 +260,8 @@ $padding-btn-xl: token.$space-16 token.$space-32;
     &:hover,
     &:focus-visible { text-decoration-color: fn.color-dark(token.$color-accent, 0%); }
   }
+
+  // == Button WhatsApp ==
 
   // == Button Disabled ==
   &:disabled {

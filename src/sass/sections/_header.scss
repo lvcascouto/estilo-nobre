@@ -36,7 +36,7 @@ $header-logo-height: clamp(2.375rem, 2rem + 1.6vw, 3.125rem); // 38px → 50px
 
 // Navigation (desktop)
 $header-font-family:    token.$font-family-heading;
-$header-font-size:      clamp(0.9375rem, 0.852rem + 0.1791vw, 1.0188rem); // 15px (768 bp) → 16.3px (1492 bp)
+$header-font-size:      token.$font-size-header;
 $header-text-weight:    token.$weight-regular;
 $header-line-height:    token.$lh-none;
 $header-letter-spc:     token.$tracking-normal;

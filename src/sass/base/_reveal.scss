@@ -63,9 +63,9 @@ $eyebrow-write-feather:   1.6em;
     --reveal-delay: #{$i * $reveal-delay-step};
 
     @include mix.respond(lg) {
-      :not(.hero) & {
-        --reveal-delay: 0s;
-      }
+      --reveal-delay: 0s; 
+
+      .hero & { --reveal-delay: #{$i * $reveal-delay-step}; }
     }
   }
 }
