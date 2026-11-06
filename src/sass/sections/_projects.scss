@@ -1,0 +1,85 @@
+@use "../abstracts/tokens" as token;
+@use "../abstracts/mixins" as mix;
+
+// ===================================================
+// AXIS ▪︎ PROJECTS (Global Section)
+// Structural foundation for the project section
+// ===================================================
+
+// Semantic Projects Tokens
+// ---------------------------------------------------
+$projects-section-pad:     token.$section-pad;
+$projects-section-pad-sm:  token.$section-pad-mobile;
+$projects-section-bg:      token.$color-surface-light;
+
+// $projects-content-width:   52ch;
+// $projects-content-gap:     token.$space-8;
+// $projects-desc-marg-top:   token.$space-16;
+
+// $projects-visual-list-pad: token.$space-20;
+// ---------------------------------------------------
+
+.projects {
+  background-color: $projects-section-bg;
+  padding-block: $projects-section-pad;
+  @include mix.respond(sm) { padding-block: $projects-section-pad-sm; }
+
+  hgroup {
+    p { max-width: 32ch; }
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: token.$space-16;
+    margin-top: $projects-section-pad;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      gap: token.$space-16;
+    }
+
+  }
+
+  @include mix.respond(lg) {
+    ul {
+      grid-template-columns: repeat(3, minmax(280px, 1fr));
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      li {
+        scroll-snap-align: start;
+      }
+    }
+  }
+
+  @include mix.respond(md) {
+    
+
+    hgroup {
+      flex-direction: column;
+      gap: 16px;
+
+      p { max-width: 48ch; }
+    }
+
+    ul { margin-top: 32px; }
+  }
+
+   @include mix.respond(sm) {
+    ul {
+      grid-template-columns: repeat(3, minmax(78vw, 1fr));
+      
+    }
+  }
+}
+
+

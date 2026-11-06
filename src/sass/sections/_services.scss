@@ -159,16 +159,16 @@ $services-visual-list-pad: token.$space-16;
       }
 
       .services__item-desc {
-        margin: 0 0 32px 64px;
+        margin: 0 0 32px 32px;
 
         @include mix.respond(md) {
-          margin: 0 0 32px 0;
+          margin: 0;
         }
       }
 
       .services__item-link {
         float: left;
-        margin-left: 64px;
+        margin-left: 32px;
 
         @include mix.respond(md) {
           margin-left: 0;

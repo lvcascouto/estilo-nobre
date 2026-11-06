@@ -77,7 +77,7 @@ $eyebrow-write-feather:   1.6em;
 .u-eyebrow {
   @include mix.flex($align: center, $justify: flex-start, $gap: $eyebrow-gap);
   width: fit-content;
-  margin-bottom: var(--eyebrow-mb, #{token.$space-16});
+  margin-bottom: var(--eyebrow-mb, #{token.$space-18});
 
   font-size:      token.$font-size-eyebrow;
   font-weight:    token.$font-weight-eyebrow;
