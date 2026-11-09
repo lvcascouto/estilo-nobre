@@ -8,78 +8,57 @@
 
 // Semantic Projects Tokens
 // ---------------------------------------------------
+$projects-section-bg:      token.$color-surface-light;
 $projects-section-pad:     token.$section-pad;
 $projects-section-pad-sm:  token.$section-pad-mobile;
-$projects-section-bg:      token.$color-surface-light;
 
-// $projects-content-width:   52ch;
-// $projects-content-gap:     token.$space-8;
-// $projects-desc-marg-top:   token.$space-16;
+$projects-content-gap:        token.$space-16;
+$projects-content-desc-width: 42ch;
 
-// $projects-visual-list-pad: token.$space-20;
+$projects-gallery-marg-top: clamp(token.$space-32, -1rem + 6.25vw, token.$space-48);    // 32px (768 bp) → 48px (1024 bp)
+$projects-gallery-item-gap: clamp(token.$space-8, 0.125rem + 0.781vw, token.$space-12); // 8px  (768 bp) → 12px (1280 bp)
 // ---------------------------------------------------
 
 .projects {
   background-color: $projects-section-bg;
+
   padding-block: $projects-section-pad;
   @include mix.respond(sm) { padding-block: $projects-section-pad-sm; }
 
-  hgroup {
-    p { max-width: 32ch; }
+  &__content {
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: $projects-content-gap;
+
+    p { max-width: $projects-content-desc-width; }
   }
 
-  ul {
+  &__gallery {
+    margin-top: $projects-gallery-marg-top;
+
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: token.$space-16;
-    margin-top: $projects-section-pad;
-
-    li {
-      display: flex;
-      flex-direction: column;
-      gap: token.$space-16;
-    }
-
+    gap: $projects-gallery-item-gap;
+    
+    li { @include mix.flex (column, flex-start, flex-start, $projects-gallery-item-gap); }
   }
 
   @include mix.respond(lg) {
     ul {
-      grid-template-columns: repeat(3, minmax(280px, 1fr));
+      grid-template-columns: repeat(3, minmax(17.8125rem, 1fr));
       width: 100%;
       overflow-x: auto;
       overflow-y: hidden;
       scrollbar-width: none;
       scroll-snap-type: x proximity;
 
-      &::-webkit-scrollbar {
-        display: none;
-      }
+      &::-webkit-scrollbar { display: none; }
 
-      li {
-        scroll-snap-align: start;
-      }
+      li { scroll-snap-align: start; }
     }
-  }
-
-  @include mix.respond(md) {
-    
-
-    hgroup {
-      flex-direction: column;
-      gap: 16px;
-
-      p { max-width: 48ch; }
-    }
-
-    ul { margin-top: 32px; }
   }
 
    @include mix.respond(sm) {
-    ul {
-      grid-template-columns: repeat(3, minmax(78vw, 1fr));
-      
-    }
+    ul { grid-template-columns: repeat(3, minmax(78vw, 1fr)); }
   }
 }
-
-

@@ -4,6 +4,7 @@
 // ===================================================
 // ESTILO NOBRE ▪︎ MENU TOGGLE (Structural Component)
 // ===================================================
+
 // Scroll lock only while the mobile menu can actually be open (< md)
 @include mix.respond(md) {
   body:has(#check-icon:checked) { overflow: hidden; }

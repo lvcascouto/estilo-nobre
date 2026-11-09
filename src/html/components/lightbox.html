@@ -1,0 +1,32 @@
+<div class="lightbox" id="projects-lightbox" aria-hidden="true">
+      <div class="lightbox__overlay" data-close></div>
+      
+      <!-- Botão Fechar -->
+      <button class="lightbox__close" aria-label="Fechar galeria" data-close>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="currentColor" >
+          <path d="M6.4,18.65L5.35,17.6l5.6-5.6L5.35,6.4L6.4,5.35l5.6,5.6l5.6-5.6L18.65,6.4L13.05,12l5.6,5.6L17.6,18.65L12,13.05l-5.6,5.6Z"/>
+        </svg>
+      </button>
+      
+      <div class="lightbox__container container">
+        <!-- Botão Voltar (SVG rotacionado/espelhado) -->
+        <button class="lightbox__btn lightbox__btn--prev" aria-label="Imagem anterior" id="lightbox-prev">
+          <div class="lightbox__icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </div>
+        </button>
+        
+        <figure class="lightbox__figure">
+          <img src="" alt="" class="lightbox__image" id="lightbox-img">
+          <figcaption class="lightbox__caption" id="lightbox-caption"></figcaption>
+        </figure>
+        
+        <!-- Botão Avançar -->
+        <button class="lightbox__btn lightbox__btn--next" aria-label="Próxima imagem" id="lightbox-next">
+          <div class="lightbox__icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </div>
+        </button>
+      </div>
+    </div>
+    

@@ -17,3 +17,4 @@ import "./base/global.js";
 // Isolated JavaScript logic for UI components (e.g., menus, modals, tabs)
 import "./components/accordion.js";
 import "./components/header.js";
+import "./components/lightbox.js";

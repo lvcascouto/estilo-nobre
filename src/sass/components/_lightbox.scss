@@ -1,0 +1,144 @@
+@use "sass:color";
+@use "../abstracts/tokens" as token;
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/functions" as fn;
+
+// ===================================================
+// ESTILO NOBRE ▪︎ LIGHTBOX
+// ===================================================
+
+// Semantic Card Token
+// ---------------------------------------------------
+$projects-transition-img: token.$motion-duration-hover token.$motion-ease-hover;
+$projects-hover-op-img:   token.$opacity-80;
+
+$lightbox-transition: $projects-transition-img;
+// ---------------------------------------------------
+
+.projects__gallery img {
+  cursor: pointer;
+  transition: opacity $projects-transition-img;
+  
+  &:hover { opacity: $projects-hover-op-img; }
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: fn.z(overlay);
+  @include mix.flex($justify: center, $align: center);
+  opacity: token.$opacity-0;
+  visibility: hidden;
+  transition:
+    opacity $lightbox-transition,
+    visibility $lightbox-transition;
+
+  &.is-active { opacity: token.$opacity-100; visibility: visible; }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: color.change(token.$brand-ink, $alpha: 0.95);
+    cursor: pointer;
+  }
+
+  &__close {
+    cursor: pointer;
+    position: absolute;
+    z-index: fn.z(content);
+    top: token.$space-24;
+    right: token.$space-16;
+
+    background: transparent;
+    border: none;
+    color: token.$brand-off-white;
+    
+    transition: transform $lightbox-transition;
+    
+    &:hover { transform: scale(1.1); }
+  }
+
+  &__container {
+    position: relative;
+    z-index: fn.z(base);
+    @include mix.flex($justify: space-between, $align: center);
+    pointer-events: none;
+  }
+
+  &__figure {
+    margin: 0;
+    @include mix.flex($direction: column, $justify: center, $align: center);
+    flex: 1;
+  }
+
+  &__image {
+    max-height: 80vh;
+    max-height: 80dvh;
+    max-width: 100%;
+
+    pointer-events: auto;
+  }
+
+  &__caption {
+    margin-top: token.$space-24;
+    color: token.$brand-off-white;
+    font-size: token.$font-16;
+    text-align: center;
+    max-width: 48rem;
+  }
+
+  &__btn {
+    @include mix.flex($justify: center, $align: center);
+    flex-shrink: 0;
+    width: token.$space-48;
+    height: token.$space-48;
+
+    color: token.$brand-off-white;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    
+    cursor: pointer;
+    pointer-events: auto;
+
+    transition:
+      background-color $lightbox-transition,
+      border-color $lightbox-transition;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    &--prev {
+      .lightbox__icon-wrapper {
+        transform: scaleX(-1);
+        display: flex;
+      }
+    }
+  }
+
+  @include mix.respond(md) {
+    &__container {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: token.$space-16;
+    }
+
+    &__figure {
+      flex: 0 0 100%;
+      order: -1;
+      margin-top: token.$space-16;
+    }
+
+    &__image {
+      max-height: 70vh;
+      max-height: 70dvh;
+    }
+
+    &__btn {
+      width: token.$space-40;
+      height: token.$space-40;
+    }
+  }
+}

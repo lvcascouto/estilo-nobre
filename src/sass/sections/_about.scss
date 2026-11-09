@@ -21,6 +21,7 @@ $about-visual-list-pad: token.$space-20;
 
 .about {
   background-color: $about-section-bg;
+  
   padding-block: $about-section-pad;
   @include mix.respond(sm) { padding-block: $about-section-pad-sm; }
 

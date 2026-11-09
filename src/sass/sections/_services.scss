@@ -22,13 +22,11 @@ $services-visual-list-pad: token.$space-16;
 // == Section Structure ==
 // ---------------------------------------------------
 .services {
-  padding-block: $services-section-pad;
   background-color: $services-section-bg;
   color: $services-section-color;
 
-  @include mix.respond(sm) {
-    padding-block: $services-section-pad-sm;
-  }
+  padding-block: $services-section-pad;
+  @include mix.respond(sm) { padding-block: $services-section-pad-sm; }
 
 
   // == Layout ==

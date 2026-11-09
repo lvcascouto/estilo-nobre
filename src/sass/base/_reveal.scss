@@ -54,6 +54,7 @@ $eyebrow-write-feather:   1.6em;
 //  ▪︎ .u-reveal-up .u-rise-lg  → entrance with rise (40px)
 //  ▪︎ .u-delay-1 … .u-delay-12 → staggered entrance delays (0.1s … 1.2s)
 // ---------------------------------------------------
+// TODO: VERIFICAR O FADE SE SERÁ USADO MESMO
 .u-reveal-fade { @include reveal(fade-in); }
 .u-reveal-up   { @include reveal(rise); }
 .u-rise-lg     { --rise-y: #{$reveal-rise-lg}; }
