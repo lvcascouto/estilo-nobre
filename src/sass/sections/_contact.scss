@@ -1,0 +1,27 @@
+@use "../abstracts/tokens" as token;
+@use "../abstracts/mixins" as mix;
+
+// ===================================================
+// AXIS ▪︎ CONTACT (Global Section)
+// Structural foundation for the contact section
+// ===================================================
+
+// Semantic Contact Tokens
+// ---------------------------------------------------
+$contact-section-bg:     token.$color-surface-dark;
+$contact-section-color:  token.$color-text-on-dark;
+$contact-section-pad:    token.$section-pad;
+$contact-section-pad-sm: token.$section-pad-mobile;
+
+
+// ---------------------------------------------------
+
+.contact {
+  background-color: $contact-section-bg;
+  color: $contact-section-color;
+
+  padding-block: $contact-section-pad;
+  @include mix.respond(sm) { padding-block: $contact-section-pad-sm; }
+
+  
+}
