@@ -23,5 +23,102 @@ $contact-section-pad-sm: token.$section-pad-mobile;
   padding-block: $contact-section-pad;
   @include mix.respond(sm) { padding-block: $contact-section-pad-sm; }
 
-  
+  &__wrapper {
+    gap: 16px;
+
+    
+  }
+
+  &__left {
+    max-width: 56ch;
+    @include mix.respond(lg) { text-align: center; justify-self: center; span {justify-self: center;} }
+
+    @include mix.respond(md) { text-align: start; justify-self: start; span {justify-self: start;} }
+  }
+
+  &__right { 
+    margin-top: 215px; @include mix.respond(lg) {margin-top:0;  }
+
+    &-cta {
+
+      @include mix.flex ($direction: column, $gap: 24px);
+
+      @include mix.respond(lg) { max-width: 72ch; justify-self: center; text-align: center; }
+      @include mix.respond(md) { max-width: none; justify-self: start; text-align: start; }
+      // margin-bottom: 40px;
+
+      // p {
+      //   margin-bottom: 24px;
+      //   text-align: justify;
+      // }
+
+      
+    }
+
+    &-btn {
+        @include mix.respond(lg) { align-self: center; }
+        @include mix.respond(md) { align-self: start; width: 100%;  }
+      }
+
+    &-infos {
+      margin-top: 40px;
+      padding-block: 40px 32px;
+      border-top: 1px solid rgba(token.$brand-off-white, 0.1);
+
+      a {
+        @include mix.flex (row, flex-start, center, 24px);
+
+        opacity: token.$opacity-80;
+        transform: translateX(0);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        
+        &:hover,
+        &:focus-visible {
+          opacity: token.$opacity-100;
+          transform: translateX(4px);
+        }
+
+        @include mix.respond(xxs) { gap: 16px; }
+
+        img {
+          @include mix.respond(xxs) { width: 48px; height: 48px;}
+        }
+        h3 {
+          @include mix.respond(xxs) { font-size: token.$font-20;}
+        }
+        p {
+          @include mix.respond(xxs) { font-size: token.$font-14;}
+        }
+      }
+    }
+
+    &-map {
+      width: 100%;
+      height: 280px; // Define uma altura fixa e elegante (podes ajustar para 250px ou 300px)
+      overflow: hidden; // Garante que os cantos do iframe não vazem por cima do border-radius
+      
+      border: 1px solid token.$color-surface-accent-op; 
+      
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        
+        // Filtro "Estilo Nobre": 
+        // 1. grayscale(100%) tira o azul/verde original
+        // 2. invert(92%) transforma o fundo claro num tom quase idêntico ao teu $brand-ink
+        // 3. contrast(85%) suaviza as linhas para não ficar super agressivo
+        filter: grayscale(100%) invert(92%) contrast(85%);
+        opacity: 0.8;
+        transition: opacity 0.4s ease, filter 0.4s ease;
+        
+        &:hover {
+          opacity: 1;
+          // No hover, reduzimos um bocadinho o grayscale (para 70%) para trazer
+          // um levíssimo tom à vida, sinalizando interatividade.
+          filter: grayscale(70%) invert(92%) contrast(95%); 
+        }
+      }
+    }
+  }
 }

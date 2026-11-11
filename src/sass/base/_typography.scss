@@ -41,11 +41,15 @@ h1 {
 h2 {
   font-size: token.$font-size-h2;
   @include mix.respond(xs) { font-size: token.$font-size-h2-mobile; }
+
+  &.is-contact { font-size: token.$font-size-h2-contact; }
 }
 
 h3 {
   font-size: token.$font-size-h3;
   letter-spacing: token.$tracking-tighter;
+
+  &.is-contact { font-size: token.$font-size-h3-contact; line-height: token.$line-height-base; }
 }
 
 h4 { font-size: token.$font-size-h4; }

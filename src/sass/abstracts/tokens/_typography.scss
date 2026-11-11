@@ -55,18 +55,20 @@ $line-height-base: $lh-relaxed;
 $letter-spc-base:  $tracking-wider;
 
 // Headings
-$font-family-heading: "Tenor Sans", Oxygen, system-ui, -apple-system, sans-serif;
-$font-weight-heading: $weight-regular;
-$line-height-heading: $lh-tight;
-$letter-spc-heading:  $tracking-tight;
-$font-size-h1:        clamp($font-56, 2.439rem + 2.21vw, $font-72);  // 56px (768 bp) → 72px (1492 bp)
-$font-size-h1-mobile: clamp(2.375rem, -0.425rem + 14vw, $font-56);   // 38px (320 bp) → 56px (448 bp) 
-$font-size-h2:        clamp(2.375rem, 1.982rem + 1.092vw, $font-48); // 38px (768 bp) → 48px (1492 bp)
-$font-size-h2-mobile: clamp(1.625rem, -0.279rem + 9.23vw, 2.375rem); // 26px (330 bp) → 38px (460 bp)
-$font-size-h3:        clamp(1.75rem, 1.214rem + 2.679vw, $font-40);  // 28px (320 bp) → 40px (768 bp)
-$font-size-h4:        $font-24;
-$font-size-h5:        $font-24;
-$font-size-h6:        $font-20;
+$font-family-heading:  "Tenor Sans", Oxygen, system-ui, -apple-system, sans-serif;
+$font-weight-heading:  $weight-regular;
+$line-height-heading:  $lh-tight;
+$letter-spc-heading:   $tracking-tight;
+$font-size-h1:         clamp($font-56, 2.439rem + 2.21vw, $font-72);  // 56px (768 bp) → 72px (1492 bp)
+$font-size-h1-mobile:  clamp(2.375rem, -0.425rem + 14vw, $font-56);   // 38px (320 bp) → 56px (448 bp) 
+$font-size-h2:         clamp(2.375rem, 1.982rem + 1.092vw, $font-48); // 38px (768 bp) → 48px (1492 bp)
+$font-size-h2-mobile:  clamp(1.625rem, -0.279rem + 9.23vw, 2.375rem); // 26px (330 bp) → 38px (460 bp)
+$font-size-h2-contact: clamp($font-40, 1.979rem + 2.53vw, $font-64);  // 40px (330bp) → 64px (1280bp)
+$font-size-h3:         clamp(1.75rem, 1.214rem + 2.679vw, $font-40);  // 28px (320 bp) → 40px (768 bp)
+$font-size-h3-contact: $font-24;
+$font-size-h4:         $font-24;
+$font-size-h5:         $font-24;
+$font-size-h6:         $font-20;
 
 // Other Elements
 $font-size-header:    clamp(0.9375rem, 0.852rem + 0.1791vw, 1.0188rem); // 15px (768 bp) → 16.3px (1492 bp)
