@@ -9,7 +9,6 @@
 // Semantic Services Tokens
 // ---------------------------------------------------
 $services-section-pad:     token.$section-pad;
-$services-section-pad-sm:  token.$section-pad-mobile;
 $services-section-bg:      token.$color-surface-dark;
 $services-section-color:   token.$color-text-on-dark;
 
@@ -26,7 +25,6 @@ $services-visual-list-pad: token.$space-16;
   color: $services-section-color;
 
   padding-block: $services-section-pad;
-  @include mix.respond(sm) { padding-block: $services-section-pad-sm; }
 
 
   // == Layout ==

@@ -65,7 +65,7 @@ $font-size-h2:         clamp(2.375rem, 1.982rem + 1.092vw, $font-48); // 38px (7
 $font-size-h2-mobile:  clamp(1.625rem, -0.279rem + 9.23vw, 2.375rem); // 26px (330 bp) → 38px (460 bp)
 $font-size-h2-contact: clamp($font-40, 1.979rem + 2.53vw, $font-64);  // 40px (330bp) → 64px (1280bp)
 $font-size-h3:         clamp(1.75rem, 1.214rem + 2.679vw, $font-40);  // 28px (320 bp) → 40px (768 bp)
-$font-size-h3-contact: $font-24;
+$font-size-h3-contact: $font-16;
 $font-size-h4:         $font-24;
 $font-size-h5:         $font-24;
 $font-size-h6:         $font-20;

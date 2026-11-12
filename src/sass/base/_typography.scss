@@ -47,9 +47,12 @@ h2 {
 
 h3 {
   font-size: token.$font-size-h3;
-  letter-spacing: token.$tracking-tighter;
 
-  &.is-contact { font-size: token.$font-size-h3-contact; line-height: token.$line-height-base; }
+  &.is-contact {
+    font-size: token.$font-size-h3-contact;
+    color: token.$color-accent;
+    margin-bottom: token.$space-4;
+  }
 }
 
 h4 { font-size: token.$font-size-h4; }

@@ -9,7 +9,6 @@
 // Semantic About Tokens
 // ---------------------------------------------------
 $about-section-pad:     token.$section-pad;
-$about-section-pad-sm:  token.$section-pad-mobile;
 $about-section-bg:      token.$color-surface-stone;
 
 $about-content-width:   52ch;
@@ -21,9 +20,7 @@ $about-visual-list-pad: token.$space-20;
 
 .about {
   background-color: $about-section-bg;
-  
   padding-block: $about-section-pad;
-  @include mix.respond(sm) { padding-block: $about-section-pad-sm; }
 
   &__content {
     @include mix.flex(column, flex-start, flex-start, $about-content-gap);

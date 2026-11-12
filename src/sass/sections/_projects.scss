@@ -10,7 +10,6 @@
 // ---------------------------------------------------
 $projects-section-bg:      token.$color-surface-light;
 $projects-section-pad:     token.$section-pad;
-$projects-section-pad-sm:  token.$section-pad-mobile;
 
 $projects-content-gap:        token.$space-16;
 $projects-content-desc-width: 42ch;
@@ -23,7 +22,6 @@ $projects-gallery-item-gap: clamp(token.$space-8, 0.125rem + 0.781vw, token.$spa
   background-color: $projects-section-bg;
 
   padding-block: $projects-section-pad;
-  @include mix.respond(sm) { padding-block: $projects-section-pad-sm; }
 
   &__content {
     align-items: flex-end;
