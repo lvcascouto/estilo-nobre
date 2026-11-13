@@ -8,74 +8,57 @@
 
 // Semantic Contact Tokens
 // ---------------------------------------------------
+// Default Transition
 $contact-section-items-hover: token.$motion-duration-hover token.$motion-ease-hover;
 
+// Default Styles
 $contact-section-pad:    token.$section-pad;
 $contact-section-bg:     token.$color-surface-dark;
-$contact-section-bg-alt: rgba($contact-section-bg, token.$opacity-50);
+$contact-section-bg-alt: rgba($contact-section-bg, token.$opacity-30);
 $contact-section-color:  token.$color-text-on-dark;
 
+// Wrapper
 $contact-wrapper-gap: token.$space-16;
 
+// Column Left
 $contact-column-left-max-wd: 56ch; 
 
-$contact-column-right-mg-y: token.$space-200;
-
-$contact-column-right-border: 0.0625rem solid rgba($contact-section-color, token.$opacity-10);
-$contact-column-right-infos-spc-y: token.$space-40;
-$contact-column-right-infos-gap-list:   token.$space-32;
-$contact-column-right-infos-gap-item:   token.$space-18;
-
-$contact-column-right-map-height: token.$space-232;
-$contact-column-right-map-border: 0.125rem solid token.$color-surface-accent-op;
-
+// Column Right
+$contact-column-right-mg-y:           token.$space-200;
+$contact-column-right-cta-gap:        token.$space-24;
+$contact-column-right-infos-border:   0.0625rem solid rgba($contact-section-color, token.$opacity-10);
+$contact-column-right-infos-spc-y:    token.$space-40;
+$contact-column-right-infos-gap-list: token.$space-32;
+$contact-column-right-infos-gap-item: token.$space-18;
+$contact-column-right-map-height:     token.$space-232;
+$contact-column-right-map-border:     0.125rem solid token.$color-surface-accent-op;
 // ---------------------------------------------------
 
 .contact {
   padding-block: $contact-section-pad;
   
   background:
-    linear-gradient($contact-section-bg-alt, $contact-section-bg-alt),
-    url("/assets/media/img/menu/marble-bg.png")
+    linear-gradient($contact-section-bg-alt 0%,$contact-section-bg-alt 60%, $contact-section-bg 100%),
+    url("/assets/media/img/contact/marble-bg.webp")
     center / cover no-repeat
     $contact-section-bg;
 
   color: $contact-section-color;
 
   &__wrapper { gap: $contact-wrapper-gap; }
-
-  &__left {
-    max-width: $contact-column-left-max-wd;
-
-    // @include mix.respond(lg) { text-align: center; justify-self: center; span {justify-self: center;} }
-    // @include mix.respond(md) { text-align: start; justify-self: start; span {justify-self: start;} }
-  }
+  &__left    { max-width: $contact-column-left-max-wd; }
 
   &__right { 
     margin-top: $contact-column-right-mg-y;
 
-    // @include mix.respond(lg) {  }
-
-    &-cta {
-      @include mix.flex ($direction: column, $gap: 24px);
-
-      // @include mix.respond(lg) { max-width: 72ch; justify-self: center; text-align: center; }
-      // @include mix.respond(md) { max-width: none; justify-self: start; text-align: start; }
-
-      // p { text-align: justify; }
-    }
-
-    // &-btn {
-    //   @include mix.respond(lg) { align-self: center; }
-    //   @include mix.respond(md) { align-self: start; width: 100%;  }
-    // }
+    &-cta { @include mix.flex ($direction: column, $gap: $contact-column-right-cta-gap); }
 
     &-infos {     
       margin-top: $contact-column-right-infos-spc-y;
       padding-block: $contact-column-right-infos-spc-y;
       @include mix.flex($direction: column, $gap: $contact-column-right-infos-gap-list);
 
-      border-top: $contact-column-right-border;
+      border-top: $contact-column-right-infos-border;
       
       a { 
         @include mix.flex($align: center, $gap: $contact-column-right-infos-gap-item);
@@ -87,20 +70,6 @@ $contact-column-right-map-border: 0.125rem solid token.$color-surface-accent-op;
         
         &:hover,
         &:focus-visible { transform: translateX(token.$space-8); }
-
-        // @include mix.respond(xxs) { gap: 16px; }
-
-        // img {
-        //   @include mix.respond(xxs) { width: 48px; height: 48px;}
-        // }
-        // h3 {
-          
-        //   @include mix.respond(xxs) { font-size: token.$font-20;}
-        // }
-        // p {
-           
-        //    @include mix.respond(xxs) { font-size: token.$font-14;}
-        // }
       }
     }
 
@@ -136,8 +105,6 @@ $contact-column-right-map-border: 0.125rem solid token.$color-surface-accent-op;
       align-self: flex-start;
     }
 
-    ul {
-      p { font-size: token.$font-14; }
-    }
+    ul { p { font-size: token.$font-14; } }
   }
 }

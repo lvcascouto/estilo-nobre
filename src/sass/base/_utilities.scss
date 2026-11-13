@@ -64,3 +64,9 @@
 .u-highlight {
   color: token.$color-accent;
 }
+
+// == To break lines ==
+.u-break-text {
+  display: inline;
+  @include mix.respond(xxs) { display: block; }
+}

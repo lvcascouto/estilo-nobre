@@ -8,5 +8,42 @@
 
 // Semantic footer Tokens
 // ---------------------------------------------------
-// Insert your semantic footer tokens here, if applicable
+// Default Styles
+$footer-section-pad:    token.$section-pad;
+$footer-section-bg:     token.$color-surface-dark;
+$footer-section-color:  token.$color-text-on-dark;
+
 // ---------------------------------------------------
+
+.footer {
+  padding-block:  32px;
+  background-color: $footer-section-bg;
+  color: $footer-section-color;
+
+  &__wrapper {
+    // display: grid;
+    // grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+    }
+
+    // :last-child {
+    //         justify-self: flex-end;
+
+    // }
+
+    .teste {
+        width: 100%;
+        padding-top: 32px;
+        border-top: 0.0625rem solid rgba(token.$color-text-on-dark, token.$opacity-10);
+    }
+  }
+}

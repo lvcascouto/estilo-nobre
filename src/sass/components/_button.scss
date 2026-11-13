@@ -49,7 +49,7 @@ $btn-secondary-text-color-alt-hover: token.$color-text-on-dark;
 $btn-link-line-height:               token.$lh-normal;
 $btn-link-text-decoration:           underline;
 $btn-link-text-decoration-color:     fn.color-dark(token.$color-accent, 50%);
-$btn-link-text-decoration-thickness: 0.1875rem; // 3px
+$btn-link-text-decoration-thickness: 6px; // 3px
 
 // WhatsApp
 
