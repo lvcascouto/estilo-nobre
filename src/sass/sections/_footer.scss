@@ -16,9 +16,43 @@ $footer-section-color:  token.$color-text-on-dark;
 // ---------------------------------------------------
 
 .footer {
-  padding-block:  32px;
+  padding-block: $footer-section-pad;
   background-color: $footer-section-bg;
   color: $footer-section-color;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: clamp(800px, 100%, 1400px);
+    aspect-ratio: 282.2 / 32.2;
+    transform: translate(-50%, 0); // Y em 0 mantém a base 100% inteira
+    background: url("/assets/svg/logo/logo-footer.svg") bottom center / contain no-repeat;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: -1;
+
+    @include mix.respond(md) {
+      left: 0; // alinha o "E" com o padding-inline do footer (ou use 0 / -8px para sangrar)
+      transform: translate(0, 0);
+    }
+  }
+  
+ 
+  // &__container {
+  //  width: 100%;
+  //   // max-width: 1400px;
+  //   height: 200px;
+  // background:
+  // linear-gradient(rgba(token.$brand-ink, 0.92), rgba(token.$brand-ink, 0.92)),
+  // url("/assets/svg/logo/logo.svg")
+  // center calc(100% + clamp(40px, 12.5vw, 168px)) / min(92%, 1240px) auto no-repeat
+  // token.$brand-ink; 
+  // }
 
   &__wrapper {
     // display: grid;
@@ -26,6 +60,8 @@ $footer-section-color:  token.$color-text-on-dark;
     align-items: center;
     justify-items: center;
     text-align: center;
+
+    
 
     div{
         display: flex;
