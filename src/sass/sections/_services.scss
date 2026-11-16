@@ -9,7 +9,6 @@
 // Semantic Services Tokens
 // ---------------------------------------------------
 $services-section-pad:     token.$section-pad;
-$services-section-bg:      token.$color-surface-dark;
 $services-section-color:   token.$color-text-on-dark;
 
 $services-content-width:   52ch;
@@ -21,7 +20,6 @@ $services-visual-list-pad: token.$space-16;
 // == Section Structure ==
 // ---------------------------------------------------
 .services {
-  background-color: $services-section-bg;
   color: $services-section-color;
 
   padding-block: $services-section-pad;
@@ -61,7 +59,7 @@ $services-visual-list-pad: token.$space-16;
     }
 
     .services__item {
-      border-top: 1px solid rgba(token.$brand-off-white, 0.1);
+      border-top: 0.0625rem solid rgba(token.$brand-off-white, token.$opacity-10);
 
       transition:
         padding token.$motion-duration-hover token.$motion-ease-state,

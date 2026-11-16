@@ -69,4 +69,8 @@
 .u-break-text {
   display: inline;
   @include mix.respond(xxs) { display: block; }
+
+  &.is-footer {
+    @include mix.respond(xs) { display: block; }
+  }
 }

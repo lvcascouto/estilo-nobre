@@ -9,77 +9,53 @@
 // Semantic footer Tokens
 // ---------------------------------------------------
 // Default Styles
-$footer-section-pad:    token.$section-pad;
-$footer-section-bg:     token.$color-surface-dark;
-$footer-section-color:  token.$color-text-on-dark;
+$footer-section-pad-block: token.$section-pad token.$space-24;
 
+// Infos
+$footer-infos-marg-top: token.$space-20;
+$footer-infos-color:    rgba(token.$brand-stone, token.$opacity-60);
+
+// Legal
+$footer-legal-transition:  token.$motion-duration-hover token.$motion-ease-hover;
+$footer-legal-color-hover: token.$brand-stone;
+
+$footer-legal-separator-marg-x:  token.$space-4;
+$footer-legal-separator-opacity: token.$opacity-60;
 // ---------------------------------------------------
 
 .footer {
-  padding-block: $footer-section-pad;
-  background-color: $footer-section-bg;
-  color: $footer-section-color;
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
+  padding-block: $footer-section-pad-block;
 
-  &::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    width: clamp(800px, 100%, 1400px);
-    aspect-ratio: 282.2 / 32.2;
-    transform: translate(-50%, 0); // Y em 0 mantém a base 100% inteira
-    background: url("/assets/svg/logo/logo-footer.svg") bottom center / contain no-repeat;
-    opacity: 0.2;
-    pointer-events: none;
-    z-index: -1;
-
-    @include mix.respond(md) {
-      left: 0; // alinha o "E" com o padding-inline do footer (ou use 0 / -8px para sangrar)
-      transform: translate(0, 0);
-    }
-  }
-  
- 
-  // &__container {
-  //  width: 100%;
-  //   // max-width: 1400px;
-  //   height: 200px;
-  // background:
-  // linear-gradient(rgba(token.$brand-ink, 0.92), rgba(token.$brand-ink, 0.92)),
-  // url("/assets/svg/logo/logo.svg")
-  // center calc(100% + clamp(40px, 12.5vw, 168px)) / min(92%, 1240px) auto no-repeat
-  // token.$brand-ink; 
-  // }
-
-  &__wrapper {
-    // display: grid;
-    // grid-template-columns: 1fr 1fr 1fr;
-    align-items: center;
-    justify-items: center;
+  &__infos {
+    margin-top: $footer-infos-marg-top;
+    color: $footer-infos-color;
     text-align: center;
 
-    
-
-    div{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 24px;
+    @include mix.respond(xs) {
+      flex-direction: column;
+      gap: token.$space-6;
     }
 
-    // :last-child {
-    //         justify-self: flex-end;
+    &-legal {
+      ul { @include mix.flex(row, center, center, 0.3125rem); }
 
-    // }
+      a {
+        color: inherit;
+        transition: color $footer-legal-transition;
 
-    .teste {
-        width: 100%;
-        padding-top: 32px;
-        border-top: 0.0625rem solid rgba(token.$color-text-on-dark, token.$opacity-10);
+        &:hover,
+        &:focus-visible {
+          color: $footer-legal-color-hover;
+          text-decoration: underline;
+          text-underline-offset: 0.125rem;
+        }
+      }
+    }
+
+    &-separator {
+      display: inline-block;
+      margin-inline: $footer-legal-separator-marg-x;
+      opacity: $footer-legal-separator-opacity;
     }
   }
 }

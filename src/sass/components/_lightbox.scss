@@ -12,7 +12,7 @@
 $projects-transition-img: token.$motion-duration-hover token.$motion-ease-hover;
 $projects-hover-op-img:   token.$opacity-80;
 
-$lightbox-transition: $projects-transition-img;
+$lightbox-transition:     $projects-transition-img;
 // ---------------------------------------------------
 
 .projects__gallery img {
@@ -120,20 +120,26 @@ $lightbox-transition: $projects-transition-img;
 
   @include mix.respond(md) {
     &__container {
+      height: 100%;
       flex-wrap: wrap;
+      align-content: flex-end;
       justify-content: center;
-      gap: token.$space-16;
+      gap: token.$space-24;
+      padding-top: token.$space-64;
+      padding-bottom: token.$space-24;
     }
 
     &__figure {
       flex: 0 0 100%;
       order: -1;
-      margin-top: token.$space-16;
+      height: calc(100% - #{token.$space-48} - #{token.$space-24});
+      justify-content: center;
+      margin-top: 0;
     }
 
     &__image {
-      max-height: 70vh;
-      max-height: 70dvh;
+      max-height: 60vh;
+      max-height: 60dvh;
     }
   }
 }

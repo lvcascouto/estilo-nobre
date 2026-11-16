@@ -1,3 +1,4 @@
+@use "../abstracts/tokens" as token;
 @use "../abstracts/mixins" as mix;
 
 // ===================================================
@@ -29,6 +30,7 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   overflow-wrap: break-word;
+  background-color: token.$color-surface-dark;
 }
 
 // == Media Defaults ==

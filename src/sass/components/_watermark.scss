@@ -1,0 +1,33 @@
+@use "../abstracts/tokens" as token;
+
+// ===================================================
+// AXIS ▪︎ WATERMARK
+// ===================================================
+
+// Semantic Tokens
+// ---------------------------------------------------
+$watermark-color:      token.$color-accent;
+$watermark-op:         token.$opacity-50;
+$watermark-transition: token.$motion-duration-enter token.$motion-ease-state;
+$watermark-op-hover:   token.$opacity-90;
+// ---------------------------------------------------
+
+.footer {
+  &__logo-definitions {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  &__wordmark {
+    display: block;
+    width: 100%;
+    height: auto;
+    color: token.$color-accent;
+    opacity: $watermark-op;
+    transition: opacity $watermark-transition;
+
+    &:hover { opacity: $watermark-op-hover; }
+  }
+}

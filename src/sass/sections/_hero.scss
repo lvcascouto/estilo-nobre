@@ -12,7 +12,6 @@
 // ---------------------------------------------------
 // Layout
 $hero-pad-top:        clamp(5.475rem, 5.049rem + 2.13vw, 6.4125rem); // 88px → 103 (clears the header)
-$hero-bg-color:       token.$color-surface-dark;
 
 // Image
 $hero-img-position:        50% 70%;
@@ -45,7 +44,6 @@ $hero-desc-marg-top:  token.$space-16;
   min-height: 100svh;
   padding-top: $hero-pad-top;
   overflow: clip;
-  background-color: $hero-bg-color;
 
   // == Background image ==
   &__media,

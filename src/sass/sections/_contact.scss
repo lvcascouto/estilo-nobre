@@ -14,7 +14,7 @@ $contact-section-items-hover: token.$motion-duration-hover token.$motion-ease-ho
 // Default Styles
 $contact-section-pad:    token.$section-pad;
 $contact-section-bg:     token.$color-surface-dark;
-$contact-section-bg-alt: rgba($contact-section-bg, token.$opacity-30);
+$contact-section-bg-alt: rgba($contact-section-bg, token.$opacity-60); // TODO: OU 50 
 $contact-section-color:  token.$color-text-on-dark;
 
 // Wrapper
@@ -36,22 +36,20 @@ $contact-column-right-map-border:     0.125rem solid token.$color-surface-accent
 
 .contact {
   padding-block: $contact-section-pad;
-  
-  background:
-  linear-gradient(
-    180deg,
-    $contact-section-bg-alt 0%,
-    $contact-section-bg-alt 35%,
-    mix($contact-section-bg, $contact-section-bg-alt, 20%) 55%,
-    mix($contact-section-bg, $contact-section-bg-alt, 55%) 75%,
-    mix($contact-section-bg, $contact-section-bg-alt, 85%) 90%,
-    $contact-section-bg 100%
-  ),
-    url("/assets/media/img/contact/marble-bg.webp")
-    center / cover no-repeat
-    $contact-section-bg;
-
   color: $contact-section-color;
+  background:
+    linear-gradient(
+      180deg,
+      $contact-section-bg-alt 0%,
+      $contact-section-bg-alt 45%,
+      rgba($contact-section-bg, token.$opacity-70) 65%,
+      rgba($contact-section-bg, token.$opacity-80) 80%,
+      rgba($contact-section-bg, token.$opacity-90) 92%,
+      $contact-section-bg 100%
+    ),
+    url("/assets/media/img/contact/marble-bg.webp") center / cover no-repeat $contact-section-bg;
+
+  
 
   &__wrapper { gap: $contact-wrapper-gap; }
   &__left    { max-width: $contact-column-left-max-wd; }

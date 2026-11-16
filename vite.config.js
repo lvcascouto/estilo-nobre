@@ -45,6 +45,8 @@ export default defineConfig({
       // Define entry points for multi-page architecture
       input: {
         main: resolve(import.meta.dirname, "index.html"),
+        priv: resolve(import.meta.dirname, "src/html/pages/privacy.html"),
+        cook: resolve(import.meta.dirname, "src/html/pages/cookies.html"),
       },
 
       output: {
