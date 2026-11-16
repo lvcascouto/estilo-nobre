@@ -13,14 +13,14 @@ $footer-section-pad-block: token.$section-pad token.$space-24;
 
 // Infos
 $footer-infos-marg-top: token.$space-20;
-$footer-infos-color:    rgba(token.$brand-stone, token.$opacity-60);
+$footer-infos-color:    rgba(token.$brand-stone, token.$opacity-50);
 
 // Legal
 $footer-legal-transition:  token.$motion-duration-hover token.$motion-ease-hover;
 $footer-legal-color-hover: token.$brand-stone;
 
 $footer-legal-separator-marg-x:  token.$space-4;
-$footer-legal-separator-opacity: token.$opacity-60;
+$footer-legal-separator-opacity: token.$opacity-50;
 // ---------------------------------------------------
 
 .footer {
