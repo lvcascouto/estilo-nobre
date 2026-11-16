@@ -14,7 +14,7 @@ $contact-section-items-hover: token.$motion-duration-hover token.$motion-ease-ho
 // Default Styles
 $contact-section-pad:    token.$section-pad;
 $contact-section-bg:     token.$color-surface-dark;
-$contact-section-bg-alt: rgba($contact-section-bg, token.$opacity-60); // TODO: OU 50 
+$contact-section-bg-alt: rgba($contact-section-bg, token.$opacity-50); 
 $contact-section-color:  token.$color-text-on-dark;
 
 // Wrapper
