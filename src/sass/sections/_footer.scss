@@ -33,7 +33,7 @@ $footer-legal-separator-opacity: token.$opacity-50;
 
     @include mix.respond(xs) {
       flex-direction: column;
-      gap: token.$space-6;
+      gap: token.$space-10;
     }
 
     &-legal {
