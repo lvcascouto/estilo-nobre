@@ -67,7 +67,7 @@
   &__ribbon {
     top: 50%;
 
-    width: 56px;
+    width: 64px;
     height: auto;
 
     opacity: 0;
@@ -76,7 +76,9 @@
 
     transform: translateY(calc(-50% + 8px));
 
-    
+    @include mix.respond(md) {
+      width: 56px;
+    }
   }
 
   // Estado durante a seção de contato
@@ -90,7 +92,7 @@
     }
 
     .floating-actions__ribbon {
-      opacity: 0.9;
+      opacity: 0.8;
       visibility: visible;
       pointer-events: auto;
 
