@@ -41,10 +41,9 @@ $contact-column-right-map-border:     0.125rem solid token.$color-accent-op;
     linear-gradient(
       180deg,
       $contact-section-bg-alt 0%,
-      $contact-section-bg-alt 45%,
-      rgba($contact-section-bg, token.$opacity-70) 65%,
-      rgba($contact-section-bg, token.$opacity-80) 80%,
-      rgba($contact-section-bg, token.$opacity-90) 92%,
+      $contact-section-bg-alt 60%,
+      rgba($contact-section-bg, token.$opacity-80) 82%,
+      $contact-section-bg 93%,
       $contact-section-bg 100%
     ),
     url("/assets/media/img/contact/marble-bg.webp") center / cover no-repeat $contact-section-bg;

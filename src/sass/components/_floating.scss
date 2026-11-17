@@ -41,22 +41,26 @@
       transform token.$motion-duration-hover token.$motion-ease-state,
       border-color token.$motion-duration-hover token.$motion-ease-state;
 
-    &:hover,
-    &:focus-visible {
-      border-color: rgba(token.$color-accent, 0.75);
-    }
+      &:hover,
+      &:focus-visible {
+        border-color: token.$color-accent;
+      }
   }
 
   // WhatsApp
   &__whatsapp {
-    bottom: 48px;
+    bottom: 24px;
 
     width: 64px;
     height: auto;
 
-    @include mix.respond(xxs) {
-        width: 52px;
-    }
+    background-color: token.$color-surface-dark-op;
+    border-color: token.$color-accent-op;
+
+    -webkit-backdrop-filter: blur(0.875rem) saturate(140%);
+    backdrop-filter: blur(0.875rem) saturate(140%);
+
+    box-shadow: token.$shadow-lg;
   }
 
   // Lucas Code Ribbon
@@ -71,6 +75,8 @@
     pointer-events: none;
 
     transform: translateY(calc(-50% + 8px));
+
+    
   }
 
   // Estado durante a seção de contato
@@ -84,11 +90,12 @@
     }
 
     .floating-actions__ribbon {
-      opacity: 1;
+      opacity: 0.9;
       visibility: visible;
       pointer-events: auto;
 
       transform: translateY(-50%);
+
     }
   }
 }
