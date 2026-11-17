@@ -18,7 +18,7 @@ $header-box-shadow:   token.$shadow-none;
 $header-backdrop:     blur(0rem);
 
 $header-bg-color-scrolled:   token.$color-surface-dark-op;
-$header-border-scrolled:     token.$color-surface-accent-op;
+$header-border-scrolled:     token.$color-accent-op;
 $header-backdrop-scrolled:   blur(0.875rem) saturate(140%);
 $header-box-shadow-scrolled: token.$shadow-lg;
 
@@ -29,7 +29,7 @@ $header-enter-delay:  0.2s;
 
 // Header Bar (mobile menu open → docked at the top)
 $header-bg-color-open: token.$color-surface-dark;
-$header-border-open:   token.$color-surface-accent-op;
+$header-border-open:   token.$color-accent-op;
 
 // Logo
 $header-logo-height: clamp(2.375rem, 2rem + 1.6vw, 3.125rem); // 38px → 50px

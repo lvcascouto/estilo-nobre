@@ -70,7 +70,7 @@ $services-visual-list-pad: token.$space-16;
       }
 
       // &.active + & {
-      //   border-top-color: token.$color-surface-accent-op;
+      //   border-top-color: token.$color-accent-op;
       // }
 
       // == Item Trigger ==
@@ -190,10 +190,10 @@ $services-visual-list-pad: token.$space-16;
 
       &.active {
         padding-block: 8px 40px;
-        border-top-color: token.$color-surface-accent-op;
+        border-top-color: token.$color-accent-op;
         
         + .services__item {
-          border-top-color: token.$color-surface-accent-op;
+          border-top-color: token.$color-accent-op;
         }
         
         .services__item-trigger {

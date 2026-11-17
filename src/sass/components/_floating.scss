@@ -1,0 +1,95 @@
+@use "../abstracts/tokens" as token;
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/functions" as fn;
+
+
+// ===================================================
+// AXIS ▪︎ FLOATING BUTTONS
+// ===================================================
+
+// Semantic Tokens
+// ---------------------------------------------------
+
+// ---------------------------------------------------
+
+
+.floating-actions {
+  position: fixed;
+  inset: 0 0 0 auto;
+  z-index: fn.z(sticky);
+
+  width: 64px;
+  pointer-events: none;
+
+  &__whatsapp,
+  &__ribbon {
+    position: absolute;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid token.$color-accent-op;
+    border-right: 0;
+
+    pointer-events: auto;
+
+    transition:
+      opacity token.$motion-duration-hover token.$motion-ease-state,
+      visibility token.$motion-duration-hover token.$motion-ease-state,
+      transform token.$motion-duration-hover token.$motion-ease-state,
+      border-color token.$motion-duration-hover token.$motion-ease-state;
+
+    &:hover,
+    &:focus-visible {
+      border-color: rgba(token.$color-accent, 0.75);
+    }
+  }
+
+  // WhatsApp
+  &__whatsapp {
+    bottom: 48px;
+
+    width: 64px;
+    height: auto;
+
+    @include mix.respond(xxs) {
+        width: 52px;
+    }
+  }
+
+  // Lucas Code Ribbon
+  &__ribbon {
+    top: 50%;
+
+    width: 56px;
+    height: auto;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(calc(-50% + 8px));
+  }
+
+  // Estado durante a seção de contato
+  &.is-contact-visible {
+    .floating-actions__whatsapp {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+
+      transform: translateY(8px);
+    }
+
+    .floating-actions__ribbon {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+
+      transform: translateY(-50%);
+    }
+  }
+}
+

@@ -28,7 +28,7 @@ $projects-gallery-item-gap: clamp(token.$space-8, 0.125rem + 0.781vw, token.$spa
     justify-content: space-between;
     gap: $projects-content-gap;
 
-    p { max-width: $projects-content-desc-width; }
+    p { max-width: $projects-content-desc-width;  }
   }
 
   &__gallery {

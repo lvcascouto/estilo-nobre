@@ -40,11 +40,45 @@ const initScrollAnimations = async () => {
 };
 
 // ===================================================
+// AXIS ▪︎ FLOATING ACTIONS
+// ===================================================
+
+const initFloatingActions = () => {
+  const floatingActions = document.querySelector(".floating-actions");
+  const contactSection = document.querySelector("#contato");
+
+  if (!floatingActions || !contactSection) return;
+
+  if (!("IntersectionObserver" in window)) return;
+
+  const contactObserver = new IntersectionObserver(
+    ([entry]) => {
+      floatingActions.classList.toggle(
+        "is-contact-visible",
+        entry.isIntersecting,
+      );
+    },
+    {
+      root: null,
+      rootMargin: "-15% 0px -15% 0px",
+      threshold: 0,
+    },
+  );
+
+  contactObserver.observe(contactSection);
+};
+
+// ===================================================
 // INITIALIZATION
 // ===================================================
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initScrollAnimations);
-} else {
+const initGlobalScripts = () => {
   initScrollAnimations();
+  initFloatingActions();
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initGlobalScripts);
+} else {
+  initGlobalScripts();
 }
