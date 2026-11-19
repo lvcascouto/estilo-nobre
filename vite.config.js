@@ -14,7 +14,7 @@ export default defineConfig({
 
   // == Base & Root ==
   // Base public path
-  base: "/", // TODO: MUDAR PARA /
+  base: "", // TODO: MUDAR PARA /
 
   // Root of the project — where index.html lives
   root: ".",
