@@ -60,6 +60,10 @@ h5 { font-size: token.$font-size-h5; }
 h6 { font-size: token.$font-size-h6; }
 
 // == Other Elements ==
+address {
+  font-style: normal;
+}
+
 p, 
 li, 
 blockquote, 

@@ -26,6 +26,14 @@
 }
 
 // == Document Defaults ==
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(clamp(5.475rem, 5.049rem + 2.13vw, 6.4125rem) + token.$space-24);
+  @include mix.respond(md) { scroll-padding-top: calc(clamp(5.475rem, 5.049rem + 2.13vw, 6.4125rem) + 0.25rem); }
+
+  [id] { scroll-margin-top: token.$space-24; }
+}
+
 body {
   min-height: 100vh;
   min-height: 100dvh;

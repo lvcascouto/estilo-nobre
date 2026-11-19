@@ -66,7 +66,7 @@ $services-visual-list-pad: token.$space-16;
         border-color token.$motion-duration-hover token.$motion-ease-hover;
 
       &:last-child {
-        border-bottom: 1px solid rgba(token.$brand-off-white, 0.1);
+        border-bottom: 1px solid rgba(token.$brand-off-white, token.$opacity-10);
       }
 
       // &.active + & {
