@@ -2,179 +2,204 @@
 @use "../abstracts/mixins" as mix;
 
 // ===================================================
-// ESTILO NOBRE ▪︎ PRIVACY POLITICS
+// ESTILO NOBRE ▪︎ PRIVACY POLICY
 // ===================================================
 
 // Semantic Tokens
 // ---------------------------------------------------
+// Default Styles
+$privacy-section-pad-block:    calc(clamp(5.475rem, 5.049rem + 2.13vw, 6.4125rem) + token.$section-pad) token.$space-128;
+$privacy-section-pad-block-md: calc(clamp(5.475rem, 5.049rem + 2.13vw, 6.4125rem) + token.$space-32) token.$section-pad;
+
+$privacy-section-txt-color:     token.$color-text-on-dark;
+$privacy-section-heading-color: token.$color-accent;
+
+// Summary
+$summary-navigation-top: calc(clamp(5.475rem, 5.049rem + 2.13vw, 6.4125rem) + token.$section-pad);
+
+$summary-heading-pad-y:     token.$space-6 token.$space-16;
+$summary-heading-font-size: token.$font-14;
+
+
+
 // ---------------------------------------------------
 
 .privacy {
-  padding-block: calc(clamp(5.475rem, 5.049rem + 2.13vw, 6.4125rem) + token.$section-pad) token.$section-pad;
-  color: token.$color-text-on-dark;
+  padding-block: $privacy-section-pad-block;
+  @include mix.respond(md) { padding-block: $privacy-section-pad-block-md; }
 
-  @include mix.respond(md) {
-    padding-top: calc(clamp(5.475rem, 5.049rem + 2.13vw, 6.4125rem) + 32px);
-  }
-
+  color: $privacy-section-txt-color;
+  
   h1,
-    h2 {
-      color: token.$color-accent;
-    }
+  h2 { color: $privacy-section-heading-color; }
 
   &__wrapper {
     display: grid;
-    grid-template-columns: 1fr 3fr; // TODO: OU 3FR
-    gap: token.$space-80;
-
+    grid-template-columns: 1fr 3fr;
+    gap: token.$space-96;
     align-items: start;
+
+    @include mix.respond(lg) {
+      grid-template-columns: 1fr 2fr;
+      gap: token.$space-48;
+    }
 
     @include mix.respond(md) {
       grid-template-columns: 1fr;
     }
   }
 
-
+  // Summary 
   &__navigation {
-    // border: 1px solid red;
     position: sticky;
-    align-self: start;
-    top: calc(clamp(5.475rem, 5.049rem + 2.13vw, 6.4125rem) + 52px);
-    // top: token.$space-200;
-    // margin-top: calc(token.$space-96 + token.$space-16);
+    top: $summary-navigation-top;
 
+    @include mix.respond(md) {
+      position: static;
+    }
+  }
 
-    
+  &__toc {
+    &-summary {
+      list-style: none;
+      pointer-events: none;
 
-    h2 {
-      margin-bottom: 16px;
-      font-size: 16px;
-      text-transform: uppercase;
+      &::-webkit-details-marker { display: none; }
+
+      h2 {
+        padding-block: $summary-heading-pad-y;
+        font-size: $summary-heading-font-size;
+        text-transform: uppercase;
+
+        @include mix.respond(md) {
+          padding: 0;
+        }
+      }
+
+      @include mix.respond(md) {
+        @include mix.flex($align: center, $gap: token.$space-12);
+        cursor: pointer;
+        pointer-events: auto;
+      }
+    }
+
+    &-icon {
+      display: none;
+
+      @include mix.respond(md) {
+        position: relative;
+        display: block;
+        width: token.$space-8;
+        height: token.$space-8;
+
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          margin: auto;
+          background-color: token.$color-accent;
+          transition: transform token.$motion-duration-hover token.$motion-ease-hover;
+        }
+
+        &::before {
+          width: 100%;
+          height: 0.0938rem; // 1.5px
+        }
+
+        &::after {
+          width: 0.0938rem; // 1.5px
+          height: 100%;
+        }
+      }
+    }
+
+    @include mix.respond(md) {
+      &[open] {
+        .privacy__toc-icon::after {
+          transform: rotate(90deg) scaleY(0);
+        }
+
+        .privacy__toc-summary {
+          padding-bottom: token.$space-16;
+        }
+      }
     }
 
     ol {
-      // font-size: 14px;
-
-      display: flex;
-      flex-direction: column;
-      // gap: 0;
+      @include mix.flex($direction: column);
+      border: 0.0625rem solid rgba(token.$brand-off-white, token.$opacity-10);
 
       li {
         border-top: 0.0625rem solid rgba(token.$brand-off-white, token.$opacity-10);
-        transition: border-color token.$motion-duration-hover token.$motion-ease-hover;
-
-        // &:last-child {
-        //   border-bottom: 0.0625rem solid rgba(token.$brand-off-white, token.$opacity-10);
-        // }
 
         &:first-child {
           border-top-color: transparent;
         }
 
-        
+        > small {
+          display: block;
+          width: 100%;
+        }
 
         a {
-          display: block; // ou flex, se quiser alinhar um ícone/seta à direita
+          display: block;
           width: 100%;
-          padding-block: 8px;
-          opacity: 0.6;
+          padding: token.$space-8 token.$space-16;
+          font-weight: inherit;
+          opacity: token.$opacity-60;
+          text-shadow: 0 0 0 transparent;
 
+          transition:
+            opacity token.$motion-duration-hover token.$motion-ease-hover,
+            text-shadow token.$motion-duration-hover token.$motion-ease-hover;
 
-          transition: opacity token.$motion-duration-hover token.$motion-ease-hover;
+          small {
+            display: inline-block;
+            margin-right: token.$space-4;
+            font-variant-numeric: tabular-nums;
+          }
 
           &:hover,
           &:focus-visible {
-            opacity: 1;
+            opacity: token.$opacity-100;
+            text-shadow: 0 0 0.0406rem currentColor;
           }
-          
         }
       }
-
-      
     }
   }
 
+  // Content
   &__policy {
 
-    section {
-      // border: 1px solid purple;
-      padding-top: 48px;
-    }
+    section { padding-top: token.$space-48; }
 
-
-    
-    h1 {
-      font-size: token.$font-48;
-
-      @include mix.respond(md) {
-        font-size: token.$font-40;
-      }
-
-      @include mix.respond(xxs) {
-        font-size: token.$font-32;
-      }
-    }
-
-    h2 {
-      font-size: token.$font-32;
-
-      @include mix.respond(md) {
-        font-size: token.$font-24;
-      }
-
-      @include mix.respond(xxs) {
-        font-size: 22px;
-      }
-    }
-
-    p {
-      margin-top: 24px;
-    }
-
-    // ul {
-    //   list-style: revert;
-    //   padding-left: 20px;
-    // }
+    p { margin-top: token.$space-24; }
 
     
     ul {
-      margin-top: 24px;
-      padding-left: 18px;
+      margin-top: token.$space-24;
+      padding-left: token.$space-16;
 
+      @include mix.flex($direction: column, $gap: token.$space-12);
       list-style: revert;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
     }
 
     &-header {
-      // border: 1px solid gold;
 
-      hgroup {
-        h1 {
-          margin-bottom: 4px;
-          
-          
+      h1 { margin-bottom: token.$space-4; }
+
+      p {
+        &:first-of-type {
+          margin-top: 0;
+          color: token.$color-text-on-dark-alt;
         }
 
-        p {
-
-          &:first-of-type {
-            margin-top: 0;
-            color: token.$color-text-on-dark-alt;
-          }
-
-          &:last-of-type {
-            margin-top: 24px;
-          }
-          
+        &:last-of-type {
+          margin-top: token.$space-24;
         }
-
-  
       }
-      
-      
-      
     }
   }
 }

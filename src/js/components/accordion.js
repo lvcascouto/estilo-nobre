@@ -93,3 +93,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// PRIVACY
+const tocDetails = document.querySelector(".privacy__toc");
+
+if (tocDetails) {
+  const mobileQuery = window.matchMedia("(max-width: 768px)"); // ajuste para o valor exato do seu mixin `md`
+
+  // Fecha o acordeão automaticamente ao tocar em um link no mobile
+  tocDetails.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (mobileQuery.matches) {
+        tocDetails.removeAttribute("open");
+      }
+    });
+  });
+}
