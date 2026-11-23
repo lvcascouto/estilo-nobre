@@ -14,7 +14,7 @@ export default defineConfig({
 
   // == Base & Root ==
   // Base public path
-  base: "", // TODO: MUDAR PARA /
+  base: "/",
 
   // Root of the project — where index.html lives
   root: ".",
@@ -42,11 +42,10 @@ export default defineConfig({
 
     // Customize output structure and multi-page setup
     rollupOptions: {
-      // Define entry points for multi-page architecture
       input: {
         main: resolve(import.meta.dirname, "index.html"),
-        priv: resolve(import.meta.dirname, "src/html/pages/privacy.html"),
-        cook: resolve(import.meta.dirname, "src/html/pages/cookies.html"),
+        priv: resolve(import.meta.dirname, "html/pages/privacy.html"),
+        cook: resolve(import.meta.dirname, "html/pages/cookies.html"),
       },
 
       output: {
