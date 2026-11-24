@@ -24,14 +24,16 @@ $summary-heading-font-size: token.$font-14;
 
 // ---------------------------------------------------
 
-.privacy {
+.privacy,
+.cookies {
   padding-block: $privacy-section-pad-block;
   @include mix.respond(md) { padding-block: $privacy-section-pad-block-md; }
 
   color: $privacy-section-txt-color;
   
   h1,
-  h2 { color: $privacy-section-heading-color; }
+  h2,
+  h3 { color: $privacy-section-heading-color; }
 
   &__wrapper {
     display: grid;
@@ -63,8 +65,15 @@ $summary-heading-font-size: token.$font-14;
     &-summary {
       list-style: none;
       pointer-events: none;
+      color: token.$color-accent;
 
       &::-webkit-details-marker { display: none; }
+
+      &:hover,
+      &:focus-visible {
+        text-decoration: underline;
+        text-underline-offset: 0.125rem;
+      }
 
       h2 {
         padding-block: $summary-heading-pad-y;
@@ -116,11 +125,13 @@ $summary-heading-font-size: token.$font-14;
 
     @include mix.respond(md) {
       &[open] {
-        .privacy__toc-icon::after {
+        .privacy__toc-icon::after,
+        .cookies__toc-icon::after {
           transform: rotate(90deg) scaleY(0);
         }
 
-        .privacy__toc-summary {
+        .privacy__toc-summary,
+        .cookies__toc-summary {
           padding-bottom: token.$space-16;
         }
       }
@@ -177,6 +188,7 @@ $summary-heading-font-size: token.$font-14;
 
     p { margin-top: token.$space-24; }
 
+
     
     ul {
       margin-top: token.$space-24;
@@ -199,6 +211,30 @@ $summary-heading-font-size: token.$font-14;
         &:last-of-type {
           margin-top: token.$space-24;
         }
+      }
+    }
+  }
+
+  // Cookies Preferences
+  &__preferences {
+    width: 100%;
+    margin-top: token.$space-24;
+    padding: token.$space-24;
+
+    border: 1px solid token.$color-accent-op;   
+
+
+    &-actions {
+      @include mix.flex($gap: token.$space-10);
+      margin-top: token.$space-24;
+    }
+
+    @include mix.respond(xxs) {
+      text-align: center;
+        
+      &-actions {
+        flex-direction: column;
+        justify-content: center;
       }
     }
   }

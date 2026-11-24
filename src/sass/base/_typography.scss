@@ -31,6 +31,8 @@ h1, h2, h3, h4, h5, h6 {
   line-height:    token.$line-height-heading;
   letter-spacing: token.$letter-spc-heading;
   text-wrap:      balance;
+
+  &.is-policy  { font-size: token.$font-size-heading-policy; }
 }
 
 h1 {
@@ -45,7 +47,6 @@ h2 {
   @include mix.respond(xs) { font-size: token.$font-size-h2-mobile; }
 
   &.is-contact { font-size: token.$font-size-h2-contact; }
-  &.is-policy  { font-size: token.$font-size-h2-policy; }
 }
 
 h3 {

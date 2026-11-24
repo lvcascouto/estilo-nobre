@@ -52,8 +52,6 @@ $btn-link-text-decoration-color:     fn.color-dark(token.$color-accent, 50%);
 $btn-link-text-decoration-thickness: 0.25rem;   // 4px
 $btn-link-text-decoration-offset:    0.1875rem; // 3px
 
-// WhatsApp
-
 // Variants & Modifiers
 $op-dsbld-btn: token.$opacity-50;
 $rd-full-round: token.$radius-full;
@@ -131,6 +129,24 @@ $padding-btn-xl: token.$space-16 token.$space-32;
 
     // Primary Variants
     &.is-menu { font-size: $btn-primary-menu-font-size; }
+
+    &.is-policy {
+      font-family: inherit;
+      font-size: inherit;
+      
+      &.alt {
+        font-weight: inherit;
+        color: inherit;
+        background-color: transparent;
+        border: 0.0625rem solid token.$color-accent;
+      }
+
+      &:active {
+        transform: translateY(0.0938rem);
+      }
+
+      &::after { display: none;  }
+    }
 
     &::before {
       content: "";

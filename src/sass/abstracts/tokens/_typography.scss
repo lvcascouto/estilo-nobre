@@ -68,7 +68,6 @@ $font-size-h1-policy:  clamp($font-28, 0.78rem + 4.45vw, $font-48);     // 28px 
 $font-size-h2:         clamp(2.375rem, 1.982rem + 1.092vw, $font-48);   // 38px (768 bp) → 48px (1492 bp)
 $font-size-h2-mobile:  clamp(1.625rem, -0.279rem + 9.23vw, 2.375rem);   // 26px (330 bp) → 38px (460 bp)
 $font-size-h2-contact: clamp($font-40, 1.979rem + 2.53vw, $font-64);    // 40px (330 bp) → 64px (1280bp)
-$font-size-h2-policy:  clamp($font-20, 0.75rem + 2.5vw, $font-32);      // 20px (320 bp) → 32px (800bp)
 
 $font-size-h3:         clamp(1.75rem, 1.214rem + 2.679vw, $font-40);    // 28px (320 bp) → 40px (768 bp)
 $font-size-h3-contact: $font-16;
@@ -77,7 +76,10 @@ $font-size-h4:         $font-14;
 $font-size-h5:         $font-24;
 $font-size-h6:         $font-20;
 
+
 // Other Elements
+$font-size-heading-policy: clamp($font-20, 0.75rem + 2.5vw, $font-32);  // 20px (320 bp) → 32px (800bp)
+
 $font-size-header:    clamp(0.9375rem, 0.852rem + 0.1791vw, 1.0188rem); // 15px (768 bp) → 16.3px (1492 bp)
 
 $font-size-eyebrow:   clamp($font-10, 0.515rem + 0.368vw, $font-12);    // 10px (480 bp) -> 12px (1024 bp)
