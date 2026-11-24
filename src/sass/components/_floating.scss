@@ -57,8 +57,8 @@
     background-color: token.$color-surface-dark-op;
     border-color: token.$color-accent-op;
 
-    -webkit-backdrop-filter: blur(0.875rem) saturate(140%);
-    backdrop-filter: blur(0.875rem) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
 
     box-shadow: token.$shadow-lg;
   }

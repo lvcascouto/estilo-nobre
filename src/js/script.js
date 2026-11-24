@@ -10,11 +10,12 @@ import "../sass/main.scss";
 // Global scripts, helpers, and utility functions (e.g., globals, formatters)
 import "./base/global.js";
 
-// == 2. Vendor (Libs) ==
-// Configuration and initialization for third-party libraries (e.g., Swiper, GSAP)
-
-// == 3. Components ==
+// == 2. Components ==
 // Isolated JavaScript logic for UI components (e.g., menus, modals, tabs)
 import "./components/accordion.js";
 import "./components/header.js";
 import "./components/lightbox.js";
+
+// == 3. Modules ==
+// uma pequena descrição que nao sei
+import "./modules/cookie-consent.js";

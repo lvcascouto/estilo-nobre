@@ -141,11 +141,8 @@ $padding-btn-xl: token.$space-16 token.$space-32;
         border: 0.0625rem solid token.$color-accent;
       }
 
-      &:active {
-        transform: translateY(0.0938rem);
-      }
-
-      &::after { display: none;  }
+      &::after { display: none; }
+      &:active { transform: translateY(0.0938rem); }
     }
 
     &::before {

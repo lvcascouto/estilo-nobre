@@ -1,0 +1,112 @@
+
+@use "../abstracts/tokens" as token;
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/functions" as fn;
+
+
+// ===================================================
+// AXIS ▪︎ COOKIE CONSENT
+// ===================================================
+
+.cookie-consent {
+  position: fixed;
+  right: token.$space-80;
+  bottom: token.$space-24;
+  z-index: fn.z(sticky);
+
+  width: min(380px, calc(100vw - token.$space-48));
+  padding: token.$space-24;
+
+  background-color: token.$color-surface-dark-op;
+  color: token.$color-text-on-dark;
+  border: 0.0625rem solid token.$color-accent-op;
+
+  -webkit-backdrop-filter: blur(2rem) saturate(140%);
+  backdrop-filter: blur(2rem) saturate(140%);
+
+  opacity: token.$opacity-100;
+  visibility: visible;
+  transform: translateY(0);
+
+  transition:
+    opacity token.$motion-duration-hover token.$motion-ease-state,
+    visibility token.$motion-duration-hover token.$motion-ease-state,
+    transform token.$motion-duration-hover token.$motion-ease-state;
+
+  // Content
+  &__content {
+    @include mix.flex($direction: column, $gap: token.$space-16);
+  }
+
+  &__title {
+    color: token.$color-accent;
+    font-size: token.$font-18
+  }
+
+  &__description {
+    font-size: token.$font-14;
+  }
+
+  // Actions
+  &__actions {
+    @include mix.flex($gap: token.$space-10);
+    margin-top: token.$space-24;
+  }
+
+  &__button {
+    font-size: token.$font-14 !important;
+    flex: 1;
+  }
+
+  // Hidden state
+  &.is-hidden {
+    opacity: token.$opacity-0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(token.$space-12);
+  }
+
+  @include mix.respond(xxs) {
+    right: 0;
+    bottom: 0;
+    width: auto;
+
+    &__content {
+        gap: 10px;
+    }
+
+    &__title {
+      font-size: token.$font-16;
+    }
+
+    &__description {
+      font-size: token.$font-12;
+    }
+
+    &__button {
+      font-size: token.$font-12 !important;
+      flex: 1;
+    }
+  }
+
+  @include mix.respond(xxs) {
+    
+  }
+  // Responsive
+//   @media (max-width: 575.98px) {
+
+
+//     width: auto;
+//     padding: 20px;
+
+//     &__actions {
+//       gap: 8px;
+//     }
+//   }
+
+//   @media (max-width: 359.98px) {
+//     &__actions {
+//       flex-direction: column;
+//     }
+//   }  
+}

@@ -68,6 +68,7 @@ $eyebrow-write-feather:   1.6em;
 
       .hero & { --reveal-delay: #{$i * $reveal-delay-step}; }
       &.floating-actions__whatsapp { --reveal-delay: #{5 * $reveal-delay-step}; }
+      &.cookie-consent { --reveal-delay: #{12 * $reveal-delay-step}; }
     }
   }
 }

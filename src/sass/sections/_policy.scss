@@ -2,7 +2,7 @@
 @use "../abstracts/mixins" as mix;
 
 // ===================================================
-// ESTILO NOBRE ▪︎ PRIVACY POLICY
+// ESTILO NOBRE ▪︎ LEGAL POLICIES
 // ===================================================
 
 // Semantic Tokens
@@ -233,7 +233,7 @@ $summary-heading-font-size: token.$font-14;
       text-align: center;
         
       &-actions {
-        flex-direction: column;
+        flex-direction: column-reverse;
         justify-content: center;
       }
     }
