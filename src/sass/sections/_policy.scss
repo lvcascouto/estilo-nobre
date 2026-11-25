@@ -223,6 +223,9 @@ $summary-heading-font-size: token.$font-14;
 
     border: 1px solid token.$color-accent-op;   
 
+    &-description {
+      margin-top:  token.$space-16 !important;
+    }
 
     &-actions {
       @include mix.flex($gap: token.$space-10);

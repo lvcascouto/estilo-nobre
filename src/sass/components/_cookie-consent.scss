@@ -20,6 +20,7 @@
   background-color: token.$color-surface-dark-op;
   color: token.$color-text-on-dark;
   border: 0.0625rem solid token.$color-accent-op;
+  box-shadow: token.$shadow-lg;
 
   -webkit-backdrop-filter: blur(2rem) saturate(140%);
   backdrop-filter: blur(2rem) saturate(140%);
@@ -67,12 +68,12 @@
   }
 
   @include mix.respond(xxs) {
-    right: 0;
-    bottom: 0;
+    right: 24px; left: 24px;
+    bottom: 24px;
     width: auto;
 
     &__content {
-        gap: 10px;
+      gap: 10px;
     }
 
     &__title {
@@ -85,28 +86,6 @@
 
     &__button {
       font-size: token.$font-12 !important;
-      flex: 1;
     }
   }
-
-  @include mix.respond(xxs) {
-    
-  }
-  // Responsive
-//   @media (max-width: 575.98px) {
-
-
-//     width: auto;
-//     padding: 20px;
-
-//     &__actions {
-//       gap: 8px;
-//     }
-//   }
-
-//   @media (max-width: 359.98px) {
-//     &__actions {
-//       flex-direction: column;
-//     }
-//   }  
 }
