@@ -17,6 +17,7 @@ let analyticsInitialized = false;
 // ===================================================
 // COOKIE MANAGEMENT
 // ===================================================
+
 const clearAnalyticsCookies = () => {
   const cookies = document.cookie
     .split(";")
@@ -33,12 +34,9 @@ const clearAnalyticsCookies = () => {
 // ===================================================
 // GOOGLE TAG
 // ===================================================
+
 const configureAnalytics = () => {
-  if (analyticsInitialized) {
-    // Retoma a coleta após uma nova aceitação.
-    window.gtag("event", "page_view");
-    return;
-  }
+  if (analyticsInitialized) return;
 
   window.gtag("js", new Date());
 
@@ -49,10 +47,13 @@ const configureAnalytics = () => {
   });
 
   analyticsInitialized = true;
-
-  // Envia a visualização inicial somente após a configuração.
-  window.gtag("event", "page_view");
 };
+
+// ===================================================
+// ACTIVATION
+// ===================================================
+
+const getConsentStatus = () => getConsent()?.status ?? null;
 
 const activateAnalytics = () => {
   window[GA_DISABLE_KEY] = false;
@@ -102,7 +103,6 @@ const activateAnalytics = () => {
 // ===================================================
 // CONSENT STATUS
 // ===================================================
-const getConsentStatus = () => getConsent()?.status ?? null;
 
 const handleConsentChange = (event) => {
   const status = event.detail?.status;
@@ -121,14 +121,15 @@ const handleConsentChange = (event) => {
 // ===================================================
 // INITIALIZATION
 // ===================================================
+
 export const initGoogleAnalytics = () => {
-  // Bloqueia a coleta por padrão.
+  // Blocks collection by default.
   window[GA_DISABLE_KEY] = true;
 
-  // Reage às alterações feitas pelo banner ou pela política.
+  // Reacts to changes made through the banner or policy page.
   window.addEventListener(CONSENT_EVENT, handleConsentChange);
 
-  // Verifica se já existe uma preferência salva.
+  // Checks whether a preference is already saved.
   if (getConsentStatus() === "accepted") {
     activateAnalytics();
   } else {
