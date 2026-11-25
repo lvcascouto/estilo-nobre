@@ -221,15 +221,11 @@ $summary-heading-font-size: token.$font-14;
     margin-top: token.$space-24;
     padding: token.$space-24;
 
-    border: 1px solid token.$color-accent-op;   
-
-    &-description {
-      margin-top:  token.$space-16 !important;
-    }
+    border: 1px solid token.$color-accent-op;
 
     &-actions {
       @include mix.flex($gap: token.$space-10);
-      margin-top: token.$space-24;
+      margin-top: token.$space-28;
     }
 
     @include mix.respond(xxs) {

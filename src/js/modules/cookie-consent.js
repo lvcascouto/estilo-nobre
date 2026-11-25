@@ -47,13 +47,39 @@ const saveConsent = (status) => {
 };
 
 // ===================================================
+// PREFERENCE INDICATOR
+// ===================================================
+
+const renderPreference = (consent, feedback) => {
+  if (!feedback) return;
+
+  feedback.hidden = false;
+
+  if (!consent) {
+    feedback.dataset.state = "unset";
+    feedback.textContent =
+      "Você ainda não definiu sua preferência em relação aos cookies opcionais.";
+    return;
+  }
+
+  if (consent.status === "accepted") {
+    feedback.dataset.state = "accepted";
+    feedback.textContent =
+      "Preferência atual: cookies opcionais de análise aceitos.";
+    return;
+  }
+
+  feedback.dataset.state = "rejected";
+  feedback.textContent =
+    "Preferência atual: cookies opcionais de análise recusados.";
+};
+
+// ===================================================
 // COOKIE CONSENT
 // ===================================================
 
 const initCookieConsent = () => {
   const banner = document.querySelector(".cookie-consent");
-
-  if (!banner) return;
 
   const consentButtons = document.querySelectorAll("[data-cookie-consent]");
 
@@ -63,27 +89,24 @@ const initCookieConsent = () => {
 
   const savedConsent = getConsent();
 
-  if (savedConsent) {
+  if (savedConsent && banner) {
     banner.classList.add("is-hidden");
     banner.setAttribute("aria-hidden", "true");
   }
+
+  renderPreference(savedConsent, feedback);
 
   // == Update preference ==
 
   const updateConsent = (status) => {
     const consent = saveConsent(status);
 
-    banner.classList.add("is-hidden");
-    banner.setAttribute("aria-hidden", "true");
-
-    if (feedback) {
-      feedback.hidden = false;
-
-      feedback.textContent =
-        status === "accepted"
-          ? "Sua preferência foi atualizada. Os cookies opcionais foram aceitos."
-          : "Sua preferência foi atualizada. Os cookies opcionais foram rejeitados.";
+    if (banner) {
+      banner.classList.add("is-hidden");
+      banner.setAttribute("aria-hidden", "true");
     }
+
+    renderPreference(consent, feedback);
 
     return consent;
   };
