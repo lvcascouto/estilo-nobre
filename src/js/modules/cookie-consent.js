@@ -1,55 +1,13 @@
 // ===================================================
-// ESTILO NOBRE ▪︎ COOKIE CONSENT
+// AXIS ▪︎ COOKIE CONSENT MODULE
+// Controls the cookie banner and preference feedback.
 // ===================================================
 
-const CONSENT_KEY = "estilo-nobre-cookie-consent";
-const CONSENT_VERSION = 1;
-
-// ===================================================
-// STORAGE
-// ===================================================
-
-const getConsent = () => {
-  try {
-    const storedConsent = localStorage.getItem(CONSENT_KEY);
-
-    if (!storedConsent) return null;
-
-    const consent = JSON.parse(storedConsent);
-
-    if (consent.version !== CONSENT_VERSION) return null;
-
-    if (!["accepted", "rejected"].includes(consent.status)) {
-      return null;
-    }
-
-    return consent;
-  } catch (error) {
-    console.warn("Não foi possível recuperar o consentimento:", error);
-    return null;
-  }
-};
-
-const saveConsent = (status) => {
-  const consent = {
-    status,
-    version: CONSENT_VERSION,
-    updatedAt: new Date().toISOString(),
-  };
-
-  try {
-    localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
-  } catch (error) {
-    console.warn("Não foi possível salvar o consentimento:", error);
-  }
-
-  return consent;
-};
+import { getConsent, saveConsent } from "../core/consent.js";
 
 // ===================================================
 // PREFERENCE INDICATOR
 // ===================================================
-
 const renderPreference = (consent, feedback) => {
   if (!feedback) return;
 
@@ -77,16 +35,12 @@ const renderPreference = (consent, feedback) => {
 // ===================================================
 // COOKIE CONSENT
 // ===================================================
-
-const initCookieConsent = () => {
+export const initCookieConsent = () => {
   const banner = document.querySelector(".cookie-consent");
-
   const consentButtons = document.querySelectorAll("[data-cookie-consent]");
-
   const feedback = document.querySelector(".cookies__preferences-feedback");
 
-  // == Initial state ==
-
+  // Initial State
   const savedConsent = getConsent();
 
   if (savedConsent && banner) {
@@ -96,10 +50,11 @@ const initCookieConsent = () => {
 
   renderPreference(savedConsent, feedback);
 
-  // == Update preference ==
-
+  // Update Preference
   const updateConsent = (status) => {
     const consent = saveConsent(status);
+
+    if (!consent) return;
 
     if (banner) {
       banner.classList.add("is-hidden");
@@ -107,12 +62,9 @@ const initCookieConsent = () => {
     }
 
     renderPreference(consent, feedback);
-
-    return consent;
   };
 
-  // == Button events ==
-
+  // Button Events
   consentButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const action = button.dataset.cookieConsent;
@@ -127,13 +79,3 @@ const initCookieConsent = () => {
     });
   });
 };
-
-// ===================================================
-// INITIALIZATION
-// ===================================================
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initCookieConsent);
-} else {
-  initCookieConsent();
-}

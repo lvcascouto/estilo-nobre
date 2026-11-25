@@ -1,13 +1,18 @@
 // ===================================================
 // AXIS ▪︎ SERVICES ACCORDION
+// Controls the expandable service items.
 // ===================================================
 
-document.addEventListener("DOMContentLoaded", () => {
+// ===================================================
+// INITIALIZATION
+// ===================================================
+export const initAccordion = () => {
   const accordionItems = document.querySelectorAll(".services__item");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   if (!accordionItems.length) return;
 
+  // Element References
   function getElements(item) {
     return {
       trigger: item.querySelector(".services__item-trigger"),
@@ -15,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
+  // Accordion Controls
   function closeItem(item) {
     const { trigger, content } = getElements(item);
 
@@ -40,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     content.inert = false;
     content.removeAttribute("aria-hidden");
 
-    // Registra o estado fechado antes de iniciar a transição.
+    // Registra o estado fechado antes de iniciar a transição
     if (!item.classList.contains("active")) {
       void content.offsetHeight;
     }
@@ -49,6 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
     trigger.setAttribute("aria-expanded", "true");
   }
 
+  // ===================================================
+  // EVENT LISTENERS
+  // ===================================================
   accordionItems.forEach((item) => {
     const { trigger, content } = getElements(item);
 
@@ -92,20 +101,4 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-});
-
-// PRIVACY
-const tocDetails = document.querySelector(".privacy__toc");
-
-if (tocDetails) {
-  const mobileQuery = window.matchMedia("(max-width: 768px)"); // ajuste para o valor exato do seu mixin `md`
-
-  // Fecha o acordeão automaticamente ao tocar em um link no mobile
-  tocDetails.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      if (mobileQuery.matches) {
-        tocDetails.removeAttribute("open");
-      }
-    });
-  });
-}
+};

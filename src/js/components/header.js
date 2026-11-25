@@ -1,17 +1,21 @@
 // ===================================================
-// ESTILO NOBRE ▪︎ HEADER COMPONENT
-// 1. Scroll effect → floating header
-// 2. Mobile menu   → a11y, keyboard and safety nets
+// AXIS ▪︎ HEADER COMPONENT
+// Controls the header scroll effect and mobile navigation.
 // ===================================================
-const header = document.querySelector(".header");
 
-if (header) {
+// ===================================================
+// INITIALIZATION
+// ===================================================
+export const initHeader = () => {
+  const header = document.querySelector(".header");
+
+  if (!header) return;
+
   initScrollEffect(header);
   initMobileMenu(header);
-}
+};
 
 // == 1. Scroll Effect ==
-// ---------------------------------------------------
 function initScrollEffect(header) {
   const SCROLL_OFFSET = 40; // px de scroll antes de ativar o efeito
 
@@ -40,9 +44,10 @@ function initScrollEffect(header) {
 
 // == 2. Mobile Menu ==
 // ---------------------------------------------------
-// O estado de aberto/fechado vive no checkbox (#check-icon): é ele que o CSS
-// observa (ícone, header, painel, scroll lock). Aqui fica só o que CSS não faz:
-// aria, teclado, foco e as "redes de segurança".
+// O estado de aberto/fechado vive no checkbox (#check-icon):
+// é ele que o CSS observa (ícone, header, painel, scroll lock).
+// Aqui fica só o que CSS não faz:
+// aria, teclado, foco e as redes de segurança.
 // ---------------------------------------------------
 function initMobileMenu(header) {
   const wrapper = header.closest(".header-wrapper");
@@ -55,13 +60,13 @@ function initMobileMenu(header) {
   // Mesmo valor do token `md` (48rem) → mix.respond(md) no Sass
   const mobileQuery = window.matchMedia("(width < 48rem)");
 
-  // Tudo que não é o header: enquanto o menu está aberto, vira "inert"
-  // (sem foco, sem clique, fora da árvore de acessibilidade → foco preso no menu)
+  // Tudo que não é o header: enquanto o menu está aberto, vira inert.
   const getPageContent = () =>
     [...document.body.children].filter(
       (el) => el !== wrapper && !el.matches("script, style, link, template"),
     );
 
+  // State Synchronization
   const sync = () => {
     const isOpen = checkbox.checked;
 
@@ -76,6 +81,7 @@ function initMobileMenu(header) {
     });
   };
 
+  // Menu Controls
   const close = ({ restoreFocus = false } = {}) => {
     if (!checkbox.checked) return;
 
@@ -85,13 +91,16 @@ function initMobileMenu(header) {
     if (restoreFocus) toggle.focus();
   };
 
-  // Estado inicial: o navegador pode restaurar o checkbox marcado (reload)
+  // Initial State
   checkbox.checked = false;
   sync();
 
+  // ===================================================
+  // EVENT LISTENERS
+  // ===================================================
   checkbox.addEventListener("change", sync);
 
-  // <label role="button">: Enter e Espaço precisam acionar o toggle
+  // <label role="button">: Enter e Espaço precisam acionar o toggle.
   toggle.addEventListener("keydown", (e) => {
     if (e.key !== "Enter" && e.key !== " ") return;
 
@@ -99,7 +108,7 @@ function initMobileMenu(header) {
     checkbox.click();
   });
 
-  // Clicou num link do menu (âncora ou WhatsApp) → fecha
+  // Clicou num link do menu (âncora ou WhatsApp) → fecha.
   panel.addEventListener("click", (e) => {
     if (e.target.closest("a")) close();
   });
@@ -108,12 +117,12 @@ function initMobileMenu(header) {
     if (e.key === "Escape") close({ restoreFocus: true });
   });
 
-  // Passou do breakpoint com o menu aberto → não deixa scroll travado no desktop
+  // Passou do breakpoint com o menu aberto → não deixa scroll travado no desktop.
   mobileQuery.addEventListener("change", (e) => {
     if (!e.matches) close();
   });
 
-  // Voltar pelo histórico (bfcache) não pode reabrir o menu
+  // Voltar pelo histórico (bfcache) não pode reabrir o menu.
   window.addEventListener("pageshow", (e) => {
     if (e.persisted) close();
   });

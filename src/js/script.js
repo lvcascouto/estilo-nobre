@@ -1,21 +1,50 @@
 // ===================================================
 // AXIS ▪︎ MAIN JS ENTRY POINT
-// Acts as the bundler master, importing all JS modules
-// and the Sass architecture to be processed by Vite.
+// Centralizes the application imports and initialization.
 // ===================================================
 
 import "../sass/main.scss";
 
-// == 1. Base Global ==
-// Global scripts, helpers, and utility functions (e.g., globals, formatters)
-import "./base/global.js";
+// == 1. Base ==
+import { initScrollAnimations } from "./base/animations.js";
+import { initFloatingActions } from "./base/floating-actions.js";
 
 // == 2. Components ==
-// Isolated JavaScript logic for UI components (e.g., menus, modals, tabs)
-import "./components/accordion.js";
-import "./components/header.js";
-import "./components/lightbox.js";
+import { initAccordion } from "./components/accordion.js";
+import { initHeader } from "./components/header.js";
+import { initLightbox } from "./components/lightbox.js";
+import { initPolicyToc } from "./components/policy-toc.js";
 
-// == 3. Modules ==
-// uma pequena descrição que nao sei
-import "./modules/cookie-consent.js";
+// == 3. modules ==
+import { initCookieConsent } from "./modules/cookie-consent.js";
+
+// == 4. Integrations ==
+import { initGoogleAnalytics } from "./integrations/google-analytics.js";
+
+// ===================================================
+// INITIALIZATION
+// ===================================================
+
+const initApp = () => {
+  initScrollAnimations();
+  initFloatingActions();
+
+  initAccordion();
+  initHeader();
+  initLightbox();
+  initPolicyToc();
+
+  initCookieConsent();
+
+  initGoogleAnalytics();
+};
+
+// ===================================================
+// DOM READY
+// ===================================================
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initApp);
+} else {
+  initApp();
+}

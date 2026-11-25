@@ -1,28 +1,46 @@
 // ===================================================
-// ESTILO NOBRE ▪︎ LIGHTBOX COMPONENT
+// AXIS ▪︎ LIGHTBOX COMPONENT
+// Controls the project gallery image viewer.
 // ===================================================
 
-document.addEventListener("DOMContentLoaded", () => {
+// ===================================================
+// INITIALIZATION
+// ===================================================
+export const initLightbox = () => {
   const galleryImages = document.querySelectorAll(".projects__gallery img");
   const lightbox = document.getElementById("projects-lightbox");
 
   if (!galleryImages.length || !lightbox) return;
 
+  // Element References
   const lightboxImg = document.getElementById("lightbox-img");
   const lightboxCaption = document.getElementById("lightbox-caption");
   const btnPrev = document.getElementById("lightbox-prev");
   const btnNext = document.getElementById("lightbox-next");
-  const closeElements = document.querySelectorAll("[data-close]");
+  const closeElements = lightbox.querySelectorAll("[data-close]");
 
-  // Transforma as imagens capturadas em um Array para facilitar a manipulação de índice
+  if (!lightboxImg || !lightboxCaption || !btnPrev || !btnNext) return;
+
+  // Gallery State
   const imagesArray = Array.from(galleryImages);
   let currentIndex = 0;
+
+  // Lightbox Controls
+  const updateLightbox = () => {
+    const currentImg = imagesArray[currentIndex];
+
+    lightboxImg.src = currentImg.src;
+    lightboxImg.alt = currentImg.alt;
+    lightboxCaption.textContent = currentImg.alt;
+  };
 
   const openLightbox = (index) => {
     currentIndex = index;
     updateLightbox();
+
     lightbox.classList.add("is-active");
-    // Trava o scroll do body para a pessoa não rolar a página enquanto vê a foto
+
+    // Trava o scroll do body enquanto a imagem está aberta.
     document.body.style.overflow = "hidden";
   };
 
@@ -31,41 +49,39 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "";
   };
 
-  const updateLightbox = () => {
-    const currentImg = imagesArray[currentIndex];
-    lightboxImg.src = currentImg.src;
-    lightboxImg.alt = currentImg.alt;
-    // O texto do alt é injetado diretamente como a descrição da imagem
-    lightboxCaption.textContent = currentImg.alt;
-  };
-
   const prevImage = () => {
     currentIndex =
       currentIndex === 0 ? imagesArray.length - 1 : currentIndex - 1;
+
     updateLightbox();
   };
 
   const nextImage = () => {
     currentIndex =
       currentIndex === imagesArray.length - 1 ? 0 : currentIndex + 1;
+
     updateLightbox();
   };
 
-  // Adiciona o evento de clique em cada imagem da galeria
+  // ===================================================
+  // EVENT LISTENERS
+  // ===================================================
+
+  // Gallery Images
   imagesArray.forEach((img, index) => {
     img.addEventListener("click", () => openLightbox(index));
   });
 
-  // Eventos de clique nos botões
+  // Navigation Buttons
   btnPrev.addEventListener("click", prevImage);
   btnNext.addEventListener("click", nextImage);
 
-  // Fecha o lightbox ao clicar no X ou na camada de fundo escurecida
+  // Close Actions
   closeElements.forEach((el) => {
     el.addEventListener("click", closeLightbox);
   });
 
-  // Acessibilidade: Navegação por teclado
+  // Keyboard Navigation
   document.addEventListener("keydown", (e) => {
     if (!lightbox.classList.contains("is-active")) return;
 
@@ -73,4 +89,4 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "ArrowLeft") prevImage();
     if (e.key === "ArrowRight") nextImage();
   });
-});
+};
